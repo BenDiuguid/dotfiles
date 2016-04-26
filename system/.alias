@@ -1,0 +1,36 @@
+###############################################################################
+# Shortcuts                                                                   #
+###############################################################################
+
+alias rr="rm -rf"
+alias ls='ls -GF'
+
+# List declared aliases, functions
+alias listaliases="alias | sed 's/=.*//'"
+alias listfunctions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'" # show non _prefixed functions
+
+# Directory stuff (listing/traversal)
+
+alias cpwd='pwd|tr -d "\n"|pbcopy'
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias -- -="cd -"                  # Go to previous dir with -
+alias cdsym='cd $(readlink -f .)'    # Go to real dir (i.e. if current dir is linked)
+
+
+###############################################################################
+# OSX                                                                         #
+###############################################################################
+
+# Show/hide desktop icons
+alias desktopShow="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias desktopHide="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+
+# Show/hide hidden files by default
+alias hiddenFilesShow="defaults write com.apple.finder AppleShowAllFiles -bool true"
+alias hiddenFilesHide="defaults write com.apple.finder AppleShowAllFiles -bool false"
+
+# Show/hide all filename extensions
+alias fileExtensionsShow="defaults write NSGlobalDomain AppleShowAllExtensions -bool true && killall Finder"
+alias fileExtensionsHide="defaults write NSGlobalDomain AppleShowAllExtensions -bool false && killall Finder"
