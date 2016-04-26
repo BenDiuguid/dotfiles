@@ -2,6 +2,7 @@
 
 dockutil --no-restart --remove all
 dockutil --no-restart --add "/Applications/System Preferences.app"
+
 dockutil --no-restart --add "$HOME/Applications/Safari Technology Preview.app"
 dockutil --no-restart --add "$HOME/Applications/Brave.app"
 dockutil --no-restart --add "$HOME/Applications/Vivaldi.app"
@@ -16,15 +17,11 @@ dockutil --no-restart --add "$HOME/Applications/GitHub Desktop.app"
 dockutil --no-restart --add "$HOME/Applications/Slack.app"
 dockutil --no-restart --add "/Applications/App Store.app"
 
+dockutil --no-restart --add '~/Downloads' --view grid --display folder --section others
 
-killall Dock
-
-# Add spaces to Dock.
+# Add space to Dock
 defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'
-killall Dock
-
 defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'
-killall Dock
-
 defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'
+
 killall Dock

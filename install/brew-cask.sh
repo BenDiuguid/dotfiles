@@ -4,7 +4,6 @@ brew install brew-cask
 brew tap caskroom/versions
 
 # Install packages
-
 apps=(
   android-file-transfer
   android-studio
@@ -15,7 +14,7 @@ apps=(
   discord
   drop-to-gif
   firefox
-  firefoxdevelopereditions
+  firefoxdeveloperedition
   flux
   github-desktop
   google-chrome

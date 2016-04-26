@@ -16,12 +16,12 @@ packages=(
   generator-nm
   generator-react-cdk
   gulp
-  jade
   less
   mocha
   node-gyp
   nodemon
   plop
+  pug
   sort-package-json
   typescript
   yo

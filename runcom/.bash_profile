@@ -1,9 +1,9 @@
 # Diuguid .bash_profile
 
-# Ruby Gems live in /Library/Ruby/Gems/2.0.0/gems
-# Brew packages live in /usr/local/Cellar
-# Cask stuff lives in TODO
-# Global npm packages live in /usr/local/lib/node_modules
+# Ruby Gems live in /Library/Ruby/Gems/2.0.0/gems/
+# Brew packages live in /usr/local/Cellar/
+# Cask stuff lives in /opt/homebrew-cask/Caskroom/
+# Global npm packages live in /usr/local/lib/node_modules/
 
 
 # If not running interactively, don't do anything
@@ -58,3 +58,5 @@ unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE
 
 # Export
 export OS DOTFILES_DIR EXTRA_DIR
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

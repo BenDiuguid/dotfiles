@@ -16,7 +16,8 @@ brew install bash-completion2
 
 # Install more recent versions of some OS X tools.
 brew install vim --override-system-vi
-brew install homebrew/dupes/grep
+brew install grep --with-default-names
+brew install gnu-sed --with-default-names
 brew install homebrew/dupes/openssh
 brew install homebrew/dupes/screen
 
@@ -27,7 +28,8 @@ brew install git
 brew install diff-so-fancy
 brew install heroku-toolbelt
 brew install mongodb
-brew install ruby
+brew install coreutils
+brew install dockutil
 
 # Remove outdated versions from the cellar.
 brew cleanup

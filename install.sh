@@ -21,7 +21,10 @@ ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 . "$DOTFILES_DIR/install/gem.sh"
 . "$DOTFILES_DIR/install/brew-cask.sh"
 . "$DOTFILES_DIR/install/atom.sh"
+. "$DOTFILES_DIR/osx/defaults.sh"
+. "$DOTFILES_DIR/osx/dock.sh"
 
+# brew install bats first.
 # Run tests
 #bats test/*.bats
 
@@ -29,5 +32,3 @@ ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 if [ -d "$EXTRA_DIR" -a -f "$EXTRA_DIR/install.sh" ]; then
   . "$EXTRA_DIR/install.sh"
 fi
-
-# TODO: OSX stuff?

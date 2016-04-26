@@ -1,2 +1,5 @@
+# If no ~/nvm must create it.
+#mkdir ~/.nvm
+
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
