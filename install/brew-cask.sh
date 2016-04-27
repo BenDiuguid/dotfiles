@@ -11,6 +11,7 @@ brew tap caskroom/versions
 
 # Install packages
 apps=(
+  1password
   android-file-transfer
   android-studio
   appcleaner
