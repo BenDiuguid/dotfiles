@@ -28,6 +28,7 @@ apps=(
   google-chrome-canary
   google-drive
   gopro
+  iterm2
   java
   ngrok
   opera
