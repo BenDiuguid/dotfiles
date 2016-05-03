@@ -45,4 +45,5 @@ cleanup() {
   is-executable brew && brew cleanup
   is-executable brew && brew cask cleanup
   is-executable rvm && rvm cleanup all
+  is-supported nvm && nvm clear-cache
 }

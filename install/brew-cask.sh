@@ -39,6 +39,7 @@ apps=(
   sococo
   sublime-text3
   torbrowser
+  transmission
   virtualbox
   visual-studio-code
   vivaldi

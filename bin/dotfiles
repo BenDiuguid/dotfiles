@@ -33,11 +33,10 @@ sub_update () {
   sudo softwareupdate -i -a
   brew update
   brew upgrade
-  npm install -g npm@latest
+  npm outdated -g --depth=0
   for package in $(npm outdated -g --depth=0 --parseable | cut -d: -f4)
-    do npm -g i "$package";
+    do npm i -g "$package@latest";
   done
-  npm update -g #This will not work.
   gem update --system
   gem update
 }
@@ -59,7 +58,6 @@ sub_install () {
 }
 
 # Make sure to keep this in sync with the available public commands
-
 sub_completion () {
   echo "help edit reload test update osx dock install"
 }

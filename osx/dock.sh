@@ -19,7 +19,7 @@ dockutil --no-restart --add "/Applications/App Store.app"
 
 dockutil --no-restart --add '~/Downloads' --view grid --display folder --section others
 
-# Add space to Dock
+# Add spaces to Dock
 defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'
 defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'
 defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'

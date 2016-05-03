@@ -1,11 +1,14 @@
 brew install nvm
 
-nvm install 6.0
-nvm use 6.0
-nvm alias default 6.0
+# If nvm is not a directory, source our system/.nvm file
+[ "$(type -t nvm)" != function ] && source $DOTFILES_DIR/system/.nvm
+
+# Grab latest node version and set it to default
+nvm install node
+nvm use node
+nvm alias default node
 
 # Globally install with npm
-
 packages=(
   ava
   bower

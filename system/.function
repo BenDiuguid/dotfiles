@@ -36,17 +36,6 @@ colors() {
   done
 }
 
-# Calculator
-calc() {
-  echo "$*" | bc -l;
-}
-
-# Weather
-meteo() {
-  local CITY=${1:-Utrecht}
-  curl -4 "wttr.in/$CITY"
-}
-
 # Open man page as PDF
 manpdf() {
   man -t "$1" | open -f -a /Applications/Preview.app/
