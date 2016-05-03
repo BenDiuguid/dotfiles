@@ -1,8 +1,8 @@
 brew install nvm
 
-nvm install 5
-nvm use 5
-nvm alias default 5
+nvm install 6.0
+nvm use 6.0
+nvm alias default 6.0
 
 # Globally install with npm
 

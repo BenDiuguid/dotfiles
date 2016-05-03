@@ -3,7 +3,7 @@
 dockutil --no-restart --remove all
 dockutil --no-restart --add "/Applications/System Preferences.app"
 
-dockutil --no-restart --add "$HOME/Applications/Safari Technology Preview.app"
+dockutil --no-restart --add "/Applications/Safari Technology Preview.app"
 dockutil --no-restart --add "$HOME/Applications/Brave.app"
 dockutil --no-restart --add "$HOME/Applications/Vivaldi.app"
 dockutil --no-restart --add "$HOME/Applications/Google Chrome.app"

@@ -34,6 +34,9 @@ sub_update () {
   brew update
   brew upgrade
   npm install -g npm@latest
+  for package in $(npm outdated -g --depth=0 --parseable | cut -d: -f4)
+    do npm -g i "$package";
+  done
   npm update -g #This will not work.
   gem update --system
   gem update

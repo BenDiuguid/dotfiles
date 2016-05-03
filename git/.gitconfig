@@ -79,3 +79,8 @@
   tool = wstorm
 [mergetool "webstorm"]
   cmd = /usr/local/bin/wstorm merge \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+  
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
