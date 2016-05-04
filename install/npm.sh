@@ -9,7 +9,7 @@ nvm use node
 nvm alias default node
 
 # npm completion installiation.
-[ ! -f /usr/local/etc/bash_completion.d/npm ] && eval "npm completion > /usr/local/etc/bash_completion.d/npm"
+npm completion > /usr/local/etc/bash_completion.d/npm
 
 # Globally install with npm
 packages=(
