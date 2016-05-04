@@ -38,12 +38,3 @@ extract() {
     echo "'$1' is not a valid file to extract"
   fi
 }
-
-# Clean Caches
-cleanup() {
-  is-executable npm && npm cache clean
-  is-executable brew && brew cleanup
-  is-executable brew && brew cask cleanup
-  is-executable rvm && rvm cleanup all
-  is-supported nvm && nvm clear-cache
-}

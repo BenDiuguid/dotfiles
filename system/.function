@@ -21,6 +21,15 @@ is-supported() {
   fi
 }
 
+# Clean Caches
+cleanup() {
+  is-executable npm && npm cache clean
+  is-executable brew && brew cleanup
+  is-executable brew && brew cask cleanup
+  is-executable rvm && rvm cleanup all
+  is-supported nvm && nvm clear-cache
+}
+
 # Add to path
 prepend-path() {
   [ -d $1 ] && PATH="$1:$PATH"

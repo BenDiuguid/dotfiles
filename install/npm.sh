@@ -26,6 +26,7 @@ packages=(
   plop
   pug
   sort-package-json
+  trash-cli
   typescript
   yo
 )
