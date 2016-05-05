@@ -1,4 +1,4 @@
-# If no ~/nvm must create it.
+# If ~/nvm does not exist, create it.
 [ ! -d ~/.nvm ] && mkdir ~/.nvm
 
 export NVM_DIR=~/.nvm

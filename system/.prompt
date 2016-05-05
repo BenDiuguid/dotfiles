@@ -1,27 +1,28 @@
-# Old stuff
-#export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
-#export LSCOLORS=ExFxBxDxCxegedabagacad
-
 ## Prompt
+
+# Good guide on colors:
+# https://linuxtidbits.wordpress.com/2008/08/11/output-color-on-bash-scripts/
+
+# Good guide on prompts and special chars:
+# http://www.davidpashley.com/articles/bash-prompts/
+
 _bash_prompt_config() {
+
+  # set colors with ANSI scapes
+  _setaf () { tput setaf "$1" ; } # Foreground
+  _setab () { tput setab "$1" ; } # Background
 
   local USER_SYMBOL="\u"
   local HOST_SYMBOL="\h"
+  local TIME_24="\t"
   local ESC_OPEN="\["
   local ESC_CLOSE="\]"
 
-  if tput setaf >/dev/null 2>&1 ; then
-    _setaf () { tput setaf "$1" ; }
-    local RESET="${ESC_OPEN}$( { tput sgr0 || tput me ; } 2>/dev/null )${ESC_CLOSE}"
-    local BOLD="$( { tput bold || tput md ; } 2>/dev/null )"
-  else
-    # Fallback
-    _setaf () { echo "\033[0;$(($1+30))m" ; }
-    local RESET="\033[m"
-    local BOLD=""
-    ESC_OPEN=""
-    ESC_CLOSE=""
-  fi
+  local RESET="${ESC_OPEN}$(tput sgr0)${ESC_CLOSE}"
+  local BOLD="$(tput bold)"
+  local UNDERLINE="$(tput sgr 0 1)"
+  local BLINK="$(tput blink)"
+  local REVERSE="$(tput rev)"
 
   # Normal colors
   local BLACK="${ESC_OPEN}$(_setaf 0)${ESC_CLOSE}"
@@ -29,15 +30,17 @@ _bash_prompt_config() {
   local GREEN="${ESC_OPEN}$(_setaf 2)${ESC_CLOSE}"
   local YELLOW="${ESC_OPEN}$(_setaf 3)${ESC_CLOSE}"
   local BLUE="${ESC_OPEN}$(_setaf 4)${ESC_CLOSE}"
-  local VIOLET="${ESC_OPEN}$(_setaf 5)${ESC_CLOSE}"
+  local MAGENTA="${ESC_OPEN}$(_setaf 5)${ESC_CLOSE}"
   local CYAN="${ESC_OPEN}$(_setaf 6)${ESC_CLOSE}"
   local WHITE="${ESC_OPEN}$(_setaf 7)${ESC_CLOSE}"
 
   # Bright colors
+  local BRIGHT_BLACK="${ESC_OPEN}$(_setaf 8)${ESC_CLOSE}"
+  local BRIGHT_RED="${ESC_OPEN}$(_setaf 9)${ESC_CLOSE}"
   local BRIGHT_GREEN="${ESC_OPEN}$(_setaf 10)${ESC_CLOSE}"
   local BRIGHT_YELLOW="${ESC_OPEN}$(_setaf 11)${ESC_CLOSE}"
   local BRIGHT_BLUE="${ESC_OPEN}$(_setaf 12)${ESC_CLOSE}"
-  local BRIGHT_VIOLET="${ESC_OPEN}$(_setaf 13)${ESC_CLOSE}"
+  local BRIGHT_MAGENTA="${ESC_OPEN}$(_setaf 13)${ESC_CLOSE}"
   local BRIGHT_CYAN="${ESC_OPEN}$(_setaf 14)${ESC_CLOSE}"
   local BRIGHT_WHITE="${ESC_OPEN}$(_setaf 15)${ESC_CLOSE}"
 
@@ -47,18 +50,34 @@ _bash_prompt_config() {
   local GREEN_BOLD="${ESC_OPEN}${BOLD}$(_setaf 2)${ESC_CLOSE}"
   local YELLOW_BOLD="${ESC_OPEN}${BOLD}$(_setaf 3)${ESC_CLOSE}"
   local BLUE_BOLD="${ESC_OPEN}${BOLD}$(_setaf 4)${ESC_CLOSE}"
-  local VIOLET_BOLD="${ESC_OPEN}${BOLD}$(_setaf 5)${ESC_CLOSE}"
+  local MAGENTA_BOLD="${ESC_OPEN}${BOLD}$(_setaf 5)${ESC_CLOSE}"
   local CYAN_BOLD="${ESC_OPEN}${BOLD}$(_setaf 6)${ESC_CLOSE}"
   local WHITE_BOLD="${ESC_OPEN}${BOLD}$(_setaf 7)${ESC_CLOSE}"
 
+
+
   # Expose the variables we need in prompt command
-  P_USER=${BRIGHT_GREEN}${USER_SYMBOL}
-  P_HOST=${CYAN}${HOST_SYMBOL}
-  P_WHITE=${WHITE}
-  P_GREEN=${BRIGHT_GREEN}
-  P_YELLOW=${YELLOW}
-  P_RED=${RED}
+  # Exposing a subset this way might conserve memory
+  P_USER=${USER_SYMBOL}
+  P_HOST=${HOST_SYMBOL}
   P_RESET=${RESET}
+
+  P_WHITE=${WHITE}
+  # P_BLACK=${BLACK}
+
+  P_RED=${RED}
+  P_GREEN=${GREEN}
+  P_YELLOW=${YELLOW}
+  P_BLUE=${BLUE}
+  P_MAGENTA=${MAGENTA}
+  P_CYAN=${CYAN}
+
+  P_BRIGHT_RED=${BRIGHT_RED}
+  P_BRIGHT_GREEN=${BRIGHT_GREEN}
+  # P_BRIGHT_YELLOW=${BRIGHT_YELLOW}
+  P_BRIGHT_BLUE=${BRIGHT_BLUE}
+  P_BRIGHT_MAGENTA=${BRIGHT_MAGENTA}
+  P_BRIGHT_CYAN=${BRIGHT_CYAN}
 
 }
 
@@ -66,42 +85,168 @@ bash_prompt_command() {
 
   local EXIT_CODE=$?
   local P_EXIT=""
-  local MAXLENGTH=35
-  local TRUNC_SYMBOL=".."
-  local DIR=${PWD##*/}
-  local P_PWD=${PWD/#$HOME/\~}
+  local MAXLENGTH=40
+  local TRUNC_SYMBOL="..."
+  local CURRENT_DIR=${PWD##*/}
+  local P_PWD=${PWD/#$HOME/\~} # short form of pwd ( using ~) (equivalent of \w)
 
-  MAXLENGTH=$(( ( MAXLENGTH < ${#DIR} ) ? ${#DIR} : MAXLENGTH ))
+  # MAXLENGTH = max(maxLength, dirLength)
+  MAXLENGTH=$(( ( MAXLENGTH < ${#CURRENT_DIR} ) ? ${#CURRENT_DIR} : MAXLENGTH ))
 
-  local OFFSET=$(( ${#P_PWD} - MAXLENGTH ))
+  # get length to cut off.
+  local TRUNC_LENGTH=$(( ${#P_PWD} - MAXLENGTH ))
 
-  if [ ${OFFSET} -gt "0" ]; then
-    P_PWD=${P_PWD:$OFFSET:$MAXLENGTH}
-    P_PWD=${TRUNC_SYMBOL}/${P_PWD#*/}
+  # if TRUNC_LENGTH > 0, replace #TRUNC_LENGTH chars with TRUNC
+  if [ ${TRUNC_LENGTH} -gt "0" ]; then
+    P_PWD=${P_PWD:$TRUNC_LENGTH:$MAXLENGTH}
+    P_PWD=${TRUNC_SYMBOL}${P_PWD#*/}
   fi
 
   # Update terminal title
-  if [[ $TERM == xterm* ]]; then
-    echo -ne "\033]0;${P_PWD}\007"
-  fi
+  # if [[ $TERM == xterm* ]]; then
+  #   echo -ne "\033]0;${P_PWD}\007"
+  # fi
 
   # Parse Git branch name
   P_GIT=$(parse_git_branch)
 
   # Exit code
   if [[ $EXIT_CODE != 0 ]]; then
-    P_EXIT+="${P_RED}✘ "
+    P_EXIT="${P_RED}✖ "
   fi
 
-  PS1="${P_EXIT}${P_USER}${P_WHITE}@${P_HOST} ${P_YELLOW}${P_PWD}${P_GREEN}${P_GIT}${P_YELLOW} ❯ ${P_RESET}"
+  # Assign colors
+  P_PWD=${P_YELLOW}${P_PWD}
+  P_USER=${P_BLUE}${P_USER}
+  P_HOST=${P_BRIGHT_CYAN}${P_HOST}
+
+  # FINAL PROMPT
+  PS1="${P_EXIT}${P_USER}${P_WHITE}@${P_HOST} ${P_PWD} ${P_GIT} ${P_BRIGHT_MAGENTA}⌘  ${P_RESET}"
 }
 
 parse_git_branch() {
   local OUT=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-  if [ "$OUT" != "" ]; then echo " $OUT"; fi
+  if [ "$OUT" != "" ]; then echo "$OUT"; fi
 }
 
 _bash_prompt_config
 unset _bash_prompt_config
 
 PROMPT_COMMAND=bash_prompt_command
+
+
+
+function git_prompt_dir() {
+  if [ -z "$__GIT_PROMPT_DIR" ]; then
+    local SOURCE="${BASH_SOURCE[0]}"
+    while [ -h "$SOURCE" ]; do
+      local DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+      SOURCE="$(readlink "$SOURCE")"
+      [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+    done
+    __GIT_PROMPT_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  fi
+}
+
+if [ -z "${__GIT_PROMPT_DIR}" ]; then
+  SOURCE="${BASH_SOURCE[0]}"
+  while [ -h "${SOURCE}" ]; do
+    DIR="$( cd -P "$( dirname "${SOURCE}" )" && pwd )"
+    SOURCE="$(readlink "${SOURCE}")"
+    [[ $SOURCE != /* ]] && SOURCE="${DIR}/${SOURCE}"
+  done
+  __GIT_PROMPT_DIR="$( cd -P "$( dirname "${SOURCE}" )" && pwd )"
+fi
+
+gitstatus=$( LC_ALL=C git status --untracked-files=${__GIT_PROMPT_SHOW_UNTRACKED_FILES} --porcelain --branch )
+
+# if the status is fatal, exit now
+[[ "$?" -ne 0 ]] && exit 0
+
+num_staged=0
+num_changed=0
+num_conflicts=0
+num_untracked=0
+while IFS='' read -r line || [[ -n "$line" ]]; do
+  status=${line:0:2}
+  case "$status" in
+    \#\#) branch_line="${line/\.\.\./^}" ;;
+    ?M) ((num_changed++)) ;;
+    ?D) ((num_changed++)) ;;
+    U?) ((num_conflicts++)) ;;
+    \?\?) ((num_untracked++)) ;;
+    *) ((num_staged++)) ;;
+  esac
+done <<< "$gitstatus"
+
+num_stashed=0
+if [[ "$__GIT_PROMPT_IGNORE_STASH" != "1" ]]; then
+  stash_file="$( git rev-parse --git-dir )/logs/refs/stash"
+  if [[ -e "${stash_file}" ]]; then
+    while IFS='' read -r wcline || [[ -n "$wcline" ]]; do
+      ((num_stashed++))
+    done < ${stash_file}
+  fi
+fi
+
+clean=0
+if (( num_changed == 0 && num_staged == 0 && num_untracked == 0 && num_stashed == 0 && num_conflicts == 0)) ; then
+  clean=1
+fi
+
+IFS="^" read -ra branch_fields <<< "${branch_line/\#\# }"
+branch="${branch_fields[0]}"
+remote=
+upstream=
+
+if [[ "$branch" == *"Initial commit on"* ]]; then
+  IFS=" " read -ra fields <<< "$branch"
+  branch="${fields[3]}"
+  remote="_NO_REMOTE_TRACKING_"
+elif [[ "$branch" == *"no branch"* ]]; then
+  tag=$( git describe --tags --exact-match )
+  if [[ -n "$tag" ]]; then
+    branch="$tag"
+  else
+    branch="_PREHASH_$( git rev-parse --short HEAD )"
+  fi
+else
+  if [[ "${#branch_fields[@]}" -eq 1 ]]; then
+    remote="_NO_REMOTE_TRACKING_"
+  else
+    IFS="[,]" read -ra remote_fields <<< "${branch_fields[1]}"
+    upstream="${remote_fields[0]}"
+    for remote_field in "${remote_fields[@]}"; do
+      if [[ "$remote_field" == *ahead* ]]; then
+        num_ahead=${remote_field:6}
+        ahead="_AHEAD_${num_ahead}"
+      fi
+      if [[ "$remote_field" == *behind* ]]; then
+        num_behind=${remote_field:7}
+        behind="_BEHIND_${num_behind# }"
+      fi
+    done
+    remote="${behind}${ahead}"
+  fi
+fi
+
+if [[ -z "$remote" ]] ; then
+  remote='.'
+fi
+
+if [[ -z "$upstream" ]] ; then
+  upstream='^'
+fi
+
+printf "%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n" \
+  "$branch" \
+  "$remote" \
+  "$upstream" \
+  $num_staged \
+  $num_conflicts \
+  $num_changed \
+  $num_untracked \
+  $num_stashed \
+  $clean
+
+exit
