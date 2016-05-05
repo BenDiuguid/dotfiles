@@ -11,9 +11,12 @@ packages=(
   language-babel
   language-jade
   linter
+  linter-eslint
   merge-conflicts
+  oceanic-next
   project-manager
   react
+  seti-syntax
   travis-ci-status
 )
 
