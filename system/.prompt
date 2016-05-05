@@ -54,8 +54,6 @@ _bash_prompt_config() {
   local CYAN_BOLD="${ESC_OPEN}${BOLD}$(_setaf 6)${ESC_CLOSE}"
   local WHITE_BOLD="${ESC_OPEN}${BOLD}$(_setaf 7)${ESC_CLOSE}"
 
-
-
   # Expose the variables we need in prompt command
   # Exposing a subset this way might conserve memory
   P_USER=${USER_SYMBOL}
@@ -116,7 +114,7 @@ bash_prompt_command() {
   P_HOST=${P_BLUE}${P_HOST}
 
   # FINAL PROMPT
-  PS1="${P_EXIT}${P_USER}${P_WHITE}@${P_HOST} ${P_PWD} ${P_GIT} ${P_BRIGHT_MAGENTA}⌘  ${P_RESET}"
+  PS1="${P_EXIT}${P_USER}${P_WHITE}@${P_HOST} ${P_PWD} ${P_GIT}${P_BRIGHT_MAGENTA}⌘  ${P_RESET}"
 }
 
 parse_git_status () {
@@ -130,7 +128,9 @@ parse_git_status () {
       GIT_MESSAGE="${P_GREEN}($GIT_MESSAGE)"
     fi
 
-    echo $GIT_MESSAGE
+    # NOTE: space is there because otherwise,
+    #       when not in a git repo there will be a lack of a space.
+    echo "$GIT_MESSAGE "
   fi
 }
 
