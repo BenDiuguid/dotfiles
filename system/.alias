@@ -4,7 +4,7 @@
 
 alias rm="trash"
 # alias rr="rm -rf"
-alias ls='ls --quoting-style=literal --classify --color'
+alias ls='ls -GF'
 alias la='ls -A'
 alias ld='ls -d */'
 alias mkdir="mkcd"
@@ -18,7 +18,7 @@ alias cpwd='pwd|tr -d "\n"|pbcopy'
 
 alias ..="cd ../"
 alias ...="cd ../../"
-alias cdsym='cd $(readlink -f .)'    # Go to real dir (i.e. if current dir is linked)
+# alias cdsym='cd $(readlink -f .)'    # Go to real dir (i.e. if current dir is linked)
 
 
 ###############################################################################

@@ -28,7 +28,6 @@ brew install git
 brew install diff-so-fancy
 brew install heroku-toolbelt
 brew install mongodb
-brew install coreutils
 brew install dockutil
 
 # Remove outdated versions from the cellar.

@@ -112,8 +112,8 @@ bash_prompt_command() {
 
   # Assign colors
   P_PWD=${P_YELLOW}${P_PWD}
-  P_USER=${P_BLUE}${P_USER}
-  P_HOST=${P_BRIGHT_CYAN}${P_HOST}
+  P_USER=${P_BRIGHT_CYAN}${P_USER}
+  P_HOST=${P_BLUE}${P_HOST}
 
   # FINAL PROMPT
   PS1="${P_EXIT}${P_USER}${P_WHITE}@${P_HOST} ${P_PWD} ${P_GIT} ${P_BRIGHT_MAGENTA}⌘  ${P_RESET}"

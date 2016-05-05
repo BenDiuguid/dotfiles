@@ -21,7 +21,7 @@ READLINK=$(which greadlink || which readlink)
 CURRENT_SCRIPT=$BASH_SOURCE
 
 if [[ -n $CURRENT_SCRIPT && -x "$READLINK" ]]; then
-  SCRIPT_PATH=$($READLINK -f "$CURRENT_SCRIPT")
+  SCRIPT_PATH=$($READLINK "$CURRENT_SCRIPT") # previously was READLINK -f
   DOTFILES_DIR=$(dirname "$(dirname "$SCRIPT_PATH")")
 elif [ -d "$HOME/.dotfiles" ]; then
   DOTFILES_DIR="$HOME/.dotfiles"
@@ -40,9 +40,6 @@ if [ "$OS" = "OSX" ]; then
     [ -f "$DOTFILE" ] && . "$DOTFILE"
   done
 fi
-
-# Set LSCOLORS
-eval "$(dircolors "$DOTFILES_DIR"/system/.dir_colors)"
 
 # Hook for extra/custom stuff
 EXTRA_DIR="$HOME/.extra"
