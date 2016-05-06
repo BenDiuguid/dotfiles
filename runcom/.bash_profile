@@ -2,9 +2,8 @@
 
 # Ruby Gems live in /Library/Ruby/Gems/2.0.0/gems/
 # Brew packages live in /usr/local/Cellar/
-# Cask stuff lives in /opt/homebrew-cask/Caskroom/
-# Global npm packages live in /usr/local/lib/node_modules/
-
+# Cask packages lives in /opt/homebrew-cask/Caskroom/
+# Global npm packages live in ~/.npm/
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -31,29 +30,18 @@ else
 fi
 
 # Finally we can source the dotfiles (order matters)
-for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias,completion,prompt,nvm,rvm,custom}; do
+for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias,completion,prompt,nvm,rvm}; do
   [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
 
-if [ "$OS" = "OSX" ]; then
-  for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.osx; do
-    [ -f "$DOTFILE" ] && . "$DOTFILE"
-  done
-fi
-
-# Hook for extra/custom stuff
-EXTRA_DIR="$HOME/.extra"
-
-if [ -d "$EXTRA_DIR" ]; then
-  for EXTRAFILE in "$EXTRA_DIR"/runcom/*.sh; do
-    [ -f "$EXTRAFILE" ] && . "$EXTRAFILE"
-  done
-fi
+# if [ "$OS" = "OSX" ]; then
+#   for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.osx; do
+#     [ -f "$DOTFILE" ] && . "$DOTFILE"
+#   done
+# fi
 
 # Clean up
 unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE
 
 # Export
-export OS DOTFILES_DIR EXTRA_DIR
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+export OS DOTFILES_DIR

@@ -7,9 +7,7 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade --all
 
-# Install Bash 4.
-# Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
-# running `chsh`.
+# Install Bash + completions
 brew install bash
 brew tap homebrew/versions
 brew install bash-completion2
