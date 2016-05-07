@@ -39,6 +39,7 @@ sub_update () {
   done
   gem update --system
   gem update
+  brew doctor
 }
 
 sub_osx () {

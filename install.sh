@@ -29,11 +29,5 @@ ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 . "$DOTFILES_DIR/osx/defaults.sh"
 . "$DOTFILES_DIR/osx/defaults.dock.sh"
 
-# brew install bats first.
 # Run tests
-#bats test/*.bats
-
-# Install extra stuff
-# if [ -d "$EXTRA_DIR" -a -f "$EXTRA_DIR/install.sh" ]; then
-#   . "$EXTRA_DIR/install.sh"
-# fi
+# bats test/*.bats

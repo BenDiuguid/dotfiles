@@ -22,11 +22,12 @@ brew install homebrew/dupes/screen
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
 
 # Install other useful binaries.
-brew install git
+brew install bats
 brew install diff-so-fancy
+brew install dockutil
+brew install git
 brew install heroku-toolbelt
 brew install mongodb
-brew install dockutil
 
 # Remove outdated versions from the cellar.
 brew cleanup
