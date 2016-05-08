@@ -2,24 +2,23 @@
 # Shortcuts                                                                   #
 ###############################################################################
 
-alias rm="trash"
-# alias rr="rm -rf"
+alias resource='source ~/.bash_profile && echo "Done!"'
+
+# File System stuff.
+alias rm="trash" # trash comes from npm: trash-cli
 alias ls='ls -GF'
 alias la='ls -A'
 alias ld='ls -d */'
 alias mkdir="mkcd"
 
-# List declared aliases, functions
-alias listaliases="alias | sed 's/=.*//'"
-alias listfunctions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'" # show non _prefixed functions
-
-# Directory stuff (listing/traversal)
 alias cpwd='pwd|tr -d "\n"|pbcopy'
 
 alias ..="cd ../"
 alias ...="cd ../../"
-# alias cdsym='cd $(readlink -f .)'    # Go to real dir (i.e. if current dir is linked)
 
+# List declared aliases, functions
+alias listaliases="alias | sed 's/=.*//'"
+alias listfunctions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'" # show non _prefixed functions
 
 ###############################################################################
 # OSX                                                                         #
