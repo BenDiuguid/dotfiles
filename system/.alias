@@ -4,6 +4,8 @@
 
 alias resource='source ~/.bash_profile && echo "Done!"'
 
+alias ipaddr='ipconfig getifaddr en0'
+
 # File System stuff.
 alias rm="trash" # trash comes from npm: trash-cli
 alias ls='ls -GF'
