@@ -27,7 +27,7 @@ packages=(
   node-gyp
   nodemon
   plop
-  pug
+  pug-cli
   sort-package-json
   trash-cli
   typescript
