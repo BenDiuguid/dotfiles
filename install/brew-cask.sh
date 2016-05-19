@@ -38,7 +38,6 @@ apps=(
   safari-technology-preview
   skype
   slack
-  sococo
   sublime-text3
   torbrowser
   transmission
