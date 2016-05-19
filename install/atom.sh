@@ -1,7 +1,8 @@
-brew cask install atom
+if [ $(which brew) ]; then
+  brew cask install atom
+fi
 
-# Globally install with apm
-
+# Install atom packages
 packages=(
   activate-power-mode
   atom-beautify
@@ -20,4 +21,6 @@ packages=(
   travis-ci-status
 )
 
-apm install "${packages[@]}" --production
+if [ $(which apm) ]; then
+  apm install "${packages[@]}" --production
+fi
