@@ -17,6 +17,7 @@ packages=(
   ava
   bower
   browser-sync
+  cypress
   diffchecker
   eslint
   generator-angular-fullstack
