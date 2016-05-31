@@ -74,6 +74,6 @@ To install a theme, simply navigate to the preferences/settings of the terminal 
 ![iTerm Theme](https://github.com/bendiuguid/dotfiles/raw/master/docs/imgs/itermThemeAt2016-05-08.png)
 
 ## Caveats
-Currently I have not tested this on anything other than OS X, and I knew all of the `brew` stuff will not work on Linux Distributions.
+Currently I have not tested this on anything other than OS X, and I know all of the `brew` stuff will not work on Linux or Windows systems.
 
 # Happy Hacking!
