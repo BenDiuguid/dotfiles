@@ -27,6 +27,7 @@ packages=(
   less
   mocha
   node-gyp
+  node-ip
   nodemon
   plop
   pug-cli
