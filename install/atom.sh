@@ -8,7 +8,6 @@ packages=(
   atom-beautify
   atom-linter-node-dependencies
   autocomplete-modules
-  console-log
   editorconfig
   emmet
   git-control

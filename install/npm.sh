@@ -24,6 +24,7 @@ packages=(
   generator-nm
   generator-react-cdk
   gulp
+  horizon
   less
   mocha
   node-gyp

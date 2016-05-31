@@ -29,6 +29,7 @@ brew install dockutil
 brew install git
 brew install heroku-toolbelt
 brew install mongodb
+brew install rethinkdb
 
 # Remove outdated versions from the cellar.
 brew cleanup
