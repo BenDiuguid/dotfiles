@@ -13,10 +13,12 @@ packages=(
   git-control
   highlight-selected
   jumpy
+  language-docker
   language-babel
   language-ignore
   language-jade
   linter
+  linter-dockerlint
   linter-jsonlint
   linter-eslint
   lucid-tabs
