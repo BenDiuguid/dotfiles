@@ -15,6 +15,7 @@ npm completion > /usr/local/etc/bash_completion.d/npm
 # Globally install with npm
 packages=(
   ava
+  babel-cli
   bower
   browser-sync
   cypress
