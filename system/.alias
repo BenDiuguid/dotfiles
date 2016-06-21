@@ -26,6 +26,8 @@ alias listfunctions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'" # show non 
 # OSX                                                                         #
 ###############################################################################
 
+alias whale="eval '$(docker-machine env default)'"
+
 # Show/hide desktop icons
 alias desktopShow="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 alias desktopHide="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"

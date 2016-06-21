@@ -19,6 +19,7 @@ packages=(
   bower
   browser-sync
   cypress
+  devtool
   diffchecker
   eslint
   generator-angular-fullstack
