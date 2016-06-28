@@ -28,7 +28,6 @@ packages=(
   open-recent
   pigments
   project-manager
-  react
   regex-tester
   seti-syntax
   slack-ui
