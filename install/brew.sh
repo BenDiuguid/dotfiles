@@ -13,11 +13,11 @@ brew tap homebrew/versions
 brew install bash-completion2
 
 # Install more recent versions of some OS X tools.
-brew install vim --override-system-vi
-brew install grep --with-default-names
-brew install gnu-sed --with-default-names
-brew install homebrew/dupes/openssh
-brew install homebrew/dupes/screen
+# brew install vim --override-system-vi
+# brew install grep --with-default-names
+# brew install gnu-sed --with-default-names
+# brew install homebrew/dupes/openssh
+# brew install homebrew/dupes/screen
 
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
 

@@ -33,7 +33,6 @@ packages=(
   rest-client
   seti-syntax
   slack-ui
-  todo-show
   travis-ci-status
 )
 

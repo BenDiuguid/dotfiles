@@ -28,14 +28,12 @@ apps=(
   gopro
   iterm2
   java
-  ngrok
   opera
-  polymail
   robomongo
   safari-technology-preview
   skype
   slack
-  sublime-text3
+  sublime-text
   torbrowser
   transmission
   virtualbox
