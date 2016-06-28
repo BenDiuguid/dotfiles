@@ -17,7 +17,7 @@ packages=(
   language-ignore
   language-jade
   linter
-  linter-dockerlint
+  linter-docker
   linter-jsonlint
   linter-eslint
   lucid-tabs
@@ -30,7 +30,6 @@ packages=(
   project-manager
   react
   regex-tester
-  rest-client
   seti-syntax
   slack-ui
   travis-ci-status
