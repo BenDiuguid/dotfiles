@@ -1,6 +1,5 @@
-if [ $(which brew) ]; then
-  brew cask install atom
-fi
+# Install atom.
+brew cask install atom
 
 # Install atom packages
 packages=(

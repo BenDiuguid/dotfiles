@@ -1,5 +1,5 @@
-
-[ ! $(which brew) ] && brew install nvm
+# Install nvm.
+brew install nvm
 
 # If nvm is not a directory, source our system/.nvm file
 [ "$(type -t nvm)" != function ] && source $DOTFILES_DIR/system/.nvm

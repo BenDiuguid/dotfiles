@@ -1,4 +1,3 @@
-[ ! $(which brew) ] && return 0
 # Install Homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 

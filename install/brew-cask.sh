@@ -1,5 +1,3 @@
-[ ! $(which brew) ] && return 0
-
 # Install Caskroom
 brew tap caskroom/cask
 brew tap caskroom/versions
