@@ -31,8 +31,8 @@ alias desktopShow="defaults write com.apple.finder CreateDesktop -bool true && k
 alias desktopHide="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 
 # Show/hide hidden files by default
-alias hiddenFilesShow="defaults write com.apple.finder AppleShowAllFiles -bool true"
-alias hiddenFilesHide="defaults write com.apple.finder AppleShowAllFiles -bool false"
+alias hiddenFilesShow="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hiddenFilesHide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
 # Show/hide all filename extensions
 alias fileExtensionsShow="defaults write NSGlobalDomain AppleShowAllExtensions -bool true && killall Finder"
