@@ -1,6 +1,14 @@
 # Install atom.
 brew cask install atom
 
+# Potentially useful plugins
+# lucid-tabs
+# term3
+# tool-bar
+# linter-flow
+# nuclide
+# atom-ternjs
+
 # Install atom packages
 packages=(
   activate-power-mode
@@ -9,7 +17,7 @@ packages=(
   autocomplete-modules
   editorconfig
   emmet
-  git-control
+  file-icons
   highlight-selected
   jumpy
   language-docker
@@ -20,9 +28,7 @@ packages=(
   linter-docker
   linter-jsonlint
   linter-eslint
-  lucid-tabs
   markdown-scroll-sync
-  merge-conflicts
   npm-outdated
   oceanic-next
   open-recent
@@ -31,9 +37,13 @@ packages=(
   regex-tester
   seti-syntax
   slack-ui
+  sync-settings
+  todo-show
   travis-ci-status
 )
 
 if [ $(which apm) ]; then
   apm install "${packages[@]}" --production
+else
+  echo "ERROR: apm not installed"
 fi
