@@ -41,9 +41,9 @@ Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/
     │   ├── defaults.dock.sh        - Sets the Dock up
     │   └── defaults.sh             - Skinned down version of mathiasbynens/dotfiles/.osx
     │
-    ├── runcom
+    ├── symlink
     │   ├── .bash_profile           - Symlinked into ~/ controls the sourcing of everything
-    │   ├── .gemrc                  - Symlinked into ~/ controls gem info
+    │   ├── .tmux.                  - Symlinked into ~/ configures tmux
     │   └── .inputrc                - Symlinked into ~/ sets input info
     │
     ├── system
@@ -54,8 +54,7 @@ Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/
     │   ├── .function_fs            - File System specific functions
     │   ├── .nvm                    - Properly sources nvm
     │   ├── .path                   - Defines the path
-    │   ├── .prompt                 - Bash logic for coloring / git status of prompt
-    │   └── .rvm                    - Properly sources rvm
+    │   └── .prompt                 - Bash logic for coloring / git status of prompt
     │
     └── themes
         ├── .Material.itermcolors   - Material color theme for iTerm

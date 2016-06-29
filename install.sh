@@ -12,9 +12,9 @@ DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 [ -f "$DOTFILES_DIR/bin/dotfiles" ] && chmod +x $DOTFILES_DIR/bin/dotfiles
 
 # Bunch of symlinks
-ln -sfv "$DOTFILES_DIR/runcom/.bash_profile" ~
-ln -sfv "$DOTFILES_DIR/runcom/.inputrc" ~
-ln -sfv "$DOTFILES_DIR/runcom/.tmux.conf" ~
+ln -sfv "$DOTFILES_DIR/symlink/.bash_profile" ~
+ln -sfv "$DOTFILES_DIR/symlink/.inputrc" ~
+ln -sfv "$DOTFILES_DIR/symlink/.tmux.conf" ~
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 
