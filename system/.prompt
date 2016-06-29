@@ -55,7 +55,7 @@ _bash_prompt_config() {
   local WHITE_BOLD="${ESC_OPEN}${BOLD}$(_setaf 7)${ESC_CLOSE}"
 
   # Expose the variables we need in prompt command
-  # Exposing a subset this way might conserve memory
+  # Exposing a subset this way might conserve memory, I'm not sure...
   P_USER=${USER_SYMBOL}
   P_HOST=${HOST_SYMBOL}
   P_RESET=${RESET}

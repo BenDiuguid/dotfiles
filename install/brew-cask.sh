@@ -3,10 +3,9 @@ brew tap caskroom/cask
 brew tap caskroom/versions
 
 # Not on brew-cask
-# Shazam
-# Sonic Mobile Connect
-# Pocket
-# Twitter
+# Shazam (from itunes)
+# Sonic Mobile Connect (from itunes)
+# Docker ( https://docs.docker.com/docker-for-mac/ )
 
 # Install packages
 apps=(
