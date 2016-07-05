@@ -18,11 +18,7 @@ sub_help () {
 }
 
 sub_edit () {
-  sh -c "$EDITOR_ALT $DOTFILES_DIR"
-}
-
-sub_reload () {
-  . ~/.bash_profile && echo "Bash reloaded."
+  sh -c "$EDITOR_NOWAIT $DOTFILES_DIR"
 }
 
 sub_test () {
@@ -49,10 +45,6 @@ sub_osx () {
   echo "Done. Some changes may require a logout/restart to take effect."
 }
 
-sub_dock () {
-  . "$DOTFILES_DIR/osx/dock.sh" && echo "Dock reloaded."
-}
-
 sub_install () {
   local SCRIPT="$DOTFILES_DIR/install/$SUB_COMMAND_NAME.sh"
   [ -f "$SCRIPT" ] && . "$SCRIPT" || echo "Unable to find script to install $SUB_COMMAND_NAME"
@@ -60,7 +52,7 @@ sub_install () {
 
 # Make sure to keep this in sync with the available public commands
 sub_completion () {
-  echo "help edit reload test update osx dock install"
+  echo "help edit test update osx install"
 }
 
 case $COMMAND_NAME in
