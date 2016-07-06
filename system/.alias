@@ -37,3 +37,7 @@ alias hiddenFilesHide="defaults write com.apple.finder AppleShowAllFiles -bool f
 # Show/hide all filename extensions
 alias fileExtensionsShow="defaults write NSGlobalDomain AppleShowAllExtensions -bool true && killall Finder"
 alias fileExtensionsHide="defaults write NSGlobalDomain AppleShowAllExtensions -bool false && killall Finder"
+
+alias boom='docker ps --format "table {{.Names}}\t{{.ID}}\t{{.Status}}\t{{.RunningFor}}\t{{.Ports}}"'
+alias whale="docker-compose -f ~/projects/culture-shock-server/docker-compose.yml -f ~/projects/culture-shock-server/docker-compose.develop.yml up"
+alias killerwhale="docker-compose -f ~/projects/culture-shock-server/docker-compose.yml -f ~/projects/culture-shock-server/docker-compose.develop.yml stop"
