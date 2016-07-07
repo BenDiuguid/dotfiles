@@ -70,12 +70,12 @@
   prompt = false
 
 [diff]
-  tool = wstorm
+  tool = webstorm
 [difftool "webstorm"]
   cmd = /usr/local/bin/wstorm diff \"$LOCAL\" \"$REMOTE\"
 
 [merge]
-  tool = wstorm
+  tool = webstorm
 [mergetool "webstorm"]
   cmd = /usr/local/bin/wstorm merge \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
 
