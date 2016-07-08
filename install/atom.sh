@@ -15,6 +15,7 @@ packages=(
   atom-beautify
   atom-linter-node-dependencies
   autocomplete-modules
+  double-tag
   editorconfig
   emmet
   file-icons
