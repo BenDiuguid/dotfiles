@@ -12,6 +12,9 @@ nvm alias default node
 # npm completion installiation.
 npm completion > /usr/local/etc/bash_completion.d/npm
 
+### Interesting packages
+# hotel
+
 # Globally install with npm
 packages=(
   ava
@@ -29,11 +32,8 @@ packages=(
   horizon
   less
   mocha
-  node-gyp
-  node-ip
   nodemon
   plop
-  pug-cli
   sort-package-json
   trash-cli
   typescript

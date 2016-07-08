@@ -19,6 +19,8 @@ packages=(
   emmet
   file-icons
   highlight-selected
+  hyperclick
+  js-hyperclick
   jumpy
   language-docker
   language-babel
