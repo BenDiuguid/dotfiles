@@ -19,21 +19,22 @@ npm completion > /usr/local/etc/bash_completion.d/npm
 packages=(
   ava
   babel-cli
-  bower
+  babel-eslint
   browser-sync
   cypress
-  devtool
   diffchecker
   eslint
+  eslint-plugin-babel
+  eslint-plugin-import
+  eslint-plugin-react
   generator-angular-fullstack
   generator-nm
   generator-react-cdk
   gulp
   horizon
-  less
   mocha
+  node-nightly
   nodemon
-  plop
   sort-package-json
   trash-cli
   typescript
