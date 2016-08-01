@@ -33,8 +33,8 @@ sub_update () {
   for package in $(npm outdated -g --depth=0 --parseable | cut -d: -f4)
     do npm i -g "$package";
   done
-  sudo gem update --system
-  sudo gem update
+  gem update --system
+  gem update
   brew doctor
 }
 
