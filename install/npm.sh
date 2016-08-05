@@ -27,6 +27,7 @@ packages=(
   eslint-plugin-babel
   eslint-plugin-import
   eslint-plugin-react
+  font-awesome-svg-png
   generator-angular-fullstack
   generator-nm
   generator-react-cdk
