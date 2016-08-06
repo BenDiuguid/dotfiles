@@ -11,6 +11,7 @@ apps=(
   android-file-transfer
   android-studio
   appcleaner
+  atom
   brave
   charles
   cyberduck
@@ -19,7 +20,6 @@ apps=(
   firefox
   firefoxdeveloperedition
   flux
-  franz
   github-desktop
   google-chrome
   google-chrome-canary
