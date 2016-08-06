@@ -21,6 +21,7 @@ packages=(
   babel-cli
   babel-eslint
   browser-sync
+  cli-theme-test
   cypress
   diffchecker
   eslint
