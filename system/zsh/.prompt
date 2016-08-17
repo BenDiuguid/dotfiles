@@ -1,216 +1,7 @@
-# ## Prompt
-#
-# # Good guide on colors:
-# # https://linuxtidbits.wordpress.com/2008/08/11/output-color-on-bash-scripts/
-#
-# # Good guide on prompts and special chars:
-# # http://www.davidpashley.com/articles/bash-prompts/
-#
-# _bash_prompt_config() {
-#
-#   # set colors with ANSI scapes
-#   _setaf () { tput setaf "$1" ; } # Foreground
-#   _setab () { tput setab "$1" ; } # Background
-#
-#   local USER_SYMBOL="\u"
-#   local HOST_SYMBOL="\h"
-#   local TIME_24="\t"
-#   local ESC_OPEN="\["
-#   local ESC_CLOSE="\]"
-#
-#   local RESET="${ESC_OPEN}$(tput sgr0)${ESC_CLOSE}"
-#   local BOLD="$(tput bold)"
-#   local UNDERLINE="$(tput sgr 0 1)"
-#   local BLINK="$(tput blink)"
-#   local REVERSE="$(tput rev)"
-#
-#   # Normal colors
-#   local BLACK="${ESC_OPEN}$(_setaf 0)${ESC_CLOSE}"
-#   local RED="${ESC_OPEN}$(_setaf 1)${ESC_CLOSE}"
-#   local GREEN="${ESC_OPEN}$(_setaf 2)${ESC_CLOSE}"
-#   local YELLOW="${ESC_OPEN}$(_setaf 3)${ESC_CLOSE}"
-#   local BLUE="${ESC_OPEN}$(_setaf 4)${ESC_CLOSE}"
-#   local MAGENTA="${ESC_OPEN}$(_setaf 5)${ESC_CLOSE}"
-#   local CYAN="${ESC_OPEN}$(_setaf 6)${ESC_CLOSE}"
-#   local WHITE="${ESC_OPEN}$(_setaf 7)${ESC_CLOSE}"
-#
-#   # Bright colors
-#   local BRIGHT_BLACK="${ESC_OPEN}$(_setaf 8)${ESC_CLOSE}"
-#   local BRIGHT_RED="${ESC_OPEN}$(_setaf 9)${ESC_CLOSE}"
-#   local BRIGHT_GREEN="${ESC_OPEN}$(_setaf 10)${ESC_CLOSE}"
-#   local BRIGHT_YELLOW="${ESC_OPEN}$(_setaf 11)${ESC_CLOSE}"
-#   local BRIGHT_BLUE="${ESC_OPEN}$(_setaf 12)${ESC_CLOSE}"
-#   local BRIGHT_MAGENTA="${ESC_OPEN}$(_setaf 13)${ESC_CLOSE}"
-#   local BRIGHT_CYAN="${ESC_OPEN}$(_setaf 14)${ESC_CLOSE}"
-#   local BRIGHT_WHITE="${ESC_OPEN}$(_setaf 15)${ESC_CLOSE}"
-#
-#   # Bold colors
-#   local BLACK_BOLD="${ESC_OPEN}${BOLD}$(_setaf 0)${ESC_CLOSE}"
-#   local RED_BOLD="${ESC_OPEN}${BOLD}$(_setaf 1)${ESC_CLOSE}"
-#   local GREEN_BOLD="${ESC_OPEN}${BOLD}$(_setaf 2)${ESC_CLOSE}"
-#   local YELLOW_BOLD="${ESC_OPEN}${BOLD}$(_setaf 3)${ESC_CLOSE}"
-#   local BLUE_BOLD="${ESC_OPEN}${BOLD}$(_setaf 4)${ESC_CLOSE}"
-#   local MAGENTA_BOLD="${ESC_OPEN}${BOLD}$(_setaf 5)${ESC_CLOSE}"
-#   local CYAN_BOLD="${ESC_OPEN}${BOLD}$(_setaf 6)${ESC_CLOSE}"
-#   local WHITE_BOLD="${ESC_OPEN}${BOLD}$(_setaf 7)${ESC_CLOSE}"
-#
-#   # Expose the variables we need in prompt command
-#   # Exposing a subset this way might conserve memory, I'm not sure...
-#   P_USER=${USER_SYMBOL}
-#   P_HOST=${HOST_SYMBOL}
-#   P_RESET=${RESET}
-#
-#   P_WHITE=${WHITE}
-#   # P_BLACK=${BLACK}
-#
-#   P_RED=${RED}
-#   P_GREEN=${GREEN}
-#   P_YELLOW=${YELLOW}
-#   P_BLUE=${BLUE}
-#   # P_MAGENTA=${MAGENTA}
-#   # P_CYAN=${CYAN}
-#
-#   P_BRIGHT_RED=${BRIGHT_RED}
-#   # P_BRIGHT_GREEN=${BRIGHT_GREEN}
-#   # P_BRIGHT_YELLOW=${BRIGHT_YELLOW}
-#   # P_BRIGHT_BLUE=${BRIGHT_BLUE}
-#   P_BRIGHT_MAGENTA=${BRIGHT_MAGENTA}
-#   P_BRIGHT_CYAN=${BRIGHT_CYAN}
-#
-# }
-#
-# bash_prompt_command() {
-#
-#   local EXIT_CODE=$?
-#   local P_EXIT=""
-#   local MAXLENGTH=40
-#   local TRUNC_SYMBOL="..."
-#   local CURRENT_DIR=${PWD##*/}
-#   local P_PWD=${PWD/#$HOME/\~} # short form of pwd ( using ~) (equivalent of \w)
-#
-#   # MAXLENGTH = max(maxLength, dirLength)
-#   MAXLENGTH=$(( ( MAXLENGTH < ${#CURRENT_DIR} ) ? ${#CURRENT_DIR} : MAXLENGTH ))
-#
-#   # get length to cut off.
-#   local TRUNC_LENGTH=$(( ${#P_PWD} - MAXLENGTH ))
-#
-#   # if TRUNC_LENGTH > 0, replace #TRUNC_LENGTH chars with TRUNC
-#   if [ ${TRUNC_LENGTH} -gt "0" ]; then
-#     P_PWD=${P_PWD:$TRUNC_LENGTH:$MAXLENGTH}
-#     P_PWD=${TRUNC_SYMBOL}${P_PWD#*/}
-#   fi
-#
-#   # Parse Git branch name
-#   P_GIT=$(parse_git_status)
-#
-#   # Exit code
-#   if [[ $EXIT_CODE != 0 ]]; then
-#     P_EXIT="${P_RED}✖ "
-#   fi
-#
-#   # Assign colors
-#   P_PWD=${P_YELLOW}${P_PWD}
-#   P_USER=${P_BRIGHT_CYAN}${P_USER}
-#   P_HOST=${P_BLUE}${P_HOST}
-#
-#   # FINAL PROMPT
-#   PS1="${P_EXIT}${P_USER}${P_WHITE}@${P_HOST} ${P_PWD} ${P_GIT}${P_BRIGHT_MAGENTA}⌘  ${P_RESET}"
-# }
-#
-# parse_git_status () {
-#   local GIT_MESSAGE=$(git_branch)
-#   if [ -n "$GIT_MESSAGE" ]; then
-#     local IS_DIRTY="`git_dirty_status`"
-#
-#     if [ -n "$IS_DIRTY" ]; then
-#       GIT_MESSAGE="$P_BRIGHT_RED($GIT_MESSAGE)"
-#     else
-#       GIT_MESSAGE="${P_GREEN}($GIT_MESSAGE)"
-#     fi
-#
-#     # NOTE: space is there because otherwise,
-#     #       when not in a git repo there will be a lack of a space.
-#     echo "$GIT_MESSAGE "
-#   fi
-# }
-#
-# git_branch () {
-#   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
-# }
-#
-# git_dirty_status () {
-#   git status --porcelain 2> /dev/null | (
-#     unset dirty deleted untracked newfile copied renamed
-#       while read line ; do
-#           case "${line//[[:space:]]/}" in
-#             'M'*)          dirty='!' ; ;;
-#             'UU'*)         dirty='!' ; ;;
-#             'D'*)          deleted='x' ; ;;
-#             '??'*)         untracked='?' ; ;;
-#             'A'*)          newfile='+' ; ;;
-#             'C'*)          copied='*' ; ;;
-#             'R'*)          renamed='>' ; ;;
-#           esac
-#       done
-#       bits="$dirty$deleted$untracked$newfile$copied$renamed"
-#       [ -n "$bits" ] && echo " $bits"
-#   )
-# }
-#
-#
-# _bash_prompt_config
-# unset _bash_prompt_config
-#
-# # PROMPT_COMMAND="bash_prompt_command; $PROMPT_COMMAND"
-#
-# function get_exit_msg {
-#   # Exit code
-#   if [[ $? != 0 ]]; then
-#     echo "please"
-#     echo "%{$fg[red]%}✖ "
-#
-#   fi
-# }
-#
-# function check_last_exit_code {
-#   local LAST_EXIT_CODE=$?
-#   echo "LAST_EXIT_CODE: $LAST_EXIT_CODE"
-#   if [[ $LAST_EXIT_CODE -ne 0 ]]; then
-#     echo 'winnn'
-#     local EXIT_CODE_PROMPT=''
-#     EXIT_CODE_PROMPT+="%{$fg[red]%}-%{$reset_color%}"
-#     EXIT_CODE_PROMPT+="%{$fg_bold[red]%}$LAST_EXIT_CODE%{$reset_color%}"
-#     EXIT_CODE_PROMPT+="%{$fg[red]%}-%{$reset_color%}"
-#     echo "$EXIT_CODE_PROMPT"
-#   fi
-# }
-#
-#
-# get_prompt() {
-#   echo "$1"
-#   PROMPT="%{$fg[cyan]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$fg[magenta]%}% ⌘  %{$reset_color%}%"
-#   RPROMPT="$(check_last_exit_code)"
-# }
-#
-# precmd() {
-#   get_prompt $?;
-# }
-#
-#
-#
-# # PS1="${P_EXIT}${P_USER}${P_WHITE}@${P_HOST} ${P_PWD} ${P_GIT}${P_BRIGHT_MAGENTA}⌘  ${P_RESET}"
-#
-#
-# # RPROMPT="[%{$fg_no_bold[yellow]%}%?%{$reset_color%}]"
+## Prompt
 
-
-
-
-
-
-
-#########################################################################################################
-
+# zsh Prompts https://wiki.archlinux.org/index.php/zsh#Prompts
+# zsh Prompt Expansion http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
 
 
 # From http://dotfiles.org/~_why/.zshrc
@@ -232,17 +23,12 @@ function title() {
   esac
 }
 
-
-
-
-git="$commands[git]"
-
 git_dirty() {
-  if $(! $git status -s &> /dev/null)
+  if $(! git status -s &> /dev/null)
   then
     echo ""
   else
-    if [[ $($git status --porcelain) == "" ]]
+    if [[ $(git status --porcelain) == "" ]]
     then
       echo " %{$fg[green]%}$(git_prompt_info)%{$reset_color%}"
     else
@@ -252,12 +38,12 @@ git_dirty() {
 }
 
 git_prompt_info () {
-  ref=$($git symbolic-ref HEAD 2>/dev/null)
+  ref=$(git symbolic-ref HEAD 2>/dev/null)
   echo "(${ref#refs/heads/})"
 }
 
 unpushed () {
-  $git cherry -v @{upstream} 2>/dev/null
+  git cherry -v @{upstream} 2>/dev/null
 }
 
 need_push () {
@@ -277,13 +63,13 @@ directory_name() {
   echo "%{$fg[yellow]%}%~%{$reset_color%}"
 }
 
-export PROMPT='$(user_machine_name) $(directory_name)$(git_dirty)$(need_push) %{$fg[magenta]%}% ⌘  '
+export PROMPT='$(user_machine_name) $(directory_name)$(git_dirty)$(need_push) %{$fg[magenta]%}% ⌘  %{$reset_color%}'
 
 set_prompt () {
-  export RPROMPT='%{$fg_bold[cyan]%}wat%{$reset_color%}'
+  # export RPROMPT="%*" # 24 hour time with seconds
 }
 
 precmd() {
   title "zsh" "%m" "%~"
-  # set_prompt
+  set_prompt
 }
