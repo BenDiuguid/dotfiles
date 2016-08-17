@@ -18,8 +18,10 @@ ln -sfv "$DOTFILES_DIR/symlink/.zshenv" ~
 ln -sfv "$DOTFILES_DIR/symlink/.inputrc" ~
 ln -sfv "$DOTFILES_DIR/symlink/.tmux.conf" ~
 ln -sfv "$DOTFILES_DIR/symlink/.eslintrc.yml" ~
+ln -sfv "$DOTFILES_DIR/symlink/.hyperterm.js" ~
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
+
 
 # Package managers & packages
 source "$DOTFILES_DIR/install/brew.sh"
