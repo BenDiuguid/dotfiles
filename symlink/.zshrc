@@ -1,4 +1,9 @@
-# @BenDiuguid's .bash_profile
+# @BenDiuguid's .zshrc
+
+autoload -Uz compinit bashcompinit colors
+compinit
+bashcompinit
+colors
 
 # OS
 if [ "$(uname -s)" = "Darwin" ]; then
@@ -22,18 +27,14 @@ else
 fi
 
 # Finally we can source the dotfiles (order matters)
-for DOTFILE in "$DOTFILES_DIR"/system/bash/.{function,function_*,path,env,alias,completion,prompt,nvm,rvm}; do
+for DOTFILE in "$DOTFILES_DIR"/system/zsh/.{function,function_*,path,env,alias,completion,prompt,nvm,rvm}; do
   [ -f "$DOTFILE" ] && source "$DOTFILE"
 done
-
-# if [ "$OS" = "OSX" ]; then
-#   for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.osx; do
-#     [ -f "$DOTFILE" ] && source "$DOTFILE"
-#   done
-# fi
 
 # Clean up
 unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE
 
 # Export
 export OS DOTFILES_DIR
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

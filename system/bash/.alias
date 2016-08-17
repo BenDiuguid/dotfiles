@@ -2,7 +2,7 @@
 # Shortcuts                                                                   #
 ###############################################################################
 
-alias reSource='source ~/.bash_profile && echo "Done!"'
+alias reSource='source ~/.bash_profile && echo "Sourced ~/.bash_profile!"'
 
 alias ipaddr='ipconfig getifaddr en0'
 

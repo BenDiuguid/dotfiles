@@ -1,0 +1,15 @@
+# Dotfiles
+_dotfiles_completions() {
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  COMPREPLY=( $(compgen -W '`dotfiles completion`' -- $cur ) );
+}
+
+complete -o default -F _dotfiles_completions dotfiles
+
+# tmuxinator
+source "$DOTFILES_DIR/system/zsh/completions/tmuxinator.zsh"
+
+# killall
+complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal" killall;
+
+fpath=(/usr/local/share/zsh-completions $fpath)
