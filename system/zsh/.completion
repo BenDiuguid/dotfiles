@@ -6,9 +6,6 @@ _dotfiles_completions() {
 
 complete -o default -F _dotfiles_completions dotfiles
 
-# tmuxinator
-source "$DOTFILES_DIR/system/zsh/completions/tmuxinator.zsh"
-
 # killall
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal" killall;
 

@@ -51,7 +51,7 @@ need_push () {
   then
     echo ""
   else
-    echo " %{$fg[red]%}{unpushed}%{$reset_color%}"
+    echo " %{$fg_bold[magenta]%}{unpushed}%{$reset_color%}"
   fi
 }
 
@@ -63,10 +63,10 @@ directory_name() {
   echo "%{$fg[yellow]%}%~%{$reset_color%}"
 }
 
-export PROMPT='$(user_machine_name) $(directory_name)$(git_dirty)$(need_push) %{$fg[magenta]%}% ⌘  %{$reset_color%}'
+export PROMPT='$(user_machine_name) $(directory_name)$(git_dirty)$(need_push) %{$reset_color%}> '
 
 set_prompt () {
-  # export RPROMPT="%*" # 24 hour time with seconds
+  export RPROMPT="%{$fg[blue]%}%*%{$reset_color%}" # 24 hour time with seconds
 }
 
 precmd() {
