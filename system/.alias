@@ -13,7 +13,6 @@ alias rm="trash" # trash comes from npm package trash-cli
 alias ls='ls -GF'
 alias la='ls -A'
 alias ld='ls -d */'
-alias mkdir="mkcd"
 
 alias cpwd='pwd | tr -d "\n" | pbcopy'
 

@@ -9,9 +9,8 @@ sub_help () {
   echo
   echo "Commands:"
   echo "   help             This help message"
-  echo "   edit             Open dotfiles in editor ($EDITOR_ALT)"
-  echo "   reload           Reload dotfiles"
-  echo "   test             Run tests"
+  echo "   clean            Clean various caches"
+  echo "   edit             Open dotfiles in editor ($EDITOR_NOWAIT)"
   echo "   update           Update packages and pkg managers (OS, brew, npm, gem)"
   echo "   osx              Apply OS X system defaults"
   echo "   dock             Apply OS X Dock settings"
@@ -19,10 +18,6 @@ sub_help () {
 
 sub_edit () {
   sh -c "$EDITOR_NOWAIT $DOTFILES_DIR"
-}
-
-sub_test () {
-  bats "$DOTFILES_DIR"/test/*.bats
 }
 
 sub_update () {
@@ -35,6 +30,15 @@ sub_update () {
   done
   gem update --system
   gem update
+  brew doctor
+}
+
+sub_clean () {
+  npm cache clean
+  brew cleanup
+  brew cask cleanup
+  rvm cleanup all
+  nvm clear-cache
   brew doctor
 }
 
@@ -52,7 +56,7 @@ sub_install () {
 
 # Make sure to keep this in sync with the available public commands
 sub_completion () {
-  echo "help edit test update osx install"
+  echo "help edit clean update osx install"
 }
 
 case $COMMAND_NAME in

@@ -27,7 +27,7 @@ else
 fi
 
 # Finally we can source the dotfiles (order matters)
-for DOTFILE in "$DOTFILES_DIR"/system/zsh/.{function,function_*,path,env,alias,completion,prompt,nvm,rvm}; do
+for DOTFILE in "$DOTFILES_DIR"/system/.{path,env,alias,completion,prompt,nvm}; do
   [ -f "$DOTFILE" ] && source "$DOTFILE"
 done
 
@@ -38,7 +38,6 @@ unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE
 export OS DOTFILES_DIR
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-
 zstyle ':completion:*:killall:*' command 'ps -u $USER -o cmd'
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
