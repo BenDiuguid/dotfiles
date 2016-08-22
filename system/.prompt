@@ -24,12 +24,10 @@ function title() {
 }
 
 git_dirty() {
-  if $(! git status -s &> /dev/null)
-  then
+  if $(! git status -s &> /dev/null); then
     echo ""
   else
-    if [[ $(git status --porcelain) == "" ]]
-    then
+    if [[ $(git status --porcelain) == "" ]]; then
       echo " %{$fg[green]%}$(git_prompt_info)%{$reset_color%}"
     else
       echo " %{$fg[red]%}$(git_prompt_info)%{$reset_color%}"
@@ -47,8 +45,7 @@ unpushed () {
 }
 
 need_push () {
-  if [[ $(unpushed) == "" ]]
-  then
+  if [[ $(unpushed) == "" ]]; then
     echo ""
   else
     echo " %{$fg_bold[magenta]%}{unpushed}%{$reset_color%}"

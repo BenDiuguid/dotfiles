@@ -1,10 +1,16 @@
 is-executable() {
   local BIN=$(command -v "$1" 2>/dev/null)
-  if [[ ! $BIN == "" && -x $BIN ]]; then true; else false; fi
+  if [[ ! $BIN == "" && -x $BIN ]]; then
+    true
+  else
+    false
+  fi
 }
 
 prepend-path() {
-  [ -d $1 ] && PATH="$1:$PATH"
+  if [ -d $1 ]; then
+    PATH="$1:$PATH"
+  fi
 }
 
 # Start with system path, Retrieve it from getconf, otherwise it's just current $PATH
