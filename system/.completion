@@ -1,6 +1,3 @@
-# Bash
-is-executable brew && [ -f $(brew --prefix)/share/bash-completion/bash_completion ] && . $(brew --prefix)/share/bash-completion/bash_completion
-
 # Dotfiles
 _dotfiles_completions() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
@@ -9,11 +6,7 @@ _dotfiles_completions() {
 
 complete -o default -F _dotfiles_completions dotfiles
 
-# tmuxinator
-. "$DOTFILES_DIR/system/completions/tmuxinator.bash"
-
 # killall
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal" killall;
 
-# Homebrew
-is-executable brew && [ -f $(brew --prefix)/Library/Contributions/brew_bash_completion.sh ] && . `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+fpath=(/usr/local/share/zsh-completions $fpath)

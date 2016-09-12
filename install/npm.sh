@@ -1,8 +1,9 @@
 # Install nvm.
 brew install nvm
 
-# If nvm is not a directory, source our system/.nvm file
-[ "$(type -t nvm)" != function ] && source $DOTFILES_DIR/system/.nvm
+if [ "$(type -t nvm)" != function ]; then
+  source $DOTFILES_DIR/system/.nvm
+fi
 
 # Grab latest node version and set it to default
 nvm install node
@@ -26,7 +27,11 @@ packages=(
   diffchecker
   eslint
   eslint-plugin-babel
+  eslint-plugin-flowtype
+  eslint-plugin-html
   eslint-plugin-import
+  eslint-plugin-json
+  eslint-plugin-markdown
   eslint-plugin-react
   font-awesome-svg-png
   generator-angular-fullstack
@@ -37,6 +42,7 @@ packages=(
   mocha
   node-nightly
   nodemon
+  serverless
   sort-package-json
   trash-cli
   typescript

@@ -13,22 +13,27 @@ DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Bunch of symlinks
 ln -sfv "$DOTFILES_DIR/symlink/.bash_profile" ~
+ln -sfv "$DOTFILES_DIR/symlink/.zshrc" ~
+ln -sfv "$DOTFILES_DIR/symlink/.zshenv" ~
 ln -sfv "$DOTFILES_DIR/symlink/.inputrc" ~
 ln -sfv "$DOTFILES_DIR/symlink/.tmux.conf" ~
 ln -sfv "$DOTFILES_DIR/symlink/.eslintrc.yml" ~
+ln -sfv "$DOTFILES_DIR/symlink/.hyperterm.js" ~
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 
+
 # Package managers & packages
-. "$DOTFILES_DIR/install/brew.sh"
-. "$DOTFILES_DIR/install/bash.sh"
-. "$DOTFILES_DIR/install/npm.sh"
-. "$DOTFILES_DIR/install/gem.sh"
-. "$DOTFILES_DIR/install/brew-cask.sh"
-. "$DOTFILES_DIR/install/atom.sh"
-. "$DOTFILES_DIR/install/meteor.sh"
-. "$DOTFILES_DIR/osx/defaults.sh"
-. "$DOTFILES_DIR/osx/defaults.dock.sh"
+source "$DOTFILES_DIR/install/brew.sh"
+source "$DOTFILES_DIR/install/bash.sh"
+source "$DOTFILES_DIR/install/zsh.sh"
+source "$DOTFILES_DIR/install/npm.sh"
+source "$DOTFILES_DIR/install/gem.sh"
+source "$DOTFILES_DIR/install/brew-cask.sh"
+source "$DOTFILES_DIR/install/atom.sh"
+source "$DOTFILES_DIR/install/meteor.sh"
+source "$DOTFILES_DIR/osx/defaults.sh"
+source "$DOTFILES_DIR/osx/defaults.dock.sh"
 
 # Run tests
 # bats test/*.bats

@@ -1,12 +1,9 @@
-# Diuguid .bash_profile
+# @BenDiuguid's .zshrc
 
-# Ruby Gems live in /Library/Ruby/Gems/2.0.0/gems/
-# Brew packages live in /usr/local/Cellar/
-# Cask packages lives in /opt/homebrew-cask/Caskroom/
-# Global npm packages live in ~/.npm/
-
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+autoload -Uz compinit bashcompinit colors
+compinit
+bashcompinit
+colors
 
 # OS
 if [ "$(uname -s)" = "Darwin" ]; then
@@ -30,18 +27,18 @@ else
 fi
 
 # Finally we can source the dotfiles (order matters)
-for DOTFILE in "$DOTFILES_DIR"/system/.{function,function_*,path,env,alias,completion,prompt,nvm,rvm}; do
-  [ -f "$DOTFILE" ] && . "$DOTFILE"
+for DOTFILE in "$DOTFILES_DIR"/system/.{path,env,alias,completion,prompt,nvm,secret}; do
+  [ -f "$DOTFILE" ] && source "$DOTFILE"
 done
-
-# if [ "$OS" = "OSX" ]; then
-#   for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.osx; do
-#     [ -f "$DOTFILE" ] && . "$DOTFILE"
-#   done
-# fi
 
 # Clean up
 unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE
 
 # Export
 export OS DOTFILES_DIR
+
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*:killall:*' command 'ps -u $USER -o cmd'
+
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

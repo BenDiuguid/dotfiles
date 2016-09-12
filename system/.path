@@ -1,5 +1,19 @@
-# Start with system path
-# Retrieve it from getconf, otherwise it's just current $PATH
+is-executable() {
+  local BIN=$(command -v "$1" 2>/dev/null)
+  if [[ ! $BIN == "" && -x $BIN ]]; then
+    true
+  else
+    false
+  fi
+}
+
+prepend-path() {
+  if [ -d $1 ]; then
+    PATH="$1:$PATH"
+  fi
+}
+
+# Start with system path, Retrieve it from getconf, otherwise it's just current $PATH
 is-executable getconf && PATH=$(command -v getconf PATH)
 
 # Prepend new items to path (if directory exists)
