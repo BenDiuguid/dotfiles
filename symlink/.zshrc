@@ -27,7 +27,7 @@ else
 fi
 
 # Finally we can source the dotfiles (order matters)
-for DOTFILE in "$DOTFILES_DIR"/system/.{path,env,alias,completion,prompt,nvm}; do
+for DOTFILE in "$DOTFILES_DIR"/system/.{path,env,alias,completion,prompt,nvm,secret}; do
   [ -f "$DOTFILE" ] && source "$DOTFILE"
 done
 

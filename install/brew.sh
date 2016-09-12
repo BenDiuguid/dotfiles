@@ -38,5 +38,8 @@ brew install tmux
 brew install rbenv
 brew install ruby-build
 
+# Install python stuff
+brew install python # python v2.7
+
 # Remove outdated versions from the cellar.
 brew cleanup

@@ -1,7 +1,4 @@
-###############################################################################
-# Shortcuts                                                                   #
-###############################################################################
-
+# Alias's
 alias reSource='source ~/.zshrc && echo "Sourced ~/.zshrc!"'
 
 alias ipaddr='ipconfig getifaddr en0'
@@ -14,21 +11,10 @@ alias ls='ls -GF'
 alias la='ls -A'
 alias ld='ls -d */'
 
-alias cpwd='pwd | tr -d "\n" | pbcopy'
-
 alias ..="cd ../"
 alias ...="cd ../../"
 
-alias listaliases="alias | sed 's/=.*//'"
-alias listfunctions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'" # show non _prefixed functions
-
-###############################################################################
-# OSX                                                                         #
-###############################################################################
-
-# Show/hide desktop icons
-alias desktopShow="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-alias desktopHide="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias cpwd='pwd | tr -d "\n" | pbcopy'
 
 # Show/hide hidden files by default
 alias hiddenFilesShow="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
@@ -37,7 +23,3 @@ alias hiddenFilesHide="defaults write com.apple.finder AppleShowAllFiles -bool f
 # Show/hide all filename extensions
 alias fileExtensionsShow="defaults write NSGlobalDomain AppleShowAllExtensions -bool true && killall Finder"
 alias fileExtensionsHide="defaults write NSGlobalDomain AppleShowAllExtensions -bool false && killall Finder"
-
-alias boom='docker ps --format "table {{.Names}}\t{{.ID}}\t{{.Status}}\t{{.RunningFor}}\t{{.Ports}}"'
-alias whale="docker-compose -f ~/projects/culture-shock-server/docker-compose.yml -f ~/projects/culture-shock-server/docker-compose.develop.yml up"
-alias killerwhale="docker-compose -f ~/projects/culture-shock-server/docker-compose.yml -f ~/projects/culture-shock-server/docker-compose.develop.yml stop"
