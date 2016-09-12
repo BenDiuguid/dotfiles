@@ -3,6 +3,9 @@
 is-executable getconf && PATH=$(command -v getconf PATH)
 
 # Prepend new items to path (if directory exists)
+prepend-path "$HOME/.rbenv/shims"
+prepend-path "$HOME/Library/Android/sdk/platform-tools"
+prepend-path "$HOME/Library/Android/sdk/tools"
 prepend-path "/bin"
 prepend-path "/usr/bin"
 prepend-path "/usr/local/bin"
@@ -11,7 +14,6 @@ prepend-path "$HOME/bin"
 prepend-path "/sbin"
 prepend-path "/usr/sbin"
 prepend-path "/usr/local/sbin"
-prepend-path "$HOME/.rbenv/shims"
 
 # Remove duplicates (preserving prepended items)
 # Source: http://unix.stackexchange.com/a/40755
