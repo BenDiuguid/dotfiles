@@ -23,7 +23,6 @@ module.exports = {
     // 'hyperpower',
     'hyperterm-tabs',
     'hyperterm-tab-icons',
-    'hyperterm-crosshair',
     'hyperterm-snazzy',
     'hyperterm-final-say',
   ],
