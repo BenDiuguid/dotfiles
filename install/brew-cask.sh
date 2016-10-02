@@ -12,6 +12,7 @@ apps=(
   android-studio
   appcleaner
   atom
+  blisk
   brave
   charles
   cyberduck
