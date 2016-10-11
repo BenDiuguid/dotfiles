@@ -18,11 +18,9 @@ npm completion > /usr/local/etc/bash_completion.d/npm
 
 # Globally install with npm
 packages=(
-  ava
   babel-cli
   babel-eslint
   browser-sync
-  cli-theme-test
   cypress
   diffchecker
   eslint
@@ -33,20 +31,17 @@ packages=(
   eslint-plugin-json
   eslint-plugin-markdown
   eslint-plugin-react
-  font-awesome-svg-png
-  generator-angular-fullstack
-  generator-nm
+  # font-awesome-svg-png
   generator-react-cdk
-  gulp
   horizon
   mocha
-  node-nightly
   nodemon
   serverless
   sort-package-json
   trash-cli
   typescript
   webpack
+  yarn
   yo
 )
 
