@@ -23,14 +23,15 @@ packages=(
   hyperclick
   js-hyperclick
   jumpy
-  language-docker
   language-babel
+  language-docker
+  language-graphql
   language-ignore
   language-jade
   linter
   linter-docker
-  linter-jsonlint
   linter-eslint
+  linter-jsonlint
   markdown-scroll-sync
   npm-outdated
   oceanic-next
@@ -40,6 +41,7 @@ packages=(
   regex-tester
   seti-syntax
   slack-ui
+  split-diff
   sync-settings
   todo-show
   travis-ci-status
