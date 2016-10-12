@@ -15,6 +15,7 @@ npm completion > /usr/local/etc/bash_completion.d/npm
 
 ### Interesting packages
 # hotel
+# font-awesome-svg-png
 
 # Globally install with npm
 packages=(
@@ -25,13 +26,8 @@ packages=(
   diffchecker
   eslint
   eslint-plugin-babel
-  eslint-plugin-flowtype
-  eslint-plugin-html
   eslint-plugin-import
-  eslint-plugin-json
-  eslint-plugin-markdown
   eslint-plugin-react
-  # font-awesome-svg-png
   generator-react-cdk
   horizon
   mocha

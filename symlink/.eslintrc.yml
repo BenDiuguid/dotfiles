@@ -12,21 +12,13 @@ extends:
 parser: babel-eslint
 plugins:
   - babel
-  - flowtype
-  - html
   - import
-  - json
-  - markdown
   - react
 parserOptions:
-  ecmaVersion: 7
   sourceType: module
   ecmaFeatures:
     impliedStrict: true
     experimentalObjectRestSpread: true
-settings:
-  flowtype:
-    onlyFilesWithFlowAnnotation: true
 rules:
   indent:
     - error
@@ -45,10 +37,6 @@ rules:
   eqeqeq:
     - error
     - always
-  no-empty:
-    - error
-  no-empty-function:
-    - error
   no-eval:
     - error
   no-fallthrough:
