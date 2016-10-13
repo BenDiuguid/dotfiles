@@ -17,11 +17,14 @@ npm completion > /usr/local/etc/bash_completion.d/npm
 # hotel
 # font-awesome-svg-png
 
+npm install --global yarn
+
 # Globally install with npm
 packages=(
   babel-cli
   babel-eslint
   browser-sync
+  create-react-app
   cypress
   diffchecker
   eslint
@@ -32,6 +35,7 @@ packages=(
   horizon
   mocha
   nodemon
+  npm
   serverless
   sort-package-json
   trash-cli
@@ -41,4 +45,4 @@ packages=(
   yo
 )
 
-npm install -g "${packages[@]}"
+yarn global add "${packages[@]}"
