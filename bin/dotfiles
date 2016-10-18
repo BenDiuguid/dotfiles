@@ -25,7 +25,7 @@ sub_update () {
   brew upgrade
   npm outdated -g --depth=0
   for package in $(npm outdated -g --depth=0 --parseable | cut -d: -f4)
-    do npm i -g "$package";
+    do yarn global upgrade "$package";
   done
   gem update --system
   gem update
@@ -34,10 +34,9 @@ sub_update () {
 }
 
 sub_clean () {
-  npm cache clean
   brew cleanup
   brew cask cleanup
-  rvm cleanup all
+  # rvm cleanup all
   nvm clear-cache
   brew doctor
 }
