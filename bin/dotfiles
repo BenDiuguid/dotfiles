@@ -25,7 +25,7 @@ sub_update () {
   brew upgrade
   npm outdated -g --depth=0
   for package in $(npm outdated -g --depth=0 --parseable | cut -d: -f4)
-    do yarn global upgrade "$package";
+    do yarn global add "$package";
   done
   gem update --system
   gem update
