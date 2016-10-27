@@ -1,5 +1,6 @@
 # Install nvm.
 brew install nvm
+brew install yarn
 
 if [ "$(type -t nvm)" != function ]; then
   source $DOTFILES_DIR/system/.nvm
@@ -16,8 +17,6 @@ npm completion > /usr/local/etc/bash_completion.d/npm
 ### Interesting packages
 # hotel
 # font-awesome-svg-png
-
-npm install --global yarn
 
 # Globally install with npm
 packages=(
