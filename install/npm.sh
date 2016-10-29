@@ -1,6 +1,5 @@
 # Install nvm.
 brew install nvm
-brew install yarn
 
 if [ "$(type -t nvm)" != function ]; then
   source $DOTFILES_DIR/system/.nvm
@@ -10,6 +9,8 @@ fi
 nvm install node
 nvm use node
 nvm alias default node
+
+npm install --global yarn@latest
 
 # npm completion installiation.
 npm completion > /usr/local/etc/bash_completion.d/npm
