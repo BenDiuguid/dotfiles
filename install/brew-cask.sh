@@ -21,16 +21,14 @@ apps=(
   firefox
   firefoxdeveloperedition
   flux
-  github-desktop
   google-chrome
   google-chrome-canary
   google-drive
   gopro
-  hyperterm
+  hyper
   iterm2
   java
   opera
-  polymail
   postman
   robomongo
   safari-technology-preview
