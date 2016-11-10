@@ -24,6 +24,7 @@ sub_update () {
   brew update
   brew upgrade
   npm outdated -g --depth=0
+  npm install --global yarn@latest
   for package in $(npm outdated -g --depth=0 --parseable | cut -d: -f4)
     do yarn global add "$package";
   done
