@@ -20,7 +20,8 @@ sub_edit () {
 }
 
 sub_update () {
-  sudo softwareupdate -i -a
+  mas outdated
+  mas upgrade
   brew update
   brew upgrade
   npm outdated -g --depth=0

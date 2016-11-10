@@ -33,6 +33,7 @@ brew install heroku-toolbelt
 brew install mongodb
 brew install rethinkdb
 brew install tmux
+brew install mas
 
 # Install ruby stuff
 brew install rbenv
