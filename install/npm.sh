@@ -10,8 +10,6 @@ nvm install node
 nvm use node
 nvm alias default node
 
-npm install --global yarn@latest
-
 # npm completion installiation.
 npm completion > /usr/local/etc/bash_completion.d/npm
 
@@ -45,4 +43,4 @@ packages=(
   yo
 )
 
-yarn global add "${packages[@]}"
+npm install --global "${packages[@]}@latest"

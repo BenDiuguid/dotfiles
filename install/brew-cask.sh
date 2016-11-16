@@ -3,7 +3,6 @@ brew tap caskroom/cask
 brew tap caskroom/versions
 
 # Not on brew-cask
-# Shazam (from itunes)
 # Sonic Mobile Connect (from itunes)
 
 # Install packages
@@ -32,7 +31,6 @@ apps=(
   postman
   robomongo
   safari-technology-preview
-  servo
   skype
   slack
   sublime-text
