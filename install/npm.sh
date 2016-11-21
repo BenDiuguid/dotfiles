@@ -13,6 +13,8 @@ nvm alias default node
 # npm completion installiation.
 npm completion > /usr/local/etc/bash_completion.d/npm
 
+npm install --global yarn@latest
+
 ### Interesting packages
 # hotel
 # font-awesome-svg-png
@@ -39,8 +41,7 @@ packages=(
   trash-cli
   typescript
   webpack
-  yarn
   yo
 )
 
-npm install --global "${packages[@]}@latest"
+yarn global add "${packages[@]}@latest"
