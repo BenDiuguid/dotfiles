@@ -17,6 +17,7 @@ module.exports = {
     'hyperterm-tabs',
     'hyperterm-tab-icons',
     'hyper-snazzy',
-    // 'hyperterm-final-say',
+    'hyper-simple-vibrancy',
+    'hyper-simple-highlight-active-session',
   ],
 };
