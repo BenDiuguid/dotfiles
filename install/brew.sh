@@ -35,6 +35,7 @@ brew install rethinkdb
 brew install tmux
 brew install mas
 brew install haskell-stack
+brew install hub
 
 # Install ruby stuff
 brew install rbenv
