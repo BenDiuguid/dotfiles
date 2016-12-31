@@ -5,7 +5,7 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 brew update
 
 # Upgrade any already-installed formulae.
-brew upgrade --all
+brew upgrade
 
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
 
@@ -21,7 +21,7 @@ brew install zsh-completions
 brew install zsh-autosuggestions
 
 # Install more recent versions of some OS X tools.
-brew install vim --override-system-vi
+brew install vim --with-override-system-vi
 # brew install homebrew/dupes/openssh
 
 # Install other useful binaries.

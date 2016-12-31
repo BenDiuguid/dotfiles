@@ -15,6 +15,7 @@ apps=(
   brave
   charles
   cyberduck
+  deco
   discord
   docker
   firefox
@@ -23,11 +24,11 @@ apps=(
   google-chrome
   google-chrome-canary
   google-drive
-  gopro
   hyper
   iterm2
   java
   opera
+  origami-studio
   postman
   robomongo
   safari-technology-preview
@@ -37,9 +38,11 @@ apps=(
   torbrowser
   transmission
   virtualbox
+  visual-studio
   visual-studio-code
   vivaldi
   webstorm
+  zoomus
 )
 
 brew cask install "${apps[@]}"
