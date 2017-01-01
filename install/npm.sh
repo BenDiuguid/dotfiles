@@ -13,7 +13,7 @@ nvm alias default node
 # npm completion installiation.
 npm completion > /usr/local/etc/bash_completion.d/npm
 
-npm install --global yarn@latest
+npm install --global yarn
 
 ### Interesting packages
 # hotel
@@ -33,6 +33,7 @@ packages=(
   eslint-plugin-react
   horizon
   npm
+  now
   serverless
   sort-package-json
   trash-cli
@@ -41,4 +42,4 @@ packages=(
   yo
 )
 
-yarn global add "${packages[@]}@latest"
+yarn global add "${packages[@]}"

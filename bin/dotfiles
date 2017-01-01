@@ -24,11 +24,9 @@ sub_update () {
   mas upgrade
   brew update
   brew upgrade
-  npm outdated -g --depth=0
-  npm install --global yarn@latest
-  for package in $(npm outdated -g --depth=0 --parseable | cut -d: -f4)
-    do yarn global add "$package";
-  done
+  npm install --global yarn
+  cd ~/.config/yarn/global && yarn outdated && cd
+  yarn global upgrade
   gem update --system
   gem update
   pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U
