@@ -3,7 +3,10 @@ brew tap caskroom/cask
 brew tap caskroom/versions
 
 # Not on brew-cask
-# Sonic Mobile Connect (from itunes)
+# Sonic Mobile Connect ( from iTunes )
+# Ableton Live Lite ( https://www.ableton.com/en/products/live-lite/ )
+# Soundbrenner DAW ( http://www.soundbrenner.com/daw-tools/ )
+# zeit now-desktop ( https://zeit.co/desktop )
 
 # Install packages
 apps=(
@@ -30,6 +33,7 @@ apps=(
   opera
   origami-studio
   postman
+  quik
   robomongo
   safari-technology-preview
   skype

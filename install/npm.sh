@@ -25,16 +25,13 @@ packages=(
   babel-eslint
   browser-sync
   create-react-app
-  cypress
+  cypress-cli
   diffchecker
   eslint
   eslint-plugin-babel
   eslint-plugin-import
   eslint-plugin-react
-  generator-react-cdk
   horizon
-  mocha
-  nodemon
   npm
   serverless
   sort-package-json
