@@ -31,6 +31,7 @@ packages=(
   eslint-plugin-babel
   eslint-plugin-import
   eslint-plugin-react
+  flow-bin
   horizon
   npm
   now
