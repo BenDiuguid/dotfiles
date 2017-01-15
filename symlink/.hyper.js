@@ -12,12 +12,17 @@ module.exports = {
     shell: '/usr/local/bin/zsh',
   },
   plugins: [
-    'hypercwd',
-    // 'hyperpower',
-    'hyperterm-tabs',
-    'hyperterm-tab-icons',
+    // THEMES:
+    // theme viewer: https://hyperthemes.matthi.coffee/
     'hyper-snazzy',
+
+    // PLUGINS:
+    // 'hyperpower', // Show Off!
+    'hypercwd',
+    'hyperterm-tab-icons',
     'hyper-simple-vibrancy',
     'hyper-simple-highlight-active-session',
+    // 'hyperlayout', // really cool! (replaces tmux/tmuxinator)
+    // 'hyper-statusline', // looks like the bottom of atom
   ],
 };
