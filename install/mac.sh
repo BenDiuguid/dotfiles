@@ -1,5 +1,17 @@
 brew install mas
 
-mas install Xcode
-mas install Pages
-mas install SonicWALL Mobile Connect
+mas signin
+
+packages=(
+  GarageBand
+  iMovie
+  iPhoto
+  Keynote
+  Numbers
+  Pages
+  Shazam
+  Vaunt
+  Xcode
+)
+
+mas install "${packages[@]}"

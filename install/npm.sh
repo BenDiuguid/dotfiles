@@ -17,7 +17,6 @@ npm install --global yarn
 
 ### Interesting packages
 # hotel
-# font-awesome-svg-png
 
 # Globally install with npm
 packages=(
