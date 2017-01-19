@@ -7,42 +7,44 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
-# Install some CTF tools; see https://github.com/ctfs/write-ups.
-
-# BASH + plugins
-brew install bash
+# taps
 brew tap homebrew/versions
-brew install bash-completion2
 
-# ZSH + plugins
-brew install zsh
-brew install zsh-syntax-highlighting
-brew install zsh-completions
-brew install zsh-autosuggestions
-
-# Install more recent versions of some OS X tools.
+# Installs with special flags
 brew install vim --with-override-system-vi
-# brew install homebrew/dupes/openssh
 
-# Install other useful binaries.
-# brew install bats
-brew install diff-so-fancy
-brew install dockutil
-brew install git
-brew install heroku-toolbelt
-brew install mongodb
-brew install rethinkdb
-brew install tmux
-brew install mas
-brew install haskell-stack
-brew install hub
+binaries=(
+  # BASH + plugins
+  bash
+  bash-completion2
 
-# Install ruby stuff
-brew install rbenv
-brew install ruby-build
+  # ZSH + plugins
+  zsh
+  zsh-syntax-highlighting
+  zsh-completions
+  zsh-autosuggestions
 
-# Install python stuff
-brew install python # python v2.7
+  # Install ruby stuff
+  rbenv
+  ruby-build
 
-# Remove outdated versions from the cellar.
+  # Install python stuff
+  python # python v2.7
+
+  # Other
+  diff-so-fancy
+  dockutil
+  git
+  haskell-stack
+  heroku-toolbelt
+  hub
+  mas
+  mongodb
+  rethinkdb
+  tmux
+  watchman
+)
+
+brew install "${binaries[@]}"
+
 brew cleanup

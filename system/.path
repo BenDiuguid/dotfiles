@@ -28,6 +28,7 @@ prepend-path "/usr/local/sbin"
 prepend-path "$HOME/.rbenv/shims"
 prepend-path "$HOME/Library/Android/sdk/platform-tools"
 prepend-path "$HOME/Library/Android/sdk/tools"
+# prepend-path "`yarn global bin`"
 
 # Remove duplicates (preserving prepended items)
 # Source: http://unix.stackexchange.com/a/40755
