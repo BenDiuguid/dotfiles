@@ -11,9 +11,9 @@ brew cask install atom
 
 # Install atom packages
 packages=(
+  atom-clock
   activate-power-mode
   atom-beautify
-  atom-linter-node-dependencies
   autocomplete-modules
   double-tag
   editorconfig
@@ -22,10 +22,10 @@ packages=(
   highlight-selected
   hyperclick
   js-hyperclick
-  jumpy
   language-babel
   language-docker
   language-graphql
+  language-haskell
   language-ignore
   language-jade
   linter
@@ -36,9 +36,9 @@ packages=(
   npm-outdated
   oceanic-next
   open-recent
+  pdf-view
   pigments
   project-manager
-  regex-tester
   seti-syntax
   slack-ui
   split-diff
