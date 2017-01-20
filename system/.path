@@ -7,9 +7,9 @@ is-executable() {
   fi
 }
 
-prepend-path() {
+append-path() {
   if [ -d $1 ]; then
-    PATH="$1:$PATH"
+    PATH="$PATH:$1"
   fi
 }
 
@@ -17,20 +17,21 @@ prepend-path() {
 is-executable getconf && PATH=$(command -v getconf PATH)
 
 # Prepend new items to path (if directory exists)
-prepend-path "/bin"
-prepend-path "/usr/bin"
-prepend-path "/usr/local/bin"
-prepend-path "$DOTFILES_DIR/bin"
-prepend-path "$HOME/bin"
-prepend-path "/sbin"
-prepend-path "/usr/sbin"
-prepend-path "/usr/local/sbin"
-prepend-path "$HOME/.rbenv/shims"
-prepend-path "$HOME/Library/Android/sdk/platform-tools"
-prepend-path "$HOME/Library/Android/sdk/tools"
-# prepend-path "`yarn global bin`"
 
-# Remove duplicates (preserving prepended items)
+append-path "/usr/local/sbin"
+append-path "/usr/sbin"
+append-path "/sbin"
+append-path "$HOME/bin"
+append-path "/usr/local/bin"
+append-path "/usr/bin"
+append-path "/bin"
+append-path "$DOTFILES_DIR/bin"
+append-path "$HOME/.rbenv/shims"
+append-path "$HOME/Library/Android/sdk/tools"
+append-path "$HOME/Library/Android/sdk/platform-tools"
+# append-path "`yarn global bin`"
+
+# Remove duplicates (preserving appended items)
 # Source: http://unix.stackexchange.com/a/40755
 PATH=`echo -n $PATH | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}'`
 

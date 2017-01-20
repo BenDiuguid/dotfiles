@@ -15,21 +15,19 @@ npm completion > /usr/local/etc/bash_completion.d/npm
 
 npm install --global yarn
 
+yarn cache clean
+
 ### Interesting packages
 # hotel
 
 # Globally install with npm
 packages=(
   babel-cli
-  babel-eslint
   browser-sync
   create-react-app
   cypress-cli
   diffchecker
   eslint
-  eslint-plugin-babel
-  eslint-plugin-import
-  eslint-plugin-react
   flow-bin
   horizon
   npm
