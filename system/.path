@@ -29,7 +29,7 @@ append-path "$DOTFILES_DIR/bin"
 append-path "$HOME/.rbenv/shims"
 append-path "$HOME/Library/Android/sdk/tools"
 append-path "$HOME/Library/Android/sdk/platform-tools"
-# append-path "`yarn global bin`"
+append-path "$HOME/.config/yarn/global/node_modules/.bin"
 
 # Remove duplicates (preserving appended items)
 # Source: http://unix.stackexchange.com/a/40755

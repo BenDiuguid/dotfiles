@@ -3,6 +3,7 @@
 For more information on dotfiles [visit this](http://dotfiles.github.io/)
 
 Follow me on Twitter: [@BenDiuguid](https://twitter.com/BenDiuguid)
+Follow me on Medium: [@BenDiuguid](https://medium.com/@BenDiuguid)
 
 ## Overview
 
@@ -13,64 +14,54 @@ Follow me on Twitter: [@BenDiuguid](https://twitter.com/BenDiuguid)
 * Share what you've learned with the rest of us.
 
 
-### Installation
-To install these dotfiles, simply clone this repo then cd into it and execute install.sh. You can also simply paste the following command into terminal, which switch the the home directory, clone the repo into .dotfiles/ and then run the install script with bash.
+### Setup
+To setup these dotfiles, simply clone this repo then cd into it and execute `./setup.sh`. You can also simply paste the following command into terminal, which will switch to the home directory, clone the repo into `~/.dotfiles/`, make the setup script executable, and then run the setup script with bash.
 
 
-Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/dotfiles .dotfiles && cd .dotfiles && bash install.sh`
+Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/dotfiles .dotfiles && cd .dotfiles && chmod +x setup.sh && ./setup.sh`
 
 ## File System
 
     ├── bin
-    │   └── dotfiles                - Executable placed on path to provide update/sourcing
+    │   └── dotfiles                - Executable placed on path to provide dotfiles update/editting shortcuts
     │
-    ├── git
-    │   ├── .gitconfig              - Global git config, where user info and git alias's live
-    │   └── .gitignore_global       - Global git ignore
-    │
-    └── install
+    ├── install
     │   ├── atom.sh                 - Uses apm to install atom packages/themes
     │   ├── bash.sh                 - Gets bash/completions from brew and makes it default shell
     │   ├── brew-cask.sh            - Installs GUI apps
     │   ├── brew.sh                 - Installs command line apps
-    │   ├── gem.sh                  - Installs useful gems
+    │   ├── gem.sh                  - Installs useful ruby gems
+    │   ├── mac.sh                  - Installs mac applications through the App Store
     │   ├── meteor.sh               - Installs meteor
-    │   └── npm.sh                  - Globally installs useful npm packages
+    │   ├── npm.sh                  - Globally installs useful npm packages
+    │   ├── python.sh               - Installs useful python packages
+    │   └── zsh.sh                  - Gets zsh/completions from brew and makes it default shell
     │
-    ├── osx
+    ├── macOS
     │   ├── defaults.dock.sh        - Sets the Dock up
-    │   └── defaults.sh             - Skinned down version of mathiasbynens/dotfiles/.osx
+    │   └── defaults.sh             - Skinned down version of mathiasbynens/dotfiles/.macOS
     │
     ├── symlink
-    │   ├── .bash_profile           - Symlinked into ~/ controls the sourcing of everything
-    │   ├── .tmux.                  - Symlinked into ~/ configures tmux
-    │   └── .inputrc                - Symlinked into ~/ sets input info
+    │   ├── .eslintrc.js            - Global eslint config
+    │   ├── .gitconfig              - Global git config, where user info and git alias's live
+    │   ├── .gitignore_global       - Global gitignore
+    │   ├── .hyper.js               - hyper.app config
+    │   ├── .tmux.conf              - tmux config
+    │   ├── .zshenv
+    │   └── .zshrc
     │
-    ├── system
-    │   ├── .alias                  - Shell Alias's
-    │   ├── .completion             - Bash/brew and other completions
-    │   ├── .env                    - Environmental variables
-    │   ├── .function               - General useful bash functions
-    │   ├── .function_fs            - File System specific functions
-    │   ├── .nvm                    - Properly sources nvm
-    │   ├── .path                   - Defines the path
-    │   └── .prompt                 - Bash logic for coloring / git status of prompt
-    │
-    └── themes
-        ├── .Material.itermcolors   - Material color theme for iTerm
-        └── .Material.terminal      - Material color theme for Terminal.app
+    └── system
+        ├── .alias                  - Shell Alias's
+        ├── .completion             - Shell completions
+        ├── .env                    - Environmental variables
+        ├── .nvm                    - Properly sources nvm
+        ├── .path                   - Defines the path
+        └── .prompt                 - Logic for prompt coloring + git status of prompt
 
-## Themes
-I have created a Material theme for both Mac Terminal & [iTerm2](https://www.iterm2.com/)
-The themes are located in the `themes/` folder.
 
-### Installing themes
-To install a theme, simply navigate to the preferences/settings of the terminal or iTerm, and import the desired theme.
 
 ### Screenshots
-![Terminal Theme](https://github.com/bendiuguid/dotfiles/raw/master/docs/imgs/terminalThemeAt2016-05-08.png)
-
-![iTerm Theme](https://github.com/bendiuguid/dotfiles/raw/master/docs/imgs/itermThemeAt2016-05-08.png)
+![Hyper Screenshot]()
 
 ## Caveats
 Currently I have not tested this on anything other than OS X, and I know all of the `brew` stuff will not work on Linux or Windows systems.
