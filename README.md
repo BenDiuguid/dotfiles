@@ -1,8 +1,9 @@
 # Ben Diuguid's dotfiles
 
-For more information on dotfiles [visit this](http://dotfiles.github.io/)
+For more information on dotfiles checkout [dotfiles.github.io](http://dotfiles.github.io/)
 
 Follow me on Twitter: [@BenDiuguid](https://twitter.com/BenDiuguid)
+
 Follow me on Medium: [@BenDiuguid](https://medium.com/@BenDiuguid)
 
 ## Overview
