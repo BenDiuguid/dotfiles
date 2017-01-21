@@ -58,12 +58,10 @@ Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/
         ├── .path                   - Defines the path
         └── .prompt                 - Logic for prompt coloring + git status of prompt
 
-
-
 ### Screenshots
-![Hyper Screenshot]()
+![Hyper Screenshot](docs/HyperScreenShot.png)
 
 ## Caveats
-Currently I have not tested this on anything other than OS X, and I know all of the `brew` stuff will not work on Linux or Windows systems.
+Currently I have not tested this on anything other than macOS.
 
 # Happy Hacking!
