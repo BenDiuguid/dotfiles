@@ -11,11 +11,7 @@ DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 [ -f "$DOTFILES_DIR/bin/dotfiles" ] && chmod +x $DOTFILES_DIR/bin/dotfiles
 
 # symlink anything in the symlink folder to the user ~/ directory
-for FILE in "$DOTFILES_DIR"/symlink/(.)**; do
-  ln -sfv "$DOTFILES_DIR/symlink/$FILE" ~
-done
+for FILE in "$DOTFILES_DIR"/symlink/(.)**; ln -sfv $FILE ~
 
 # Install all the things, and setup macOS defaults
-for FILE in "$DOTFILES_DIR"/{install,macOS}/**(.); do
-  source $FILE
-done
+for FILE in "$DOTFILES_DIR"/{install,macOS}/**(.); source $FILE
