@@ -14,32 +14,13 @@
 [alias]
   ss = status
   co = checkout
-  cob = checkout -b
-  ec = config --global -e # Edit Config. Opens config with default editor.
-  save = !git add -A && git commit -m 'SAVEPOINT' # Adds ALL changes including untracked. Then commits with SAVEPOINT as commit message.
-  wip = commit -am "WIP" # Adds only tracked changes and commits as WIP (Work In Progress)
   undo = reset HEAD~1 --mixed # Resets the previous commit, but keeps all the changes from that commit in the working directory.
   amend = commit -a --amend # Modify the previous commit
-  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard # This commits everything in my working directory and then does a hard reset to remove that commit. You can run the git reflog command and find the SHA of the commit if you realize later that you made a mistake with the reset. The commit message will be "WIPE SAVEPOINT" in this case.
   dsf = "!git diff --color $@ | diff-so-fancy"
   show-ignored = "! git clean -ndX | perl -pe 's/Would remove/Ignored:/'"
-  # http://gggritso.com/human-git-aliases are below:
   back = checkout "-"
   branches = branch -a
-  contributors = shortlog -s -n
-  discard = checkout --
-  graph = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
-  move = mv
-  precommit = diff --cached --diff-algorithm=minimal -w
   remotes = remote -v
-  remove = rm
-  stashes = stash list
-  tags = tag
-  uncommit = reset --mixed HEAD~
-  unmerged = diff --name-only --diff-filter=U
-  unstage = reset -q HEAD --
-  unstash = stash pop
-  untrack = rm -r --cached
 
 [pager]
 	diff = diff-so-fancy | less --tabs=4 -RFX
@@ -53,9 +34,6 @@
 
 [grep]
   lineNumber = true
-
-[help]
-  autocorrect = 1
 
 [push]
   default = simple
