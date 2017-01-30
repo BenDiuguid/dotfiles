@@ -34,6 +34,7 @@ apps=(
   postman
   quik
   robomongo
+  rocket
   safari-technology-preview
   skype
   slack
@@ -45,7 +46,6 @@ apps=(
   visual-studio-code
   vivaldi
   webstorm
-  wmail
   zoomus
 )
 
