@@ -22,6 +22,7 @@ yarn cache clean
 
 # Globally install with npm
 packages=(
+  @aweary/alder
   babel-cli
   browser-sync
   create-react-app
