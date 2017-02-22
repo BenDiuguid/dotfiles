@@ -30,6 +30,7 @@ apps=(
   iterm2
   java
   opera
+  opera-neon
   origami-studio
   postman
   quik
