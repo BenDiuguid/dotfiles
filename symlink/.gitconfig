@@ -7,7 +7,8 @@
 
 [core]
   excludesfile = ~/.gitignore_global
-  editor = atom --wait
+  editor = vim
+  pager = diff-highlight | diff-so-fancy | less --tabs=4 -RFX
   filemode = false
   trustctime = false
 
@@ -16,8 +17,6 @@
   co = checkout
   undo = reset HEAD~1 --mixed # Resets the previous commit, but keeps all the changes from that commit in the working directory.
   amend = commit -a --amend # Modify the previous commit
-  dsf = "!git diff --color $@ | diff-so-fancy"
-  show-ignored = "! git clean -ndX | perl -pe 's/Would remove/Ignored:/'"
   back = checkout "-"
   branches = branch -a
   remotes = remote -v
@@ -27,13 +26,22 @@
 	show = diff-so-fancy | less --tabs=4 -RFX
 
 [color]
-  ui = auto
+  ui = always
+[color "diff"]
+	meta = yellow bold
+	commit = green bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = "red bold 52"
+	newNormal = "green bold"
+	newHighlight = "green bold 22"
 
 [credential]
   helper = osxkeychain
-
-[grep]
-  lineNumber = true
 
 [push]
   default = simple
