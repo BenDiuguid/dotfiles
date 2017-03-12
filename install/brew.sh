@@ -38,6 +38,7 @@ binaries=(
   haskell-stack
   heroku-toolbelt
   hub
+  jpeg-turbo
   mas
   mongodb
   rethinkdb

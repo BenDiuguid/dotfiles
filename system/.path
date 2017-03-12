@@ -16,12 +16,13 @@ append-path() {
 # Start with system path, Retrieve it from getconf, otherwise it's just current $PATH
 is-executable getconf && PATH=$(command -v getconf PATH)
 
-# Prepend new items to path (if directory exists)
+# Append new items to path (if directory exists)
 
 append-path "/usr/local/sbin"
 append-path "/usr/sbin"
 append-path "/sbin"
 append-path "$HOME/bin"
+append-path "/usr/local/opt/jpeg-turbo/bin"
 append-path "/usr/local/bin"
 append-path "/usr/bin"
 append-path "/bin"

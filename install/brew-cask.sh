@@ -26,6 +26,8 @@ apps=(
   google-chrome
   google-chrome-canary
   google-drive
+  google-featured-photos
+  google-trends
   hyper
   iterm2
   java
