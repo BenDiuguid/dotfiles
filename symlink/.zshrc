@@ -42,3 +42,7 @@ zstyle ':completion:*:killall:*' command 'ps -u $USER -o cmd'
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/Cellar/zsh-history-substring-search/1.0.1/zsh-history-substring-search.zsh
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down

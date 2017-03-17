@@ -26,6 +26,7 @@ packages=(
   babel-cli
   browser-sync
   create-react-app
+  create-react-native-app
   cypress-cli
   diffchecker
   eslint

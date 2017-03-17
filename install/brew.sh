@@ -20,6 +20,7 @@ binaries=(
 
   # ZSH + plugins
   zsh
+  zsh-history-substring-search
   zsh-syntax-highlighting
   zsh-completions
   zsh-autosuggestions
