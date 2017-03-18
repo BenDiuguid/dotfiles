@@ -32,13 +32,13 @@ packages=(
   eslint
   flow-bin
   horizon
+  netlify-cli
   npm
   now
   serverless
   sort-package-json
   trash-cli
   typescript
-  webpack
   yo
 )
 

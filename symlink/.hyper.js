@@ -10,6 +10,10 @@ module.exports = {
       }
     `,
     shell: '/usr/local/bin/zsh',
+    hyperlinks: {
+      clickAction: 'open',
+      defaultBrowser: true,
+    },
   },
   plugins: [
     // THEMES:
@@ -22,6 +26,7 @@ module.exports = {
     'hyperterm-tab-icons',
     'hyper-simple-vibrancy',
     'hyper-simple-highlight-active-session',
+    'hyperlinks',
     // 'hyperlayout', // really cool! (replaces tmux/tmuxinator)
     // 'hyper-statusline', // looks like the bottom of atom
   ],
