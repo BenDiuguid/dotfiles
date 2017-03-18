@@ -36,6 +36,7 @@ binaries=(
   diff-so-fancy
   dockutil
   git
+  guetzli
   haskell-stack
   heroku-toolbelt
   hub

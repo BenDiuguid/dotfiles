@@ -29,6 +29,7 @@ apps=(
   google-featured-photos
   google-trends
   hyper
+  imageoptim
   iterm2
   java
   opera
