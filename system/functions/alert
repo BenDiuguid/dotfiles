@@ -1,0 +1,8 @@
+function alert() {
+  previous=$?
+  if [ $previous -eq 0 ]; then
+    osascript -e "display notification \"Done\" with title \"Terminal Task\"" && say --voice Daniel "Task is done";
+  else
+    osascript -e "display notification \"Failed\" with title \"Terminal Task\"" && say --voice Daniel "Task failed";
+  fi
+}

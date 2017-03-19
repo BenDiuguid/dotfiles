@@ -1,6 +1,6 @@
 # @BenDiuguid's .zshrc
 
-autoload -Uz compinit bashcompinit colors
+autoload -Uz compinit bashcompinit colors alert
 compinit
 bashcompinit
 colors
@@ -30,6 +30,9 @@ fi
 for DOTFILE in "$DOTFILES_DIR"/system/.{path,env,alias,completion,prompt,nvm,secret}; do
   [ -f "$DOTFILE" ] && source "$DOTFILE"
 done
+
+# Functions
+FPATH="$FPATH:$DOTFILES_DIR/system/functions"
 
 # Clean up
 unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE

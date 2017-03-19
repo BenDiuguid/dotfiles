@@ -30,6 +30,7 @@ packages=(
   cypress-cli
   diffchecker
   eslint
+  fkill-cli
   flow-bin
   horizon
   netlify-cli
