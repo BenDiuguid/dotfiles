@@ -36,6 +36,7 @@ packages=(
   netlify-cli
   npm
   now
+  pure-prompt
   serverless
   sort-package-json
   trash-cli

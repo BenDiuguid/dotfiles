@@ -1,8 +1,9 @@
 # @BenDiuguid's .zshrc
 
-autoload -Uz compinit bashcompinit colors alert
-compinit
+autoload -Uz bashcompinit compinit promptinit colors alert
 bashcompinit
+compinit
+promptinit
 colors
 
 # OS
@@ -27,7 +28,7 @@ else
 fi
 
 # Finally we can source the dotfiles (order matters)
-for DOTFILE in "$DOTFILES_DIR"/system/.{path,env,alias,completion,prompt,nvm,secret}; do
+for DOTFILE in "$DOTFILES_DIR"/system/.{path,env,alias,completion,nvm,secret}; do
   [ -f "$DOTFILE" ] && source "$DOTFILE"
 done
 
@@ -39,6 +40,8 @@ unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE
 
 # Export
 export OS DOTFILES_DIR
+
+prompt pure
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*:killall:*' command 'ps -u $USER -o cmd'
