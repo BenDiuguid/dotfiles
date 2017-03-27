@@ -12,6 +12,7 @@ packages=(
   Shazam
   Vaunt
   Xcode
+  GIPHY CAPTURE
 )
 
 mas install "${packages[@]}"
