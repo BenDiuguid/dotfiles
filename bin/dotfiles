@@ -10,13 +10,13 @@ sub_help () {
   echo "Commands:"
   echo "   help             This help message"
   echo "   clean            Clean various caches"
-  echo "   edit             Open dotfiles in editor ($EDITOR_NOWAIT)"
+  echo "   edit             Open dotfiles in editor ($EDITOR)"
   echo "   update           Update packages and pkg managers (OS, brew, npm, gem)"
   echo "   install          Runs scripts within the install folder"
 }
 
 sub_edit () {
-  sh -c "$EDITOR_NOWAIT $DOTFILES_DIR"
+  sh -c "$EDITOR $DOTFILES_DIR"
 }
 
 sub_update () {
