@@ -15,6 +15,7 @@ apps=(
   atom
   blisk
   brave
+  caprine
   charles
   cyberduck
   deco
