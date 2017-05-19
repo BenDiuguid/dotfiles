@@ -36,6 +36,7 @@ packages=(
   netlify-cli
   npm
   now
+  preact-cli
   pure-prompt
   serverless
   sort-package-json
