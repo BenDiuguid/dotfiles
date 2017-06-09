@@ -7,6 +7,7 @@ is-executable() {
   fi
 }
 
+# Append new items to path (if directory exists)
 append-path() {
   if [ -d $1 ]; then
     PATH="$PATH:$1"
@@ -16,8 +17,7 @@ append-path() {
 # Start with system path, Retrieve it from getconf, otherwise it's just current $PATH
 is-executable getconf && PATH=$(command -v getconf PATH)
 
-# Append new items to path (if directory exists)
-
+append-path "$HOME/.config/yarn/global/node_modules/.bin"
 append-path "$HOME/.rbenv/shims"
 append-path "/usr/local/sbin"
 append-path "/usr/sbin"
@@ -30,7 +30,6 @@ append-path "/bin"
 append-path "$DOTFILES_DIR/bin"
 append-path "$HOME/Library/Android/sdk/tools"
 append-path "$HOME/Library/Android/sdk/platform-tools"
-append-path "$HOME/.config/yarn/global/node_modules/.bin"
 
 # Remove duplicates (preserving appended items)
 # Source: http://unix.stackexchange.com/a/40755
