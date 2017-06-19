@@ -31,6 +31,7 @@ apps=(
   google-trends
   hyper
   imageoptim
+  insomnia
   iterm2
   java
   opera
