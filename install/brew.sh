@@ -46,6 +46,7 @@ binaries=(
   rethinkdb
   tmux
   watchman
+  webp
 )
 
 brew install "${binaries[@]}"
