@@ -3,8 +3,6 @@ brew tap caskroom/cask
 brew tap caskroom/versions
 
 # Not on brew-cask
-# Ableton Live Lite ( https://www.ableton.com/en/products/live-lite/ )
-# Soundbrenner DAW ( http://www.soundbrenner.com/daw-tools/ )
 # zeit now-desktop ( https://zeit.co/desktop )
 
 # Install packages
@@ -40,8 +38,8 @@ apps=(
   postman
   quik
   robomongo
-  rocket
   safari-technology-preview
+  screenhero
   skype
   slack
   sublime-text
