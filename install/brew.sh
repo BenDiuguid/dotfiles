@@ -7,9 +7,6 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
-# taps
-brew tap homebrew/versions
-
 # Installs with special flags
 brew install vim --with-override-system-vi
 

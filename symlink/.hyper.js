@@ -23,7 +23,7 @@ module.exports = {
     // PLUGINS:
     // 'hyperpower', // Show Off!
     'hypercwd',
-    'hyperterm-tab-icons',
+    'hyper-tab-icons',
     'hyper-simple-vibrancy',
     'hyper-simple-highlight-active-session',
     'hyperlinks',

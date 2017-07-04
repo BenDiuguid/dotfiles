@@ -37,7 +37,7 @@ apps=(
   origami-studio
   postman
   quik
-  robomongo
+  robo-3t
   safari-technology-preview
   screenhero
   skype
