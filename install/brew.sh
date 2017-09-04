@@ -35,7 +35,6 @@ binaries=(
   git
   guetzli
   haskell-stack
-  heroku-toolbelt
   hub
   jpeg-turbo
   mas
