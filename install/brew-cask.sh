@@ -11,12 +11,9 @@ apps=(
   android-studio
   appcleaner
   atom
-  blisk
   brave
-  caprine
   charles
   cyberduck
-  deco
   discord
   docker
   firefox
@@ -29,17 +26,12 @@ apps=(
   google-trends
   hyper
   imageoptim
-  insomnia
   iterm2
   java
   opera
-  opera-neon
-  origami-studio
   postman
   quik
-  robo-3t
   safari-technology-preview
-  screenhero
   skype
   slack
   sublime-text
@@ -49,7 +41,6 @@ apps=(
   visual-studio
   visual-studio-code
   vivaldi
-  webstorm
   zoomus
 )
 

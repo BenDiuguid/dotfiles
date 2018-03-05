@@ -22,17 +22,12 @@ yarn cache clean
 
 # Globally install with npm
 packages=(
-  @aweary/alder
-  babel-cli
-  browser-sync
   create-react-app
   create-react-native-app
   cypress-cli
-  diffchecker
   eslint
   fkill-cli
   flow-bin
-  horizon
   netlify-cli
   npm
   now

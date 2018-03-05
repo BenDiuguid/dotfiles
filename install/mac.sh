@@ -3,24 +3,14 @@ brew install mas
 mas signin
 
 packages=(
-  # GarageBand
-  682658836
-  # iMovie
-  408981434
-  # Keynote
-  409183694
-  # Numbers
-  409203825
-  # Pages
-  409201541
-  # Xcode
-  497799835
-  # Shazam
-  897118787
-  # Vaunt
-  1191209926
-  # GIPHY CAPTURE
-  668208984
+  682658836 # GarageBand
+  408981434 # iMovie
+  409183694 # Keynote
+  409203825 # Numbers
+  409201541 # Pages
+  497799835 # Xcode
+  897118787 # Shazam
+  668208984 # GIPHY CAPTURE
 )
 
 mas install "${packages[@]}"
