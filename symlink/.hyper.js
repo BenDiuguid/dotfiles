@@ -1,33 +1,22 @@
 module.exports = {
   config: {
+    updateChannel: 'stable',
     fontSize: 15,
     fontFamily: 'Operator Mono',
-    cursorColor: 'rgba(133,133,137,0.60)',
-    cursorShape: 'BLOCK',
-    termCSS: `
-      x-screen {
-        -webkit-font-smoothing: subpixel-antialiased !important;
+    shell: '/usr/local/bin/zsh',
+    hyperTabs: {
+      trafficButtons: true,
+    },
+    css:`
+      .terminal, .term_fit:not(.term_term) {
+        opacity: 1 !important;
       }
     `,
-    shell: '/usr/local/bin/zsh',
-    hyperlinks: {
-      clickAction: 'open',
-      defaultBrowser: true,
-    },
   },
   plugins: [
-    // THEMES:
-    // theme viewer: https://hyperthemes.matthi.coffee/
     'hyper-snazzy',
-
-    // PLUGINS:
-    // 'hyperpower', // Show Off!
     'hypercwd',
-    'hyper-tab-icons',
-    'hyper-simple-vibrancy',
-    'hyper-simple-highlight-active-session',
-    'hyperlinks',
-    // 'hyperlayout', // really cool! (replaces tmux/tmuxinator)
-    // 'hyper-statusline', // looks like the bottom of atom
+    'hyper-search',
+    'hyper-tabs-enhanced',
   ],
 };
