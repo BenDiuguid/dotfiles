@@ -30,6 +30,7 @@ binaries=(
   python # python v2.7
 
   # Other
+  autojump
   diff-so-fancy
   dockutil
   git

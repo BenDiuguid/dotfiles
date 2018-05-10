@@ -33,11 +33,9 @@ packages=(
   now
   preact-cli
   pure-prompt
-  serverless
   sort-package-json
   trash-cli
   typescript
-  yo
 )
 
 yarn global add "${packages[@]}"

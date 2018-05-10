@@ -16,14 +16,17 @@ apps=(
   cyberduck
   discord
   docker
+  figma
   firefox
   firefoxdeveloperedition
   flux
+  gimp
+  google-backup-and-sync
   google-chrome
   google-chrome-canary
-  google-drive
   google-featured-photos
   google-trends
+  graphql-playground
   hyper
   imageoptim
   iterm2
@@ -34,6 +37,7 @@ apps=(
   safari-technology-preview
   skype
   slack
+  steam
   sublime-text
   torbrowser
   transmission
@@ -41,7 +45,6 @@ apps=(
   visual-studio
   visual-studio-code
   vivaldi
-  zoomus
 )
 
 brew cask install "${apps[@]}"
