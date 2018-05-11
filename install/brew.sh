@@ -31,6 +31,7 @@ binaries=(
 
   # Other
   autojump
+  bat
   diff-so-fancy
   dockutil
   git
