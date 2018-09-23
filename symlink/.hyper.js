@@ -7,11 +7,6 @@ module.exports = {
     hyperTabs: {
       trafficButtons: true,
     },
-    css:`
-      .terminal, .term_fit:not(.term_term) {
-        opacity: 1 !important;
-      }
-    `,
   },
   plugins: [
     'hyper-snazzy',
