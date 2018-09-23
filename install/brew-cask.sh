@@ -31,6 +31,7 @@ apps=(
   imageoptim
   iterm2
   java
+  ngrok
   opera
   postman
   quik
