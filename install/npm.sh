@@ -17,17 +17,12 @@ npm install --global yarn
 
 yarn cache clean
 
-### Interesting packages
-# hotel
-
 # Globally install with npm
 packages=(
   create-react-app
   create-react-native-app
-  cypress-cli
   eslint
   fkill-cli
-  flow-bin
   netlify-cli
   npm
   now
