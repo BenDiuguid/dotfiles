@@ -20,8 +20,6 @@ sub_edit () {
 }
 
 sub_update () {
-  mas outdated
-  mas upgrade
   brew update
   brew upgrade
   cd ~/.config/yarn/global && yarn outdated && cd
