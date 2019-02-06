@@ -25,8 +25,6 @@ source "$DOTFILES_DIR/install/zsh.sh"
 source "$DOTFILES_DIR/install/gem.sh"
 source "$DOTFILES_DIR/install/python.sh"
 source "$DOTFILES_DIR/install/brew-cask.sh"
-source "$DOTFILES_DIR/install/atom.sh"
-source "$DOTFILES_DIR/install/mac.sh"
 
 # Setup macOS defaults
 source "$DOTFILES_DIR/macOS/defaults.sh"
