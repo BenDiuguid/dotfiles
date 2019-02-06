@@ -27,21 +27,19 @@ binaries=(
   ruby-build
 
   # Install python stuff
-  python # python v2.7
+  python
 
   # Other
   autojump
   bat
   diff-so-fancy
   dockutil
+  fx
   git
   guetzli
   haskell-stack
   hub
   jpeg-turbo
-  mas
-  mongodb
-  rethinkdb
   tmux
   watchman
   webp
