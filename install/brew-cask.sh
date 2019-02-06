@@ -10,17 +10,12 @@ apps=(
   android-file-transfer
   android-studio
   appcleaner
-  atom
   brave
-  charles
-  cyberduck
-  discord
   docker
   figma
   firefox
   firefoxdeveloperedition
   flux
-  gimp
   google-backup-and-sync
   google-chrome
   google-chrome-canary
@@ -29,17 +24,13 @@ apps=(
   graphql-playground
   hyper
   imageoptim
-  iterm2
   java
   ngrok
   opera
   postman
   quik
-  safari-technology-preview
   skype
   slack
-  steam
-  sublime-text
   torbrowser
   transmission
   virtualbox
