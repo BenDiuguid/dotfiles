@@ -13,24 +13,13 @@ nvm alias default node
 # npm completion installiation.
 npm completion > /usr/local/etc/bash_completion.d/npm
 
-npm install --global yarn
-
-yarn cache clean
-
 # Globally install with npm
 packages=(
-  create-react-app
-  create-react-native-app
-  eslint
   fkill-cli
-  netlify-cli
   npm
-  now
-  preact-cli
   pure-prompt
-  sort-package-json
   trash-cli
-  typescript
+  yarn
 )
 
-yarn global add "${packages[@]}"
+npm install --global "${packages[@]}"

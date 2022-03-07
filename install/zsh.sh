@@ -1,5 +1,5 @@
 # Install updated zsh.
 brew install zsh
 
-grep "/usr/local/bin/zsh" /private/etc/shells &>/dev/null || sudo zsh -c "echo /usr/local/bin/zsh >> /private/etc/shells"
-chsh -s /usr/local/bin/zsh
+grep "/opt/homebrew/bin/zsh" /private/etc/shells &>/dev/null || sudo zsh -c "echo /opt/homebrew/bin/zsh >> /private/etc/shells"
+chsh -s /opt/homebrew/bin/zsh

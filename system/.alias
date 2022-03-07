@@ -1,7 +1,7 @@
 # Alias's
 alias reSource='source ~/.zshrc && echo "Sourced ~/.zshrc!"'
 
-alias git='hub'
+# alias git='hub'
 
 alias ipaddr='ipconfig getifaddr en0'
 

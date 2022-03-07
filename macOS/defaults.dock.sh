@@ -4,7 +4,7 @@
 # defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'
 
 dockutil --no-restart --remove all
-dockutil --no-restart --add "/Applications/System Preferences.app"
+dockutil --no-restart --add "/System/Applications/System Preferences.app"
 
 dockutil --no-restart --add '' --type spacer --section apps
 

@@ -1,14 +1,11 @@
 # Install Homebrew
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Make sure we’re using the latest Homebrew.
 brew update
 
 # Upgrade any already-installed formulae.
 brew upgrade
-
-# Installs with special flags
-brew install vim --with-override-system-vi
 
 binaries=(
   # BASH + plugins
@@ -22,27 +19,14 @@ binaries=(
   zsh-completions
   zsh-autosuggestions
 
-  # Install ruby stuff
-  rbenv
-  ruby-build
-
-  # Install python stuff
-  python
-
   # Other
-  autojump
-  bat
   diff-so-fancy
   dockutil
-  fx
   git
-  guetzli
-  haskell-stack
   hub
-  jpeg-turbo
   tmux
-  watchman
-  webp
+  vim
+  xsv
 )
 
 brew install "${binaries[@]}"

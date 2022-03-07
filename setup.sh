@@ -22,8 +22,8 @@ ln -sfv "$DOTFILES_DIR/symlink/.zshrc" ~
 source "$DOTFILES_DIR/install/brew.sh"
 source "$DOTFILES_DIR/install/bash.sh"
 source "$DOTFILES_DIR/install/zsh.sh"
-source "$DOTFILES_DIR/install/gem.sh"
-source "$DOTFILES_DIR/install/python.sh"
+#source "$DOTFILES_DIR/install/gem.sh"
+#source "$DOTFILES_DIR/install/python.sh"
 source "$DOTFILES_DIR/install/brew-cask.sh"
 
 # Setup macOS defaults
