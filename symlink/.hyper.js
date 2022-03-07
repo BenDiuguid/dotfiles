@@ -1,8 +1,8 @@
 module.exports = {
   config: {
     updateChannel: 'stable',
-    fontSize: 15,
-    // fontFamily: 'Operator Mono',
+    fontSize: 16,
+    fontFamily: 'Operator Mono', // If not this, set fontSize: 15.
     shell: '/opt/homebrew/bin/zsh',
     hyperTabs: {
       trafficButtons: true,
