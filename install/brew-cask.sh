@@ -7,6 +7,7 @@ apps=(
   appcleaner
   brave-browser
   bricklink-studio
+  chromium
   devtoys
   docker
   elgato-stream-deck
