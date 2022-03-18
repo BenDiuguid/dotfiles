@@ -57,10 +57,10 @@ sudo chflags nohidden /Volumes
 ###############################################################################
 
 # Enable highlight hover effect for the grid view of a stack (Dock)
-defaults write com.apple.dock mouse-over-hilite-stack -bool true
+defaults write com.apple.dock mouse-over-hilite-stack -bool false
 
 # Don’t automatically rearrange Spaces based on most recent use
-defaults write com.apple.dock mru-spaces -bool false
+defaults write com.apple.dock mru-spaces -bool true
 
 # Don’t show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
