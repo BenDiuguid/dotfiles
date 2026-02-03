@@ -1,10 +1,7 @@
 # Install nvm.
-brew install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 
-if [ "$(type -t nvm)" != function ]; then
-  source $DOTFILES_DIR/system/.nvm
-fi
-
+# For some reason this didn't work right after the install.
 # Grab latest node version and set it to default
 nvm install node
 nvm use node
@@ -15,7 +12,6 @@ npm completion > /usr/local/etc/bash_completion.d/npm
 
 # Globally install with npm
 packages=(
-  fkill-cli
   npm
   pure-prompt
   trash-cli

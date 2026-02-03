@@ -20,10 +20,8 @@ binaries=(
   zsh-autosuggestions
 
   # Other
-  diff-so-fancy
   dockutil
   git
-  hub
   tmux
   vim
   xsv

@@ -19,13 +19,14 @@ ln -sfv "$DOTFILES_DIR/symlink/.zshenv" ~
 ln -sfv "$DOTFILES_DIR/symlink/.zshrc" ~
 
 # Install all the things, order matters.
-source "$DOTFILES_DIR/install/brew.sh"
-source "$DOTFILES_DIR/install/bash.sh"
-source "$DOTFILES_DIR/install/zsh.sh"
+# source "$DOTFILES_DIR/install/brew.sh"
+# source "$DOTFILES_DIR/install/bash.sh"
+# source "$DOTFILES_DIR/install/zsh.sh"
+source "$DOTFILES_DIR/install/npm.sh"
 #source "$DOTFILES_DIR/install/gem.sh"
 #source "$DOTFILES_DIR/install/python.sh"
-source "$DOTFILES_DIR/install/brew-cask.sh"
+# source "$DOTFILES_DIR/install/brew-cask.sh"
 
 # Setup macOS defaults
-source "$DOTFILES_DIR/macOS/defaults.sh"
-source "$DOTFILES_DIR/macOS/defaults.dock.sh"
+# source "$DOTFILES_DIR/macOS/defaults.sh"
+# source "$DOTFILES_DIR/macOS/defaults.dock.sh"

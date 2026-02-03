@@ -28,7 +28,7 @@ else
 fi
 
 # Finally we can source the dotfiles (order matters)
-for DOTFILE in "$DOTFILES_DIR"/system/.{path,env,alias,completion,nvm,secret}; do
+for DOTFILE in "$DOTFILES_DIR"/system/.{path,env,alias,completion,secret}; do
   [ -f "$DOTFILE" ] && source "$DOTFILE"
 done
 
@@ -54,3 +54,7 @@ source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-se
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

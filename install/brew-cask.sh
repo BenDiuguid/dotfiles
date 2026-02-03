@@ -7,18 +7,15 @@ apps=(
   appcleaner
   brave-browser
   bricklink-studio
-  chromium
-  devtoys
   docker
   elgato-stream-deck
   figma
-  firefox
-  google-chrome
+  # google-chrome
   hyper
-  plantronics-hub
-  postgres-unofficial
-  tor-browser
-  visual-studio-code
+  # plantronics-hub
+  # postgres-unofficial
+  # tor-browser
+  # visual-studio-code
 )
 
 brew install --cask "${apps[@]}"
