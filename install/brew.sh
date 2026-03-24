@@ -25,6 +25,7 @@ binaries=(
   tmux
   vim
   xsv
+  diff-so-fancy
 )
 
 brew install "${binaries[@]}"

@@ -17,11 +17,12 @@ ln -sfv "$DOTFILES_DIR/symlink/.hyper.js" ~
 ln -sfv "$DOTFILES_DIR/symlink/.tmux.conf" ~
 ln -sfv "$DOTFILES_DIR/symlink/.zshenv" ~
 ln -sfv "$DOTFILES_DIR/symlink/.zshrc" ~
+ln -sfv "$DOTFILES_DIR/symlink/.zprofile" ~
 
 # Install all the things, order matters.
-# source "$DOTFILES_DIR/install/brew.sh"
-# source "$DOTFILES_DIR/install/bash.sh"
-# source "$DOTFILES_DIR/install/zsh.sh"
+source "$DOTFILES_DIR/install/brew.sh"
+source "$DOTFILES_DIR/install/bash.sh"
+source "$DOTFILES_DIR/install/zsh.sh"
 source "$DOTFILES_DIR/install/npm.sh"
 #source "$DOTFILES_DIR/install/gem.sh"
 #source "$DOTFILES_DIR/install/python.sh"
