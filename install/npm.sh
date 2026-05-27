@@ -19,3 +19,5 @@ packages=(
 )
 
 npm install --global "${packages[@]}"
+
+curl -fsSL https://get.pnpm.io/install.sh | sh -
