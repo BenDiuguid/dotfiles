@@ -1,10 +1,5 @@
-# Install python + pip
-brew install python
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-packages=(
-  pip
-  setuptools
-  awscli
-)
-
-pip install "${packages[@]}"
+# Install latest python.
+uv python install

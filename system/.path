@@ -31,9 +31,15 @@ append-path "$DOTFILES_DIR/bin"
 # append-path "$HOME/Library/Android/sdk/tools"
 # append-path "$HOME/Library/Android/sdk/platform-tools"
 # append-path "/Appplications/Postgres.app/Contents/Versions/latest/bin"
+append-path "/Users/bendiuguid/.antigravity/antigravity/bin"
+append-path "/Users/bendiuguid/.antigravity-ide/antigravity-ide/bin"
+append-path "/Users/bendiuguid/.local/bin"
 
 # Remove duplicates (preserving appended items)
 # Source: http://unix.stackexchange.com/a/40755
 PATH=`echo -n $PATH | awk -v RS=: '{ if (!arr[$0]++) {printf("%s%s",!ln++?"":":",$0)}}'`
 
 export PATH
+
+# Load these into $PATH.
+. "$HOME/.local/bin/env"
