@@ -23,17 +23,12 @@ Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/
 
 ## File System
 
-    ├── bin
-    │   └── dotfiles                - Executable placed on path to provide dotfiles update/editting shortcuts
-    │
     ├── install
-    │   ├── atom.sh                 - Uses apm to install atom packages/themes
+    │   ├── agy.sh                  - Installs the AntiGravity CLI
     │   ├── bash.sh                 - Gets bash/completions from brew and makes it default shell
     │   ├── brew-cask.sh            - Installs GUI apps
     │   ├── brew.sh                 - Installs command line apps
     │   ├── gem.sh                  - Installs useful ruby gems
-    │   ├── mac.sh                  - Installs mac applications through the App Store
-    │   ├── meteor.sh               - Installs meteor
     │   ├── npm.sh                  - Globally installs useful npm packages
     │   ├── python.sh               - Installs useful python packages
     │   └── zsh.sh                  - Gets zsh/completions from brew and makes it default shell
@@ -43,21 +38,22 @@ Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/
     │   └── defaults.sh             - Skinned down version of mathiasbynens/dotfiles/.macOS
     │
     ├── symlink
-    │   ├── .eslintrc.js            - Global eslint config
-    │   ├── .gitconfig              - Global git config, where user info and git alias's live
+    │   ├── .gitconfig              - Global git config, where user info and git aliases live
     │   ├── .gitignore_global       - Global gitignore
     │   ├── .hyper.js               - hyper.app config
     │   ├── .tmux.conf              - tmux config
-    │   ├── .zshenv
-    │   └── .zshrc
+    │   ├── .zprofile               - Sources Homebrew environment variables
+    │   ├── .zshenv                 - Configures basic environment variables
+    │   └── .zshrc                  - Zsh startup config (sources system files, prompts, and plugins)
     │
     └── system
-        ├── .alias                  - Shell Alias's
+        ├── functions
+        │   └── alert               - Autoloaded custom shell function for terminal alerts
+        │
+        ├── .alias                  - Shell aliases
         ├── .completion             - Shell completions
-        ├── .env                    - Environmental variables
-        ├── .nvm                    - Properly sources nvm
-        ├── .path                   - Defines the path
-        └── .prompt                 - Logic for prompt coloring + git status of prompt
+        ├── .env                    - Environment variables
+        └── .path                   - Defines and sanitizes the system PATH
 
 ### Screenshots
 ![Hyper Screenshot](docs/HyperScreenShot.png)
