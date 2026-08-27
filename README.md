@@ -37,28 +37,17 @@ Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/
     │   ├── defaults.dock.sh        - Sets the Dock up
     │   └── defaults.sh             - Skinned down version of mathiasbynens/dotfiles/.macOS
     │
-    ├── symlink
-    │   ├── .gitconfig              - Global git config, where user info and git aliases live
-    │   ├── .gitignore_global       - Global gitignore
-    │   ├── .hyper.js               - hyper.app config
-    │   ├── .tmux.conf              - tmux config
-    │   ├── .zprofile               - Sources Homebrew environment variables
-    │   ├── .zshenv                 - Configures basic environment variables
-    │   └── .zshrc                  - Zsh startup config (sources system files, prompts, and plugins)
-    │
-    └── system
-        ├── functions
-        │   └── alert               - Autoloaded custom shell function for terminal alerts
-        │
-        ├── .alias                  - Shell aliases
-        ├── .completion             - Shell completions
-        ├── .env                    - Environment variables
-        └── .path                   - Defines and sanitizes the system PATH
+    └── symlink
+        ├── .gitconfig              - Global git config, where user info and git aliases live
+        ├── .gitignore_global       - Global gitignore
+        ├── .hyper.js               - hyper.app config
+        ├── .tmux.conf              - tmux config
+        ├── .zprofile               - Sources Homebrew environment variables
+        ├── .zshenv                 - Configures basic environment variables
+        └── .zshrc                  - Unified Zsh config (env, path, aliases, completions, plugins, and local overrides)
 
 ### Screenshots
 ![Hyper Screenshot](docs/HyperScreenShot.png)
 
-## Caveats
-Currently I have not tested this on anything other than macOS.
-
 # Happy Hacking!
+

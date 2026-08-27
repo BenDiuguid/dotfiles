@@ -12,8 +12,7 @@ Here is an overview of the directory structure and where specific configuration 
 | :--- | :--- | :--- |
 | [`setup.sh`](file:///Users/bendiuguid/.dotfiles/setup.sh) | The primary installation and symlinking coordinator. | Orchestration logic for system setup. If you add a new symlink target, it must be added here. |
 | [`symlink/`](file:///Users/bendiuguid/.dotfiles/symlink) | Directory containing dotfiles to be symlinked to the user's home directory (`~`). | Global configuration files (e.g., `.gitconfig`, `.zshrc`, `.hyper.js`, `.zshenv`, `.zprofile`). |
-| [`system/`](file:///Users/bendiuguid/.dotfiles/system) | Modular shell configuration files dynamically loaded by `.zshrc`. | Shell aliases, PATH alterations, completion definitions, environment variables. |
-| [`system/functions/`](file:///Users/bendiuguid/.dotfiles/system/functions) | Custom autoloaded shell functions. | Interactive utility functions (e.g., `alert`). |
+| [`symlink/.zshrc`](file:///Users/bendiuguid/.dotfiles/symlink/.zshrc) | Consolidated interactive shell configuration. | Environment, options, PATH, completions, prompt, aliases, functions, plugins, and local overrides. |
 | [`install/`](file:///Users/bendiuguid/.dotfiles/install) | Individual platform and package manager installation scripts. | Package manager setups (Brew, npm, Python/uv, Ruby/rbenv, Zsh/Bash, and the AntiGravity CLI). |
 | [`macOS/`](file:///Users/bendiuguid/.dotfiles/macOS) | OS-specific default configuration scripts. | Mac-specific application and dock preferences (using `defaults write`). |
 
@@ -40,19 +39,16 @@ The project is initialized and updated via [`setup.sh`](file:///Users/bendiuguid
 
 When a new Zsh session is started, the system follows this sourcing lifecycle:
 
-1. [`symlink/.zshenv`](file:///Users/bendiuguid/.dotfiles/symlink/.zshenv) (via symlink `~/.zshenv`): Sets initial critical environment variables (e.g., `ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR`).
-2. [`symlink/.zprofile`](file:///Users/bendiuguid/.dotfiles/symlink/.zprofile) (via symlink `~/.zprofile`): Sources the Homebrew shell environment.
-3. [`symlink/.zshrc`](file:///Users/bendiuguid/.dotfiles/symlink/.zshrc) (via symlink `~/.zshrc`): Performs interactive configuration setup:
-   - Sets the `$OS` and `$DOTFILES_DIR` variables.
-   - Sources the system files from [`system/`](file:///Users/bendiuguid/.dotfiles/system) in this exact order:
-     - `system/.path` (initializes path and appends custom directories)
-     - `system/.env` (history, language, shell options, and editor defaults)
-     - `system/.alias` (command shortcuts and finder toggle commands)
-     - `system/.completion` (autocomplete hooks)
-     - `system/.secret` (local sensitive keys/exports, if present)
-   - Appends [`system/functions/`](file:///Users/bendiuguid/.dotfiles/system/functions) to the autoload path (`$FPATH`).
-   - Sources external plugins (autosuggestions, syntax highlighting, history substring search).
-   - Initializes NVM (`nvm.sh` & `bash_completion`).
+1. [`symlink/.zshenv`](file:///Users/bendiuguid/.dotfiles/symlink/.zshenv) (via symlink `~/.zshenv`): Sets initial critical environment variables portably (e.g., `ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR`).
+2. [`symlink/.zprofile`](file:///Users/bendiuguid/.dotfiles/symlink/.zprofile) (via symlink `~/.zprofile`): Safely sources the Homebrew shell environment if installed.
+3. [`symlink/.zshrc`](file:///Users/bendiuguid/.dotfiles/symlink/.zshrc) (via symlink `~/.zshrc`): Performs interactive configuration setup in cleanly sectioned order:
+   - **Section 1: Environment & Shell Options**: History, locale, editor defaults, `setopt`/`unsetopt`.
+   - **Section 2: Platform Detection**: Detects macOS vs Linux dev server, initializes Homebrew env.
+   - **Section 3: PATH Configuration**: `typeset -U path PATH` deduplication, user bin folders, PNPM, NVM.
+   - **Section 4: Completions & Prompt**: `compinit`, `prompt pure`, case-insensitive completion styling.
+   - **Section 5: Aliases & Custom Functions**: Common navigation aliases, `reSource`, and macOS Finder/clipboard shortcuts.
+   - **Section 6: Plugins & Keybindings**: Safe conditional sourcing of `zsh-autosuggestions`, `zsh-syntax-highlighting`, `zsh-history-substring-search`.
+   - **Section 7: Local Overrides**: Loads `~/.zshrc.local` if present for sensitive/machine-specific settings.
 
 ---
 
@@ -60,40 +56,26 @@ When a new Zsh session is started, the system follows this sourcing lifecycle:
 
 When asked to update settings, packages, or aliases in this repository, follow these rules:
 
-### 1. Adding/Modifying Shell Aliases
-* **Where to place**: [`system/.alias`](file:///Users/bendiuguid/.dotfiles/system/.alias)
-* **Convention**: Write clean aliases. For example: `alias mycommand="real_command --flags"`
-* **Tip**: Use `reSource` (an existing alias) in terminal to reload changes.
+### 1. Shell Configuration (Aliases, PATH, Functions, Env Vars)
+* **Where to place**: Directly inside the corresponding section of [`symlink/.zshrc`](file:///Users/bendiuguid/.dotfiles/symlink/.zshrc).
+* **Convention**: Keep the section comments intact. Use `typeset -U path PATH` for paths, and guard macOS-specific commands with `if [[ "$IS_MACOS" == true ]]`.
+* **Tip**: Use `reSource` in terminal to reload changes.
 
-### 2. Modifying Environment Variables
-* **Where to place**: [`system/.env`](file:///Users/bendiuguid/.dotfiles/system/.env)
-* **Convention**: Export standard variables using `export KEY="value"`. Keep shell settings configured via `setopt` and `unsetopt` in this file.
+### 2. Machine-Specific or Sensitive Settings
+* **Where to place**: In `~/.zshrc.local` on the host machine. This file is automatically loaded at the end of `.zshrc` and is not committed to version control.
 
-### 3. Modifying the `PATH` Variable
-* **Where to place**: [`system/.path`](file:///Users/bendiuguid/.dotfiles/system/.path)
-* **Convention**: 
-  - Use the helper function `append-path "/path/to/directory"` to safely append a folder to `$PATH` only if it exists.
-  - The script automatically strips duplicate paths at the end, preserving order. Do not manually modify the duplicate-filtering logic.
-  - Check for executable presence before calling utilities (e.g., using `is-executable`).
-
-### 4. Adding/Creating Custom Shell Functions
-* **Where to place**: Create a new file under [`system/functions/`](file:///Users/bendiuguid/.dotfiles/system/functions/). The file name should match the function name (e.g., `system/functions/my_func`).
-* **Convention**:
-  - The function must be structured in Zsh syntax.
-  - Ensure the function is registered/loaded using `autoload` in [`symlink/.zshrc`](file:///Users/bendiuguid/.dotfiles/symlink/.zshrc).
-
-### 5. Adding CLI or GUI Applications (Homebrew)
+### 3. Adding CLI or GUI Applications (Homebrew)
 * **Where to place**:
   - Command-line binaries: Add to the `binaries` array in [`install/brew.sh`](file:///Users/bendiuguid/.dotfiles/install/brew.sh).
   - GUI application casks: Add to the `apps` array in [`install/brew-cask.sh`](file:///Users/bendiuguid/.dotfiles/install/brew-cask.sh).
 
-### 6. Adding Global Package Manager Dependencies
+### 4. Adding Global Package Manager Dependencies
 * **Where to place**:
   - Global npm packages: Add to the `packages` array in [`install/npm.sh`](file:///Users/bendiuguid/.dotfiles/install/npm.sh).
   - Python runtime or global packages: Edit [`install/python.sh`](file:///Users/bendiuguid/.dotfiles/install/python.sh).
   - Ruby gems: Edit [`install/gem.sh`](file:///Users/bendiuguid/.dotfiles/install/gem.sh).
 
-### 7. Adding a New Dotfile for Symlinking
+### 5. Adding a New Dotfile for Symlinking
 * **Where to place**: Place the file in [`symlink/`](file:///Users/bendiuguid/.dotfiles/symlink) (e.g., `symlink/.tmux.conf`).
 * **Registration**: Update [`setup.sh`](file:///Users/bendiuguid/.dotfiles/setup.sh) to link this file. Add the line:
   ```bash
@@ -103,6 +85,7 @@ When asked to update settings, packages, or aliases in this repository, follow t
 ---
 
 ## ⚠️ Important Rules for Agents
-* **Do NOT hardcode user paths**: Use variables like `$HOME` or dynamic paths derived from the current script location (`$DOTFILES_DIR`) instead of hardcoding `/Users/bendiuguid`.
-* **Be careful with OS detection**: Keep scripts portable, particularly for macOS.
+* **Do NOT hardcode user paths**: Use variables like `$HOME` instead of hardcoding `/Users/bendiuguid`.
+* **Be careful with OS detection**: Keep scripts portable between macOS and Linux dev servers.
 * **Testing changes**: Ensure any scripts you edit run cleanly in standard Zsh/Bash, and verify that variables or functions you introduce do not cause syntax errors on startup.
+
