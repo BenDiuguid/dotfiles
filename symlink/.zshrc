@@ -149,6 +149,10 @@ fi
 # Plugin directory search (Homebrew prefix or Linux standard)
 PLUGIN_DIR="${HOMEBREW_PREFIX:-/opt/homebrew}/share"
 
+if [[ -d "$PLUGIN_DIR/zsh-syntax-highlighting/highlighters" ]]; then
+  export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR="$PLUGIN_DIR/zsh-syntax-highlighting/highlighters"
+fi
+
 for plugin in \
   "zsh-autosuggestions/zsh-autosuggestions.zsh" \
   "zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \

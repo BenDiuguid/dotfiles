@@ -11,7 +11,7 @@ Here is an overview of the directory structure and where specific configuration 
 | Directory/File | Purpose | What goes here? |
 | :--- | :--- | :--- |
 | [`setup.sh`](file:///Users/bendiuguid/.dotfiles/setup.sh) | The primary installation and symlinking coordinator. | Orchestration logic for system setup. If you add a new symlink target, it must be added here. |
-| [`symlink/`](file:///Users/bendiuguid/.dotfiles/symlink) | Directory containing dotfiles to be symlinked to the user's home directory (`~`). | Global configuration files (e.g., `.gitconfig`, `.zshrc`, `.hyper.js`, `.zshenv`, `.zprofile`). |
+| [`symlink/`](file:///Users/bendiuguid/.dotfiles/symlink) | Directory containing dotfiles to be symlinked to the user's home directory (`~`). | Global configuration files (e.g., `.gitconfig`, `.zshrc`, `.hyper.js`, `.tmux.conf`). |
 | [`symlink/.zshrc`](file:///Users/bendiuguid/.dotfiles/symlink/.zshrc) | Consolidated interactive shell configuration. | Environment, options, PATH, completions, prompt, aliases, functions, plugins, and local overrides. |
 | [`install/`](file:///Users/bendiuguid/.dotfiles/install) | Individual platform and package manager installation scripts. | Package manager setups (Brew, npm, Python/uv, Ruby/rbenv, Zsh/Bash, and the AntiGravity CLI). |
 | [`macOS/`](file:///Users/bendiuguid/.dotfiles/macOS) | OS-specific default configuration scripts. | Mac-specific application and dock preferences (using `defaults write`). |
@@ -37,18 +37,15 @@ The project is initialized and updated via [`setup.sh`](file:///Users/bendiuguid
 
 ## 🐚 Zsh Shell Startup Lifecycle
 
-When a new Zsh session is started, the system follows this sourcing lifecycle:
+When a new Zsh session is started, [`symlink/.zshrc`](file:///Users/bendiuguid/.dotfiles/symlink/.zshrc) (via symlink `~/.zshrc`) performs all interactive shell configuration in a cleanly sectioned order:
 
-1. [`symlink/.zshenv`](file:///Users/bendiuguid/.dotfiles/symlink/.zshenv) (via symlink `~/.zshenv`): Sets initial critical environment variables portably (e.g., `ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR`).
-2. [`symlink/.zprofile`](file:///Users/bendiuguid/.dotfiles/symlink/.zprofile) (via symlink `~/.zprofile`): Safely sources the Homebrew shell environment if installed.
-3. [`symlink/.zshrc`](file:///Users/bendiuguid/.dotfiles/symlink/.zshrc) (via symlink `~/.zshrc`): Performs interactive configuration setup in cleanly sectioned order:
-   - **Section 1: Environment & Shell Options**: History, locale, editor defaults, `setopt`/`unsetopt`.
-   - **Section 2: Platform Detection**: Detects macOS vs Linux dev server, initializes Homebrew env.
-   - **Section 3: PATH Configuration**: `typeset -U path PATH` deduplication, user bin folders, PNPM, NVM.
-   - **Section 4: Completions & Prompt**: `compinit`, `prompt pure`, case-insensitive completion styling.
-   - **Section 5: Aliases & Custom Functions**: Common navigation aliases, `reSource`, and macOS Finder/clipboard shortcuts.
-   - **Section 6: Plugins & Keybindings**: Safe conditional sourcing of `zsh-autosuggestions`, `zsh-syntax-highlighting`, `zsh-history-substring-search`.
-   - **Section 7: Local Overrides**: Loads `~/.zshrc.local` if present for sensitive/machine-specific settings.
+- **Section 1: Environment & Shell Options**: History, locale, editor defaults, `setopt`/`unsetopt`.
+- **Section 2: Platform Detection**: Detects macOS vs Linux dev server, initializes Homebrew environment.
+- **Section 3: PATH Configuration**: `typeset -U path PATH` deduplication, user bin folders, PNPM, NVM.
+- **Section 4: Completions & Prompt**: `compinit`, `prompt pure`, case-insensitive completion styling.
+- **Section 5: Aliases & Custom Functions**: Common navigation aliases, `reSource`, and macOS Finder/clipboard shortcuts.
+- **Section 6: Plugins & Keybindings**: Safe conditional sourcing of `zsh-autosuggestions`, `zsh-syntax-highlighting` (with dynamic highlighter directory detection), and `zsh-history-substring-search`.
+- **Section 7: Local Overrides**: Loads `~/.zshrc.local` if present for sensitive/machine-specific settings.
 
 ---
 

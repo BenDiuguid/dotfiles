@@ -15,9 +15,7 @@ ln -sfv "$DOTFILES_DIR/symlink/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/symlink/.gitignore_global" ~
 ln -sfv "$DOTFILES_DIR/symlink/.hyper.js" ~
 ln -sfv "$DOTFILES_DIR/symlink/.tmux.conf" ~
-ln -sfv "$DOTFILES_DIR/symlink/.zshenv" ~
 ln -sfv "$DOTFILES_DIR/symlink/.zshrc" ~
-ln -sfv "$DOTFILES_DIR/symlink/.zprofile" ~
 
 # Install all the things, order matters.
 source "$DOTFILES_DIR/install/brew.sh"
