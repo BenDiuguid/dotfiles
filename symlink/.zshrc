@@ -136,9 +136,18 @@ alias ..='cd ../'
 alias ...='cd ../../'
 
 # Directory Listing
-alias ls='ls -GF'
-alias la='ls -A'
-alias ld='ls -d */'
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza --icons'
+  alias l='eza -l --icons --git'
+  alias la='eza -a --icons'
+  alias ll='eza -la --icons --git'
+  alias ld='eza -D --icons'
+  alias lt='eza --tree --level=2 --icons'
+else
+  alias ls='ls -GF'
+  alias la='ls -A'
+  alias ld='ls -d */'
+fi
 
 # Utilities
 command -v trash >/dev/null 2>&1 && alias rm='trash'

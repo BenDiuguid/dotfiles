@@ -28,6 +28,7 @@ binaries=(
 
   # Other
   dockutil
+  eza
   git
   tmux
   vim
