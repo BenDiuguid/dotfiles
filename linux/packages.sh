@@ -17,11 +17,14 @@ install_debian() {
     ca-certificates \
     xclip \
     wl-clipboard \
+    zsh-autosuggestions \
+    zsh-syntax-highlighting \
     diff-so-fancy 2>/dev/null || true
 
   # Try installing modern CLI utilities if available in repos
   sudo apt-get install -y eza 2>/dev/null || true
   sudo apt-get install -y bat 2>/dev/null || true
+  sudo apt-get install -y zsh-history-substring-search 2>/dev/null || true
 }
 
 install_fedora() {
@@ -39,6 +42,8 @@ install_fedora() {
     ca-certificates \
     xclip \
     wl-clipboard \
+    zsh-autosuggestions \
+    zsh-syntax-highlighting \
     eza \
     bat 2>/dev/null || true
 }
@@ -59,26 +64,31 @@ install_arch() {
     wl-clipboard \
     eza \
     bat \
+    zsh-autosuggestions \
+    zsh-syntax-highlighting \
+    zsh-completions \
+    zsh-history-substring-search \
+    zsh-pure-prompt \
     diff-so-fancy 2>/dev/null || true
 }
 
-install_linuxbrew() {
-  if command -v brew >/dev/null 2>&1; then
-    echo "Using Linuxbrew to install command-line utilities..."
-    brew update
-    brew install \
-      zsh \
-      tmux \
-      git \
-      bat \
-      eza \
-      diff-so-fancy \
-      zsh-autosuggestions \
-      zsh-syntax-highlighting \
-      zsh-completions \
-      zsh-history-substring-search 2>/dev/null || true
+install_pure() {
+  local pure_dir="$HOME/.zsh/pure"
+  if [ ! -d "$pure_dir" ]; then
+    echo "Installing Pure prompt to $pure_dir..."
+    mkdir -p "$HOME/.zsh"
+    git clone https://github.com/sindresorhus/pure.git "$pure_dir"
+  else
+    echo "Updating Pure prompt in $pure_dir..."
+    git -C "$pure_dir" pull origin main || true
+  fi
+  # Ensure standard symlinks exist for fpath discovery
+  if [ -d "$pure_dir" ]; then
+    [ -f "$pure_dir/pure.zsh" ] && ln -sfn "$pure_dir/pure.zsh" "$pure_dir/prompt_pure_setup"
+    [ -f "$pure_dir/async.zsh" ] && ln -sfn "$pure_dir/async.zsh" "$pure_dir/async"
   fi
 }
+
 
 # 1. Distro native package manager
 if command -v apt-get >/dev/null 2>&1; then
@@ -91,8 +101,7 @@ else
   echo "Warning: Unrecognized Linux package manager. Skipping native package installation."
 fi
 
-# 2. Linuxbrew support if installed
-if [[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]] || command -v brew >/dev/null 2>&1; then
-  [[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  install_linuxbrew
-fi
+# 2. Pure prompt installation fallback
+install_pure
+
+

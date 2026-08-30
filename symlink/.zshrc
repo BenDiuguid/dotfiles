@@ -50,6 +50,8 @@ else
   IS_MACOS=false
   if [[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  elif [[ -x "$HOME/.linuxbrew/bin/brew" ]]; then
+    eval "$("$HOME/.linuxbrew/bin/brew shellenv")"
   fi
 fi
 
@@ -64,6 +66,13 @@ if [[ -n "${HOMEBREW_PREFIX}" ]]; then
   [[ -d "${HOMEBREW_PREFIX}/share/zsh/site-functions" ]] && fpath=("${HOMEBREW_PREFIX}/share/zsh/site-functions" $fpath)
   [[ -d "${HOMEBREW_PREFIX}/share/zsh-completions" ]] && fpath=("${HOMEBREW_PREFIX}/share/zsh-completions" $fpath)
 fi
+
+# Pure prompt and additional Zsh functions / completions
+[[ -d "$HOME/.zsh/pure" ]] && fpath=("$HOME/.zsh/pure" $fpath)
+[[ -d "$HOME/.local/share/zsh/site-functions" ]] && fpath=("$HOME/.local/share/zsh/site-functions" $fpath)
+[[ -d "/usr/local/share/zsh/site-functions" ]] && fpath=("/usr/local/share/zsh/site-functions" $fpath)
+[[ -d "/usr/share/zsh/site-functions" ]] && fpath=("/usr/share/zsh/site-functions" $fpath)
+[[ -d "/usr/share/zsh/vendor-completions" ]] && fpath=("/usr/share/zsh/vendor-completions" $fpath)
 
 # Assemble standard & custom user paths in order of preference
 path=(
@@ -182,12 +191,13 @@ fi
 # ------------------------------------------------------------------------------
 # 6. PLUGINS & KEYBINDINGS
 # ------------------------------------------------------------------------------
-# Plugin directory search (Homebrew macOS/Linux, distro /usr/share paths)
+# Plugin directory search (Homebrew macOS/Linux, distro /usr/share paths, ~/.zsh)
 PLUGIN_SEARCH_DIRS=(
   "${HOMEBREW_PREFIX}/share"
   "/opt/homebrew/share"
   "/usr/local/share"
   "/usr/share"
+  "$HOME/.zsh"
 )
 
 # Detect highlighters dir
