@@ -22,6 +22,7 @@ binaries=(
 
   # Node, Python & JS Runtime Managers
   fnm
+  pnpm
   uv
   bun
 

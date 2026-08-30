@@ -30,8 +30,9 @@ Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/
     │   ├── brew.sh                 - Installs command line apps
     │   ├── bun.sh                  - Installs Bun runtime & package manager
     │   ├── gem.sh                  - Installs useful ruby gems
-    │   ├── npm.sh                  - Globally installs useful npm packages
-    │   ├── python.sh               - Installs useful python packages
+    │   ├── npm.sh                  - Configures FNM & Node.js environment
+    │   ├── pnpm.sh                 - Installs pnpm package manager
+    │   ├── python.sh               - Installs Python runtime & uv manager
     │   └── zsh.sh                  - Gets zsh/completions from brew and makes it default shell
     │
     ├── macOS
