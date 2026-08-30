@@ -24,10 +24,9 @@ if command -v npm >/dev/null 2>&1; then
     npm completion > /usr/local/etc/bash_completion.d/npm 2>/dev/null || true
   fi
 
-  # Globally install with npm
+  # Update npm to latest
   packages=(
     npm
-    trash-cli
   )
 
   npm install --global "${packages[@]}"

@@ -28,7 +28,7 @@ The project is initialized and updated via [`setup.sh`](file:///Users/bendiuguid
    - `brew.sh` (Homebrew & command-line packages)
    - `bash.sh` (Bash upgrade and registering it in `/private/etc/shells`)
    - `zsh.sh` (Zsh upgrade and registering it in `/private/etc/shells`)
-   - `npm.sh` (FNM, node version, and global npm packages like `trash-cli`)
+   - `npm.sh` (FNM, node version, and pnpm setup)
    - `agy.sh` (AntiGravity CLI installation)
    - *(Optional/Commented)* `gem.sh`, `python.sh`, `brew-cask.sh`, and `macOS/defaults.*.sh`
 4. **Shell Reload**: The user should reload the shell or run the `reSource` alias (`source ~/.zshrc`) to apply the configurations.
