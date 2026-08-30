@@ -11,7 +11,7 @@ Here is an overview of the directory structure and where specific configuration 
 | Directory/File | Purpose | What goes here? |
 | :--- | :--- | :--- |
 | [`setup.sh`](file:///Users/bendiuguid/.dotfiles/setup.sh) | The primary installation and symlinking coordinator. | Orchestration logic for system setup across macOS and Linux. Symlinks dotfiles, dispatches to OS modules, and runs shared installers. |
-| [`symlink/`](file:///Users/bendiuguid/.dotfiles/symlink) | Directory containing cross-platform dotfiles symlinked to `$HOME`. | Global configuration files (`.gitconfig`, `.zshrc`, `.tmux.conf`, `.gitignore_global`). |
+| [`symlink/`](file:///Users/bendiuguid/.dotfiles/symlink) | Directory containing cross-platform dotfiles symlinked to `$HOME`. | Global configuration files (`.gitconfig`, `.zshrc`, `.tmux.conf`, `.gitignore_global`) and XDG configs in `.config/` (e.g., `.config/ghostty/config`). |
 | [`symlink/.zshrc`](file:///Users/bendiuguid/.dotfiles/symlink/.zshrc) | Consolidated cross-platform interactive shell configuration. | Environment, options, PATH, completions, prompt, aliases, functions, plugins, and local overrides for macOS & Linux. |
 | [`macOS/`](file:///Users/bendiuguid/.dotfiles/macOS) | macOS-specific setup scripts. | Homebrew setup (`brew.sh`), macOS shells (`shells.sh`), and system/dock preferences (`defaults.sh`, `defaults.dock.sh`). |
 | [`linux/`](file:///Users/bendiuguid/.dotfiles/linux) | Linux-specific setup scripts. | Distro package management (`packages.sh` for apt, dnf, pacman, or linuxbrew), and Linux shell setup (`shells.sh`). |
@@ -78,7 +78,10 @@ When asked to update settings, packages, or aliases in this repository, follow t
   - Bun tooling: Edit [`install/bun.sh`](file:///Users/bendiuguid/.dotfiles/install/bun.sh).
 
 ### 6. Adding a New Dotfile for Symlinking
-* **Where to place**: Place the file in [`symlink/`](file:///Users/bendiuguid/.dotfiles/symlink) (e.g., `symlink/.my_config`). It will be automatically symlinked by [`setup.sh`](file:///Users/bendiuguid/.dotfiles/setup.sh).
+* **Where to place**:
+  - Home directory dotfiles (`~/.filename`): Place the file directly in [`symlink/`](file:///Users/bendiuguid/.dotfiles/symlink) (e.g., `symlink/.my_config`).
+  - XDG application configs (`~/.config/app/config`): Place inside [`symlink/.config/`](file:///Users/bendiuguid/.dotfiles/symlink) (e.g., `symlink/.config/ghostty/config`).
+  - Both are automatically symlinked by [`setup.sh`](file:///Users/bendiuguid/.dotfiles/setup.sh).
 
 ---
 

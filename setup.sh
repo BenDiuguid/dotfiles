@@ -24,7 +24,19 @@ fi
 echo "==> Creating dotfile symlinks in $HOME..."
 for file in "$DOTFILES_DIR"/symlink/.*; do
   basename="$(basename "$file")"
-  if [[ "$basename" != "." && "$basename" != ".." && "$basename" != ".git" ]]; then
+  if [[ "$basename" == "." || "$basename" == ".." || "$basename" == ".git" ]]; then
+    continue
+  fi
+
+  if [[ "$basename" == ".config" && -d "$file" ]]; then
+    # Symlink individual application directories in ~/.config without replacing ~/.config
+    mkdir -p "$HOME/.config"
+    for app_dir in "$file"/*; do
+      [ -e "$app_dir" ] || continue
+      app_name="$(basename "$app_dir")"
+      ln -sfnv "$app_dir" "$HOME/.config/$app_name"
+    done
+  else
     ln -sfv "$file" "$HOME/$basename"
   fi
 done
