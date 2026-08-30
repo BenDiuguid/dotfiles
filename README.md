@@ -28,6 +28,7 @@ Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/
     │   ├── bash.sh                 - Gets bash/completions from brew and makes it default shell
     │   ├── brew-cask.sh            - Installs GUI apps
     │   ├── brew.sh                 - Installs command line apps
+    │   ├── bun.sh                  - Installs Bun runtime & package manager
     │   ├── gem.sh                  - Installs useful ruby gems
     │   ├── npm.sh                  - Globally installs useful npm packages
     │   ├── python.sh               - Installs useful python packages

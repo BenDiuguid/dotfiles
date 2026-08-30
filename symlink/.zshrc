@@ -97,6 +97,10 @@ if command -v fnm >/dev/null 2>&1; then
   eval "$(fnm env --use-on-cd)"
 fi
 
+# Bun setup
+export BUN_INSTALL="$HOME/.bun"
+[[ -d "$BUN_INSTALL/bin" ]] && path=("$BUN_INSTALL/bin" $path)
+
 # ------------------------------------------------------------------------------
 # 4. COMPLETIONS & PROMPT
 # ------------------------------------------------------------------------------
@@ -114,6 +118,9 @@ if command -v uv >/dev/null 2>&1; then
   eval "$(uv generate-shell-completion zsh)"
   eval "$(uvx --generate-shell-completion zsh)"
 fi
+
+# Shell completions for Bun
+[[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
 
 # Pure prompt (if available)
 prompt pure 2>/dev/null || true

@@ -20,9 +20,10 @@ binaries=(
   zsh-completions
   zsh-autosuggestions
 
-  # Node & Python Runtime Managers
+  # Node, Python & JS Runtime Managers
   fnm
   uv
+  bun
 
   # Other
   dockutil
