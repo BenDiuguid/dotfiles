@@ -27,6 +27,7 @@ binaries=(
   bun
 
   # Other
+  bat
   dockutil
   eza
   git
