@@ -59,7 +59,20 @@ else
   echo "Warning: Unsupported OS ($OS_TYPE). Skipping OS-specific setup."
 fi
 
-# 5. Shared language runtimes & tooling (order matters)
+# 5. Load Homebrew/Linuxbrew environment into current setup shell if present
+if [[ -x "/opt/homebrew/bin/brew" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x "/usr/local/bin/brew" ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+elif [[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+elif [[ -x "/var/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+  eval "$(/var/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+elif [[ -x "$HOME/.linuxbrew/bin/brew" ]]; then
+  eval "$("$HOME/.linuxbrew/bin/brew" shellenv)"
+fi
+
+# 6. Shared language runtimes & tooling (order matters)
 echo "==> Installing cross-platform runtimes & CLI tools..."
 [ -f "$DOTFILES_DIR/install/node.sh" ] && source "$DOTFILES_DIR/install/node.sh"
 [ -f "$DOTFILES_DIR/install/pnpm.sh" ] && source "$DOTFILES_DIR/install/pnpm.sh"

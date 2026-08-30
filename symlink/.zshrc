@@ -50,8 +50,12 @@ else
   IS_MACOS=false
   if [[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  elif [[ -x "/var/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+    eval "$(/var/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   elif [[ -x "$HOME/.linuxbrew/bin/brew" ]]; then
-    eval "$("$HOME/.linuxbrew/bin/brew shellenv")"
+    eval "$("$HOME/.linuxbrew/bin/brew" shellenv)"
+  elif command -v brew >/dev/null 2>&1; then
+    eval "$(brew shellenv)"
   fi
 fi
 
@@ -80,6 +84,14 @@ path=(
   "$HOME/.local/bin"
   "$HOME/.antigravity/antigravity/bin"
   "$HOME/.antigravity-ide/antigravity-ide/bin"
+  ${HOMEBREW_PREFIX:+"$HOMEBREW_PREFIX/bin"}
+  ${HOMEBREW_PREFIX:+"$HOMEBREW_PREFIX/sbin"}
+  /home/linuxbrew/.linuxbrew/bin
+  /home/linuxbrew/.linuxbrew/sbin
+  /var/home/linuxbrew/.linuxbrew/bin
+  /var/home/linuxbrew/.linuxbrew/sbin
+  "$HOME/.linuxbrew/bin"
+  "$HOME/.linuxbrew/sbin"
   /usr/local/sbin
   /usr/local/bin
   /usr/sbin
