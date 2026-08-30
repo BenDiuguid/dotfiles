@@ -43,8 +43,8 @@
 [color "status"]
 	untracked = cyan
 
-[credential]
-  helper = osxkeychain
+[include]
+  path = ~/.gitconfig.local
 
 [push]
   default = simple

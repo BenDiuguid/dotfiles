@@ -1,34 +1,62 @@
 #!/usr/bin/env bash
 
-# Get current dir (so run this script from anywhere)
+# Dotfiles Setup Coordinator
+set -e
+
+# Get current dir (so this script can run from anywhere)
 export DOTFILES_DIR
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Update dotfiles itself first
-[ -d "$DOTFILES_DIR/.git" ] && git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master
+echo "================================================================="
+echo " Setting up dotfiles from $DOTFILES_DIR"
+echo "================================================================="
 
-# Make dotfiles executable.
-[ -f "$DOTFILES_DIR/bin/dotfiles" ] && chmod +x $DOTFILES_DIR/bin/dotfiles
+# 1. Update dotfiles itself first if managed by git
+if [ -d "$DOTFILES_DIR/.git" ]; then
+  echo "==> Pulling latest dotfiles changes from git..."
+  git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master || true
+fi
 
-# symlink anything in the symlink folder to the user ~/ directory
-ln -sfv "$DOTFILES_DIR/symlink/.gitconfig" ~
-ln -sfv "$DOTFILES_DIR/symlink/.gitignore_global" ~
-ln -sfv "$DOTFILES_DIR/symlink/.hyper.js" ~
-ln -sfv "$DOTFILES_DIR/symlink/.tmux.conf" ~
-ln -sfv "$DOTFILES_DIR/symlink/.zshrc" ~
+# 2. Make custom scripts in bin/ executable if present
+[ -f "$DOTFILES_DIR/bin/dotfiles" ] && chmod +x "$DOTFILES_DIR/bin/dotfiles"
 
-# Install all the things, order matters.
-source "$DOTFILES_DIR/install/brew.sh"
-source "$DOTFILES_DIR/install/bash.sh"
-source "$DOTFILES_DIR/install/zsh.sh"
-source "$DOTFILES_DIR/install/npm.sh"
-source "$DOTFILES_DIR/install/pnpm.sh"
-source "$DOTFILES_DIR/install/agy.sh"
-#source "$DOTFILES_DIR/install/gem.sh"
-source "$DOTFILES_DIR/install/bun.sh"
-source "$DOTFILES_DIR/install/python.sh"
-# source "$DOTFILES_DIR/install/brew-cask.sh"
+# 3. Symlink anything in the symlink folder to the user home directory
+echo "==> Creating dotfile symlinks in $HOME..."
+for file in "$DOTFILES_DIR"/symlink/.*; do
+  basename="$(basename "$file")"
+  if [[ "$basename" != "." && "$basename" != ".." && "$basename" != ".git" ]]; then
+    ln -sfv "$file" "$HOME/$basename"
+  fi
+done
 
-# Setup macOS defaults
-# source "$DOTFILES_DIR/macOS/defaults.sh"
-# source "$DOTFILES_DIR/macOS/defaults.dock.sh"
+# 4. OS Detection and OS-specific setup
+OS_TYPE="$(uname -s)"
+echo "==> Detected Operating System: $OS_TYPE"
+
+if [[ "$OSTYPE" == darwin* ]] || [[ "$OS_TYPE" == "Darwin" ]]; then
+  if [ -f "$DOTFILES_DIR/macOS/setup.sh" ]; then
+    echo "==> Executing macOS setup..."
+    source "$DOTFILES_DIR/macOS/setup.sh"
+  fi
+elif [[ "$OSTYPE" == linux* ]] || [[ "$OS_TYPE" == "Linux" ]]; then
+  if [ -f "$DOTFILES_DIR/linux/setup.sh" ]; then
+    echo "==> Executing Linux setup..."
+    source "$DOTFILES_DIR/linux/setup.sh"
+  fi
+else
+  echo "Warning: Unsupported OS ($OS_TYPE). Skipping OS-specific setup."
+fi
+
+# 5. Shared language runtimes & tooling (order matters)
+echo "==> Installing cross-platform runtimes & CLI tools..."
+[ -f "$DOTFILES_DIR/install/npm.sh" ] && source "$DOTFILES_DIR/install/npm.sh"
+[ -f "$DOTFILES_DIR/install/pnpm.sh" ] && source "$DOTFILES_DIR/install/pnpm.sh"
+[ -f "$DOTFILES_DIR/install/agy.sh" ] && source "$DOTFILES_DIR/install/agy.sh"
+[ -f "$DOTFILES_DIR/install/bun.sh" ] && source "$DOTFILES_DIR/install/bun.sh"
+[ -f "$DOTFILES_DIR/install/python.sh" ] && source "$DOTFILES_DIR/install/python.sh"
+# [ -f "$DOTFILES_DIR/install/gem.sh" ] && source "$DOTFILES_DIR/install/gem.sh"
+
+echo "================================================================="
+echo " Dotfiles setup completed successfully!"
+echo " Reload your shell or run 'reSource' / 'source ~/.zshrc' to apply."
+echo "================================================================="

@@ -1,11 +1,21 @@
+#!/usr/bin/env bash
+
 # Ensure fnm is available if not yet in current subshell PATH
 if ! command -v fnm >/dev/null 2>&1; then
   if [[ -x "/opt/homebrew/bin/fnm" ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
   elif [[ -x "/usr/local/bin/fnm" ]]; then
     export PATH="/usr/local/bin:$PATH"
+  elif [[ -x "/home/linuxbrew/.linuxbrew/bin/fnm" ]]; then
+    export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
   elif [[ -x "$HOME/.local/share/fnm" ]]; then
     export PATH="$HOME/.local/share/fnm:$PATH"
+  elif [[ -x "$HOME/.fnm" ]]; then
+    export PATH="$HOME/.fnm:$PATH"
+  else
+    # Fallback standalone installer
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+    export PATH="$HOME/.local/share/fnm:$HOME/.fnm:$PATH"
   fi
 fi
 

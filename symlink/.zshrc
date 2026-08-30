@@ -143,10 +143,14 @@ if command -v eza >/dev/null 2>&1; then
   alias ll='eza -la --icons --git'
   alias ld='eza -D --icons'
   alias lt='eza --tree --level=2 --icons'
-else
+elif [[ "$IS_MACOS" == true ]]; then
   alias ls='ls -GF'
   alias la='ls -A'
   alias ld='ls -d */'
+else
+  alias ls='ls --color=auto'
+  alias la='ls -A --color=auto'
+  alias ld='ls -d */ --color=auto'
 fi
 
 # Utilities
@@ -155,7 +159,7 @@ command -v trash >/dev/null 2>&1 && alias rm='trash'
 
 alias colorTest='for x in 0 1 4 5 7 8; do for i in $(seq 30 37); do for a in $(seq 40 47); do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo "";'
 
-# macOS-specific aliases & utilities
+# Platform-specific aliases & utilities
 if [[ "$IS_MACOS" == true ]]; then
   alias cpwd='pwd | tr -d "\n" | pbcopy'
   alias ipaddr='ipconfig getifaddr en0'
@@ -165,23 +169,46 @@ if [[ "$IS_MACOS" == true ]]; then
   alias hiddenFilesHide='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
   alias fileExtensionsShow='defaults write NSGlobalDomain AppleShowAllExtensions -bool true && killall Finder'
   alias fileExtensionsHide='defaults write NSGlobalDomain AppleShowAllExtensions -bool false && killall Finder'
+else
+  # Linux clipboard & networking
+  if command -v wl-copy >/dev/null 2>&1; then
+    alias cpwd='pwd | tr -d "\n" | wl-copy'
+  elif command -v xclip >/dev/null 2>&1; then
+    alias cpwd='pwd | tr -d "\n" | xclip -selection clipboard'
+  fi
+  alias ipaddr="hostname -I 2>/dev/null | awk '{print \$1}'"
 fi
 
 # ------------------------------------------------------------------------------
 # 6. PLUGINS & KEYBINDINGS
 # ------------------------------------------------------------------------------
-# Plugin directory search (Homebrew prefix or Linux standard)
-PLUGIN_DIR="${HOMEBREW_PREFIX:-/opt/homebrew}/share"
+# Plugin directory search (Homebrew macOS/Linux, distro /usr/share paths)
+PLUGIN_SEARCH_DIRS=(
+  "${HOMEBREW_PREFIX}/share"
+  "/opt/homebrew/share"
+  "/usr/local/share"
+  "/usr/share"
+)
 
-if [[ -d "$PLUGIN_DIR/zsh-syntax-highlighting/highlighters" ]]; then
-  export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR="$PLUGIN_DIR/zsh-syntax-highlighting/highlighters"
-fi
+# Detect highlighters dir
+for pdir in "${PLUGIN_SEARCH_DIRS[@]}"; do
+  if [[ -n "$pdir" && -d "$pdir/zsh-syntax-highlighting/highlighters" ]]; then
+    export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR="$pdir/zsh-syntax-highlighting/highlighters"
+    break
+  fi
+done
 
+# Source plugins safely
 for plugin in \
   "zsh-autosuggestions/zsh-autosuggestions.zsh" \
   "zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
   "zsh-history-substring-search/zsh-history-substring-search.zsh"; do
-  [[ -f "$PLUGIN_DIR/$plugin" ]] && source "$PLUGIN_DIR/$plugin"
+  for pdir in "${PLUGIN_SEARCH_DIRS[@]}"; do
+    if [[ -n "$pdir" && -f "$pdir/$plugin" ]]; then
+      source "$pdir/$plugin"
+      break
+    fi
+  done
 done
 
 # Keybindings for history substring search (if plugin is loaded)

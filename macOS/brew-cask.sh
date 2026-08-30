@@ -1,8 +1,9 @@
-# Tap extra homebrew casks.
-brew tap homebrew/cask-versions
-brew tap homebrew/cask-drivers
+#!/usr/bin/env bash
 
-# Install packages
+# Tap extra homebrew casks
+brew tap homebrew/cask-versions 2>/dev/null || true
+
+# GUI Applications
 apps=(
   appcleaner
   brave-browser
@@ -18,4 +19,5 @@ apps=(
   # visual-studio-code
 )
 
+echo "Installing macOS GUI applications via Homebrew Cask..."
 brew install --cask "${apps[@]}"

@@ -9,7 +9,7 @@ Follow me on Medium: [@BenDiuguid](https://medium.com/@BenDiuguid)
 ## Overview
 
 ### Why dotfiles?
-* dotfiles provide an easy solution for setting up your dev environment with one command.
+* dotfiles provide an easy solution for setting up your dev environment with one command across macOS and Linux.
 * Backup, restore, and sync the prefs and settings for your toolbox. Your dotfiles might be the most important files on your machine.
 * Learn from the community. Discover new tools for your toolbox and new tricks for the ones you already use.
 * Share what you've learned with the rest of us.
@@ -23,33 +23,37 @@ Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/
 
 ## File System
 
-    ├── install
-    │   ├── agy.sh                  - Installs the AntiGravity CLI
-    │   ├── bash.sh                 - Gets bash/completions from brew and makes it default shell
-    │   ├── brew-cask.sh            - Installs GUI apps
-    │   ├── brew.sh                 - Installs command line apps
-    │   ├── bun.sh                  - Installs Bun runtime & package manager
-    │   ├── gem.sh                  - Installs useful ruby gems
-    │   ├── npm.sh                  - Configures FNM & Node.js environment
-    │   ├── pnpm.sh                 - Installs pnpm package manager
-    │   ├── python.sh               - Installs Python runtime & uv manager
-    │   └── zsh.sh                  - Gets zsh/completions from brew and makes it default shell
+    ├── setup.sh                    - Master cross-platform setup coordinator (symlinks, OS dispatch, shared tools)
     │
     ├── macOS
-    │   ├── defaults.dock.sh        - Sets the Dock up
-    │   └── defaults.sh             - Skinned down version of mathiasbynens/dotfiles/.macOS
+    │   ├── setup.sh                - macOS setup orchestrator
+    │   ├── brew.sh                 - Installs Homebrew & CLI formulae
+    │   ├── brew-cask.sh            - Installs GUI application casks
+    │   ├── shells.sh               - Registers & configures Homebrew shells in /private/etc/shells
+    │   ├── defaults.sh             - macOS system defaults configuration
+    │   └── defaults.dock.sh        - Sets the Dock layout up
+    │
+    ├── linux
+    │   ├── setup.sh                - Linux setup orchestrator
+    │   ├── packages.sh             - Installs packages via apt, dnf, pacman, or linuxbrew
+    │   └── shells.sh               - Registers & configures default shell in /etc/shells
+    │
+    ├── install
+    │   ├── agy.sh                  - Installs the AntiGravity CLI
+    │   ├── bun.sh                  - Installs Bun runtime & package manager
+    │   ├── gem.sh                  - Installs Ruby & gems via rbenv
+    │   ├── npm.sh                  - Configures FNM & Node.js environment
+    │   ├── pnpm.sh                 - Installs pnpm package manager
+    │   └── python.sh               - Installs Python runtime & uv manager
     │
     └── symlink
-        ├── .gitconfig              - Global git config, where user info and git aliases live
-        ├── .gitignore_global       - Global gitignore
-        ├── .hyper.js               - hyper.app config
-        ├── .tmux.conf              - tmux config
-        ├── .zprofile               - Sources Homebrew environment variables
-        ├── .zshenv                 - Configures basic environment variables
-        └── .zshrc                  - Unified Zsh config (env, path, aliases, completions, plugins, and local overrides)
+        ├── .gitconfig              - Global git config with local override include
+        ├── .gitignore_global       - Global gitignore patterns
+        ├── .hyper.js               - hyper.app terminal config
+        ├── .tmux.conf              - tmux configuration & keybindings
+        └── .zshrc                  - Unified cross-platform Zsh config (env, paths, aliases, plugins)
 
 ### Screenshots
 ![Hyper Screenshot](docs/HyperScreenShot.png)
 
 # Happy Hacking!
-
