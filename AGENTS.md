@@ -11,6 +11,7 @@ Here is an overview of the directory structure and where specific configuration 
 | Directory/File | Purpose | What goes here? |
 | :--- | :--- | :--- |
 | [`setup.sh`](file:///Users/bendiuguid/.dotfiles/setup.sh) | The primary installation and symlinking coordinator. | Orchestration logic for system setup across macOS and Linux. Symlinks dotfiles, dispatches to OS modules, and runs shared installers. |
+| [`validate.sh`](file:///Users/bendiuguid/.dotfiles/validate.sh) | Dotfiles doctor and verification test suite. | Cross-platform health checks for symlinks, Zsh startup & syntax, Pure prompt, plugins, CLI tools, and runtimes. |
 | [`symlink/`](file:///Users/bendiuguid/.dotfiles/symlink) | Directory containing cross-platform dotfiles symlinked to `$HOME`. | Global configuration files (`.gitconfig`, `.zshrc`, `.tmux.conf`, `.gitignore_global`) and XDG configs in `.config/` (e.g., `.config/ghostty/config`). |
 | [`symlink/.zshrc`](file:///Users/bendiuguid/.dotfiles/symlink/.zshrc) | Consolidated cross-platform interactive shell configuration. | Environment, options, PATH, completions, prompt, aliases, functions, plugins, and local overrides for macOS & Linux. |
 | [`macOS/`](file:///Users/bendiuguid/.dotfiles/macOS) | macOS-specific setup scripts. | Homebrew setup (`brew.sh`), macOS shells (`shells.sh`), and system/dock preferences (`defaults.sh`, `defaults.dock.sh`). |
@@ -88,5 +89,5 @@ When asked to update settings, packages, or aliases in this repository, follow t
 ## ⚠️ Important Rules for Agents
 * **Do NOT hardcode user paths**: Use variables like `$HOME` instead of hardcoding `/Users/bendiuguid`.
 * **Be careful with OS detection**: Keep scripts portable between macOS and Linux dev servers.
-* **Testing changes**: Ensure any scripts you edit run cleanly in standard Zsh/Bash, and verify that variables or functions you introduce do not cause syntax errors on startup.
+* **Testing changes**: Ensure any scripts you edit run cleanly in standard Zsh/Bash. Run `./validate.sh` (or `doctor` alias) to audit the health of symlinks, syntax, prompts, plugins, and CLI tools. Verify that variables or functions you introduce do not cause syntax errors on startup.
 * **Non-Destructive**: Preserve existing configurations and comments.

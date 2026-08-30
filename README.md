@@ -21,9 +21,19 @@ To setup these dotfiles, simply clone this repo then cd into it and execute `./s
 
 Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/dotfiles .dotfiles && cd .dotfiles && chmod +x setup.sh && ./setup.sh`
 
+### Health Check & Validation (Doctor)
+To verify that all symlinks, shell syntax, pure prompt, plugins, CLI tools, and runtime managers are correctly installed and functioning on macOS or Linux:
+
+```bash
+./validate.sh
+# or after sourcing ~/.zshrc:
+doctor
+```
+
 ## File System
 
     ├── setup.sh                    - Master cross-platform setup coordinator (symlinks, OS dispatch, shared tools)
+    ├── validate.sh                 - Dotfiles health doctor & test suite (run directly or via 'doctor' alias)
     │
     ├── macOS
     │   ├── setup.sh                - macOS setup orchestrator

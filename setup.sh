@@ -67,6 +67,12 @@ echo "==> Installing cross-platform runtimes & CLI tools..."
 [ -f "$DOTFILES_DIR/install/bun.sh" ] && source "$DOTFILES_DIR/install/bun.sh"
 [ -f "$DOTFILES_DIR/install/python.sh" ] && source "$DOTFILES_DIR/install/python.sh"
 
+# 6. Validate environment health
+if [ -f "$DOTFILES_DIR/validate.sh" ] && [[ "$*" != *"--skip-validate"* ]]; then
+  echo ""
+  "$DOTFILES_DIR/validate.sh" || true
+fi
+
 echo "================================================================="
 echo " Dotfiles setup completed successfully!"
 echo " Reload your shell or run 'reSource' / 'source ~/.zshrc' to apply."
