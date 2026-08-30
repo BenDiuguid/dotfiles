@@ -25,6 +25,11 @@ install_debian() {
   sudo apt-get install -y eza 2>/dev/null || true
   sudo apt-get install -y bat 2>/dev/null || true
   sudo apt-get install -y zsh-history-substring-search 2>/dev/null || true
+
+  # Docker CLI and Compose plugins (official repo or distro fallback)
+  sudo apt-get install -y docker-ce-cli docker-buildx-plugin docker-compose-plugin 2>/dev/null || \
+    sudo apt-get install -y docker.io docker-compose-v2 2>/dev/null || \
+    sudo apt-get install -y docker.io docker-compose 2>/dev/null || true
 }
 
 install_fedora() {
@@ -46,6 +51,10 @@ install_fedora() {
     zsh-syntax-highlighting \
     eza \
     bat 2>/dev/null || true
+
+  # Docker CLI and Compose
+  sudo dnf install -y docker-ce-cli docker-compose-plugin docker-buildx-plugin 2>/dev/null || \
+    sudo dnf install -y moby-engine docker-compose 2>/dev/null || true
 }
 
 install_arch() {
@@ -69,6 +78,9 @@ install_arch() {
     zsh-completions \
     zsh-history-substring-search \
     zsh-pure-prompt \
+    docker \
+    docker-compose \
+    docker-buildx \
     diff-so-fancy 2>/dev/null || true
 }
 

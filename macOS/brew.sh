@@ -46,6 +46,9 @@ binaries=(
   vim
   xsv
   diff-so-fancy
+  docker
+  docker-compose
+  docker-buildx
 )
 
 echo "Installing Homebrew packages..."

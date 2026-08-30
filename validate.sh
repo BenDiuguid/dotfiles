@@ -274,6 +274,29 @@ audit_cli_tools() {
     warn "'diff-so-fancy' is not installed." "Install via brew install diff-so-fancy / npm install -g diff-so-fancy."
   fi
 
+  # Docker CLI & Plugins
+  if command -v docker >/dev/null 2>&1; then
+    pass "Docker CLI is available ($(command -v docker))"
+
+    if docker compose version >/dev/null 2>&1; then
+      compose_ver="$(docker compose version 2>/dev/null | head -n 1)"
+      pass "Docker Compose is available ($compose_ver)"
+    elif command -v docker-compose >/dev/null 2>&1; then
+      pass "Docker Compose (standalone) is available ($(command -v docker-compose))"
+    else
+      warn "Docker Compose is not available." "Install docker-compose-plugin or docker-compose."
+    fi
+
+    if docker buildx version >/dev/null 2>&1; then
+      buildx_ver="$(docker buildx version 2>/dev/null | head -n 1)"
+      pass "Docker Buildx is available ($buildx_ver)"
+    else
+      warn "Docker Buildx plugin is not installed." "Install docker-buildx-plugin."
+    fi
+  else
+    warn "Docker CLI is not installed." "Install via Docker Desktop (macOS) or docker-ce / docker-ce-cli (Linux)."
+  fi
+
   # Clipboard integration
   if [ "$IS_MACOS" = true ]; then
     if command -v pbcopy >/dev/null 2>&1 && command -v pbpaste >/dev/null 2>&1; then
