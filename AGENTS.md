@@ -15,7 +15,7 @@ Here is an overview of the directory structure and where specific configuration 
 | [`symlink/.zshrc`](file:///Users/bendiuguid/.dotfiles/symlink/.zshrc) | Consolidated cross-platform interactive shell configuration. | Environment, options, PATH, completions, prompt, aliases, functions, plugins, and local overrides for macOS & Linux. |
 | [`macOS/`](file:///Users/bendiuguid/.dotfiles/macOS) | macOS-specific setup scripts. | Homebrew setup (`brew.sh`), macOS shells (`shells.sh`), and system/dock preferences (`defaults.sh`, `defaults.dock.sh`). |
 | [`linux/`](file:///Users/bendiuguid/.dotfiles/linux) | Linux-specific setup scripts. | Distro package management (`packages.sh` for apt, dnf, pacman, or linuxbrew), and Linux shell setup (`shells.sh`). |
-| [`install/`](file:///Users/bendiuguid/.dotfiles/install) | Cross-platform language runtimes and package manager installers. | Runtimes and package managers that run everywhere: FNM/Node (`npm.sh`), pnpm (`pnpm.sh`), Bun (`bun.sh`), Python/uv (`python.sh`), and AntiGravity CLI (`agy.sh`). |
+| [`install/`](file:///Users/bendiuguid/.dotfiles/install) | Cross-platform language runtimes and package manager installers. | Runtimes and package managers that run everywhere: FNM/Node (`node.sh`), pnpm (`pnpm.sh`), Bun (`bun.sh`), Python/uv (`python.sh`), and AntiGravity CLI (`agy.sh`). |
 
 ---
 
@@ -29,7 +29,7 @@ The project is initialized and updated via [`setup.sh`](file:///Users/bendiuguid
    - On **macOS**: executes [`macOS/setup.sh`](file:///Users/bendiuguid/.dotfiles/macOS/setup.sh) (installs Homebrew packages, configures macOS shells, sets git credential helper to `osxkeychain`).
    - On **Linux**: executes [`linux/setup.sh`](file:///Users/bendiuguid/.dotfiles/linux/setup.sh) (installs distro packages via apt/dnf/pacman or linuxbrew, configures Linux shells, sets git credential helper to `cache`).
 4. **Shared Runtime Tooling**: Sources platform-agnostic installers in [`install/`](file:///Users/bendiuguid/.dotfiles/install):
-   - `npm.sh` (FNM & Node LTS)
+   - `node.sh` (FNM & Node LTS)
    - `pnpm.sh` (pnpm package manager)
    - `agy.sh` (AntiGravity CLI)
    - `bun.sh` (Bun runtime & package manager)
@@ -73,7 +73,7 @@ When asked to update settings, packages, or aliases in this repository, follow t
 
 ### 5. Adding Global Language Runtimes & Tooling
 * **Where to place**:
-  - Global npm packages: Add to the `packages` array in [`install/npm.sh`](file:///Users/bendiuguid/.dotfiles/install/npm.sh).
+  - Global npm packages: Add to the `packages` array in [`install/node.sh`](file:///Users/bendiuguid/.dotfiles/install/node.sh).
   - Python runtime or global packages: Edit [`install/python.sh`](file:///Users/bendiuguid/.dotfiles/install/python.sh).
   - Bun tooling: Edit [`install/bun.sh`](file:///Users/bendiuguid/.dotfiles/install/bun.sh).
 

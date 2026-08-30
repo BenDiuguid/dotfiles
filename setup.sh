@@ -61,7 +61,7 @@ fi
 
 # 5. Shared language runtimes & tooling (order matters)
 echo "==> Installing cross-platform runtimes & CLI tools..."
-[ -f "$DOTFILES_DIR/install/npm.sh" ] && source "$DOTFILES_DIR/install/npm.sh"
+[ -f "$DOTFILES_DIR/install/node.sh" ] && source "$DOTFILES_DIR/install/node.sh"
 [ -f "$DOTFILES_DIR/install/pnpm.sh" ] && source "$DOTFILES_DIR/install/pnpm.sh"
 [ -f "$DOTFILES_DIR/install/agy.sh" ] && source "$DOTFILES_DIR/install/agy.sh"
 [ -f "$DOTFILES_DIR/install/bun.sh" ] && source "$DOTFILES_DIR/install/bun.sh"
