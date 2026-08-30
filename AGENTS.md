@@ -15,7 +15,7 @@ Here is an overview of the directory structure and where specific configuration 
 | [`symlink/.zshrc`](file:///Users/bendiuguid/.dotfiles/symlink/.zshrc) | Consolidated cross-platform interactive shell configuration. | Environment, options, PATH, completions, prompt, aliases, functions, plugins, and local overrides for macOS & Linux. |
 | [`macOS/`](file:///Users/bendiuguid/.dotfiles/macOS) | macOS-specific setup scripts. | Homebrew setup (`brew.sh`), Cask apps (`brew-cask.sh`), macOS shells (`shells.sh`), and system/dock preferences (`defaults.sh`, `defaults.dock.sh`). |
 | [`linux/`](file:///Users/bendiuguid/.dotfiles/linux) | Linux-specific setup scripts. | Distro package management (`packages.sh` for apt, dnf, pacman, or linuxbrew), and Linux shell setup (`shells.sh`). |
-| [`install/`](file:///Users/bendiuguid/.dotfiles/install) | Cross-platform language runtimes and package manager installers. | Runtimes and package managers that run everywhere: FNM/Node (`npm.sh`), pnpm (`pnpm.sh`), Bun (`bun.sh`), Python/uv (`python.sh`), AntiGravity CLI (`agy.sh`), and Ruby (`gem.sh`). |
+| [`install/`](file:///Users/bendiuguid/.dotfiles/install) | Cross-platform language runtimes and package manager installers. | Runtimes and package managers that run everywhere: FNM/Node (`npm.sh`), pnpm (`pnpm.sh`), Bun (`bun.sh`), Python/uv (`python.sh`), and AntiGravity CLI (`agy.sh`). |
 
 ---
 
@@ -77,7 +77,6 @@ When asked to update settings, packages, or aliases in this repository, follow t
   - Global npm packages: Add to the `packages` array in [`install/npm.sh`](file:///Users/bendiuguid/.dotfiles/install/npm.sh).
   - Python runtime or global packages: Edit [`install/python.sh`](file:///Users/bendiuguid/.dotfiles/install/python.sh).
   - Bun tooling: Edit [`install/bun.sh`](file:///Users/bendiuguid/.dotfiles/install/bun.sh).
-  - Ruby gems: Edit [`install/gem.sh`](file:///Users/bendiuguid/.dotfiles/install/gem.sh).
 
 ### 6. Adding a New Dotfile for Symlinking
 * **Where to place**: Place the file in [`symlink/`](file:///Users/bendiuguid/.dotfiles/symlink) (e.g., `symlink/.my_config`). It will be automatically symlinked by [`setup.sh`](file:///Users/bendiuguid/.dotfiles/setup.sh).

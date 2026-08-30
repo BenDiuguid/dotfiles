@@ -41,7 +41,6 @@ Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/
     ├── install
     │   ├── agy.sh                  - Installs the AntiGravity CLI
     │   ├── bun.sh                  - Installs Bun runtime & package manager
-    │   ├── gem.sh                  - Installs Ruby & gems via rbenv
     │   ├── npm.sh                  - Configures FNM & Node.js environment
     │   ├── pnpm.sh                 - Installs pnpm package manager
     │   └── python.sh               - Installs Python runtime & uv manager

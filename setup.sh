@@ -54,7 +54,6 @@ echo "==> Installing cross-platform runtimes & CLI tools..."
 [ -f "$DOTFILES_DIR/install/agy.sh" ] && source "$DOTFILES_DIR/install/agy.sh"
 [ -f "$DOTFILES_DIR/install/bun.sh" ] && source "$DOTFILES_DIR/install/bun.sh"
 [ -f "$DOTFILES_DIR/install/python.sh" ] && source "$DOTFILES_DIR/install/python.sh"
-# [ -f "$DOTFILES_DIR/install/gem.sh" ] && source "$DOTFILES_DIR/install/gem.sh"
 
 echo "================================================================="
 echo " Dotfiles setup completed successfully!"
