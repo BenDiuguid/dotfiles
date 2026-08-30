@@ -28,7 +28,6 @@ Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/
     ├── macOS
     │   ├── setup.sh                - macOS setup orchestrator
     │   ├── brew.sh                 - Installs Homebrew & CLI formulae
-    │   ├── brew-cask.sh            - Installs GUI application casks
     │   ├── shells.sh               - Registers & configures Homebrew shells in /private/etc/shells
     │   ├── defaults.sh             - macOS system defaults configuration
     │   └── defaults.dock.sh        - Sets the Dock layout up

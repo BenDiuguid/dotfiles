@@ -13,7 +13,7 @@ Here is an overview of the directory structure and where specific configuration 
 | [`setup.sh`](file:///Users/bendiuguid/.dotfiles/setup.sh) | The primary installation and symlinking coordinator. | Orchestration logic for system setup across macOS and Linux. Symlinks dotfiles, dispatches to OS modules, and runs shared installers. |
 | [`symlink/`](file:///Users/bendiuguid/.dotfiles/symlink) | Directory containing cross-platform dotfiles symlinked to `$HOME`. | Global configuration files (`.gitconfig`, `.zshrc`, `.tmux.conf`, `.gitignore_global`). |
 | [`symlink/.zshrc`](file:///Users/bendiuguid/.dotfiles/symlink/.zshrc) | Consolidated cross-platform interactive shell configuration. | Environment, options, PATH, completions, prompt, aliases, functions, plugins, and local overrides for macOS & Linux. |
-| [`macOS/`](file:///Users/bendiuguid/.dotfiles/macOS) | macOS-specific setup scripts. | Homebrew setup (`brew.sh`), Cask apps (`brew-cask.sh`), macOS shells (`shells.sh`), and system/dock preferences (`defaults.sh`, `defaults.dock.sh`). |
+| [`macOS/`](file:///Users/bendiuguid/.dotfiles/macOS) | macOS-specific setup scripts. | Homebrew setup (`brew.sh`), macOS shells (`shells.sh`), and system/dock preferences (`defaults.sh`, `defaults.dock.sh`). |
 | [`linux/`](file:///Users/bendiuguid/.dotfiles/linux) | Linux-specific setup scripts. | Distro package management (`packages.sh` for apt, dnf, pacman, or linuxbrew), and Linux shell setup (`shells.sh`). |
 | [`install/`](file:///Users/bendiuguid/.dotfiles/install) | Cross-platform language runtimes and package manager installers. | Runtimes and package managers that run everywhere: FNM/Node (`npm.sh`), pnpm (`pnpm.sh`), Bun (`bun.sh`), Python/uv (`python.sh`), and AntiGravity CLI (`agy.sh`). |
 
@@ -67,7 +67,6 @@ When asked to update settings, packages, or aliases in this repository, follow t
 ### 3. Adding macOS Applications & Packages
 * **Where to place**:
   - Command-line binaries: Add to the `binaries` array in [`macOS/brew.sh`](file:///Users/bendiuguid/.dotfiles/macOS/brew.sh).
-  - GUI application casks: Add to the `apps` array in [`macOS/brew-cask.sh`](file:///Users/bendiuguid/.dotfiles/macOS/brew-cask.sh).
 
 ### 4. Adding Linux Packages
 * **Where to place**: In [`linux/packages.sh`](file:///Users/bendiuguid/.dotfiles/linux/packages.sh) under the appropriate distro installer function or linuxbrew installer.

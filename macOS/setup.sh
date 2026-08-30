@@ -25,8 +25,7 @@ if command -v git >/dev/null 2>&1; then
   git config --global credential.helper osxkeychain
 fi
 
-# 4. Optional GUI Casks and macOS System Defaults
-# [ -f "$MACOS_DIR/brew-cask.sh" ] && source "$MACOS_DIR/brew-cask.sh"
+# 4. Optional macOS System Defaults
 # [ -f "$MACOS_DIR/defaults.sh" ] && source "$MACOS_DIR/defaults.sh"
 # [ -f "$MACOS_DIR/defaults.dock.sh" ] && source "$MACOS_DIR/defaults.dock.sh"
 
