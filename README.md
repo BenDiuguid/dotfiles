@@ -48,7 +48,6 @@ Copy and Paste into terminal: `cd ~/ && git clone https://github.com/bendiuguid/
     └── symlink
         ├── .gitconfig              - Global git config with local override include
         ├── .gitignore_global       - Global gitignore patterns
-        ├── .hyper.js               - hyper.app terminal config
         ├── .tmux.conf              - tmux configuration & keybindings
         └── .zshrc                  - Unified cross-platform Zsh config (env, paths, aliases, plugins)
 

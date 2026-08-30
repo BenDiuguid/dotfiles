@@ -12,7 +12,6 @@ dockutil --no-restart --add "/Applications/Google Chrome.app"
 
 dockutil --no-restart --add '' --type spacer --section apps
 
-dockutil --no-restart --add "/Applications/Hyper.app"
 dockutil --no-restart --add "/Applications/Visual Studio Code.app"
 
 dockutil --no-restart --add '' --type spacer --section apps

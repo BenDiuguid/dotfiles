@@ -12,7 +12,6 @@ apps=(
   elgato-stream-deck
   figma
   # google-chrome
-  hyper
   # plantronics-hub
   # postgres-unofficial
   # tor-browser
