@@ -56,12 +56,13 @@ fi
 # ------------------------------------------------------------------------------
 # 3. PATH CONFIGURATION
 # ------------------------------------------------------------------------------
-# Ensure unique PATH entries in Zsh (automatic deduplication)
-typeset -U path PATH
+# Ensure unique PATH and fpath entries in Zsh (automatic deduplication)
+typeset -U path PATH fpath FPATH
 
-# Additional completion directories before compinit
-if [[ -n "${HOMEBREW_PREFIX}" && -d "${HOMEBREW_PREFIX}/share/zsh-completions" ]]; then
-  fpath=("${HOMEBREW_PREFIX}/share/zsh-completions" $fpath)
+# Additional completion and function directories before compinit
+if [[ -n "${HOMEBREW_PREFIX}" ]]; then
+  [[ -d "${HOMEBREW_PREFIX}/share/zsh/site-functions" ]] && fpath=("${HOMEBREW_PREFIX}/share/zsh/site-functions" $fpath)
+  [[ -d "${HOMEBREW_PREFIX}/share/zsh-completions" ]] && fpath=("${HOMEBREW_PREFIX}/share/zsh-completions" $fpath)
 fi
 
 # Assemble standard & custom user paths in order of preference
@@ -91,10 +92,10 @@ fi
 # Source local bin env if provided
 [[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
 
-# NVM initialization
-export NVM_DIR="$HOME/.nvm"
-[[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"
-[[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"
+# FNM (Fast Node Manager) initialization
+if command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env --use-on-cd)"
+fi
 
 # ------------------------------------------------------------------------------
 # 4. COMPLETIONS & PROMPT

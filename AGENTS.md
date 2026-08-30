@@ -28,7 +28,7 @@ The project is initialized and updated via [`setup.sh`](file:///Users/bendiuguid
    - `brew.sh` (Homebrew & command-line packages)
    - `bash.sh` (Bash upgrade and registering it in `/private/etc/shells`)
    - `zsh.sh` (Zsh upgrade and registering it in `/private/etc/shells`)
-   - `npm.sh` (NVM, node version, and global npm packages like `yarn` and `trash-cli`)
+   - `npm.sh` (FNM, node version, and global npm packages like `trash-cli`)
    - `agy.sh` (AntiGravity CLI installation)
    - *(Optional/Commented)* `gem.sh`, `python.sh`, `brew-cask.sh`, and `macOS/defaults.*.sh`
 4. **Shell Reload**: The user should reload the shell or run the `reSource` alias (`source ~/.zshrc`) to apply the configurations.
@@ -41,7 +41,7 @@ When a new Zsh session is started, [`symlink/.zshrc`](file:///Users/bendiuguid/.
 
 - **Section 1: Environment & Shell Options**: History, locale, editor defaults, `setopt`/`unsetopt`.
 - **Section 2: Platform Detection**: Detects macOS vs Linux dev server, initializes Homebrew environment.
-- **Section 3: PATH Configuration**: `typeset -U path PATH` deduplication, user bin folders, PNPM, NVM.
+- **Section 3: PATH Configuration**: `typeset -U path PATH` deduplication, user bin folders, PNPM, FNM.
 - **Section 4: Completions & Prompt**: `compinit`, `prompt pure`, case-insensitive completion styling.
 - **Section 5: Aliases & Custom Functions**: Common navigation aliases, `reSource`, and macOS Finder/clipboard shortcuts.
 - **Section 6: Plugins & Keybindings**: Safe conditional sourcing of `zsh-autosuggestions`, `zsh-syntax-highlighting` (with dynamic highlighter directory detection), and `zsh-history-substring-search`.

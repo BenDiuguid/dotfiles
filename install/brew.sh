@@ -14,10 +14,14 @@ binaries=(
 
   # ZSH + plugins
   zsh
+  pure
   zsh-history-substring-search
   zsh-syntax-highlighting
   zsh-completions
   zsh-autosuggestions
+
+  # Node & Runtime Managers
+  fnm
 
   # Other
   dockutil
