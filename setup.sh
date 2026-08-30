@@ -24,7 +24,7 @@ source "$DOTFILES_DIR/install/zsh.sh"
 source "$DOTFILES_DIR/install/npm.sh"
 source "$DOTFILES_DIR/install/agy.sh"
 #source "$DOTFILES_DIR/install/gem.sh"
-# source "$DOTFILES_DIR/install/python.sh"
+source "$DOTFILES_DIR/install/python.sh"
 # source "$DOTFILES_DIR/install/brew-cask.sh"
 
 # Setup macOS defaults
