@@ -158,20 +158,14 @@ alias ...='cd ../../'
 
 # Directory Listing
 if command -v eza >/dev/null 2>&1; then
-  alias ls='eza --icons'
-  alias l='eza -l --icons --git'
-  alias la='eza -a --icons'
-  alias ll='eza -la --icons --git'
-  alias ld='eza -D --icons'
-  alias lt='eza --tree --level=2 --icons'
+  alias ls='eza'
+  alias la='eza -a'
 elif [[ "$IS_MACOS" == true ]]; then
   alias ls='ls -GF'
   alias la='ls -A'
-  alias ld='ls -d */'
 else
   alias ls='ls --color=auto'
   alias la='ls -A --color=auto'
-  alias ld='ls -d */ --color=auto'
 fi
 
 # Utilities
@@ -188,6 +182,28 @@ alias doctor='[ -f "$HOME/.dotfiles/validate.sh" ] && "$HOME/.dotfiles/validate.
 alias dotdoctor='[ -f "$HOME/.dotfiles/validate.sh" ] && "$HOME/.dotfiles/validate.sh"'
 
 alias colorTest='for x in 0 1 4 5 7 8; do for i in $(seq 30 37); do for a in $(seq 40 47); do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo "";'
+
+# AntiGravity Project Creator
+create-agy-project() {
+  local name="${1:-$(basename "$PWD")}"
+  local dir="${2:-$PWD}"
+  python3 -c "
+import uuid, json, os
+proj_id = str(uuid.uuid4())
+proj = {
+  'id': proj_id,
+  'name': '$name',
+  'projectResources': {'resources': [{'folderUri': 'file://' + os.path.abspath('$dir')}]},
+  'settings': {},
+  'isWorkspaceOnly': False
+}
+path = os.path.expanduser(f'~/.gemini/config/projects/{proj_id}.json')
+os.makedirs(os.path.dirname(path), exist_ok=True)
+with open(path, 'w') as f:
+    json.dump(proj, f, indent=2)
+print(f'Created project \"$name\" ({proj_id}) at {path}')
+"
+}
 
 # Platform-specific aliases & utilities
 if [[ "$IS_MACOS" == true ]]; then
