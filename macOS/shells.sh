@@ -11,6 +11,11 @@ fi
 
 # Register Homebrew Zsh
 if [[ -x "$BREW_PREFIX/bin/zsh" ]]; then
+  # Remove group/world write from Homebrew share dirs so compinit doesn't
+  # warn about "insecure directories" (Homebrew zsh-completions caveat)
+  chmod go-w "$BREW_PREFIX/share" 2>/dev/null || true
+  [[ -d "$BREW_PREFIX/share/zsh" ]] && chmod -R go-w "$BREW_PREFIX/share/zsh" 2>/dev/null || true
+  [[ -d "$BREW_PREFIX/share/zsh-completions" ]] && chmod -R go-w "$BREW_PREFIX/share/zsh-completions" 2>/dev/null || true
   grep -q "$BREW_PREFIX/bin/zsh" /private/etc/shells 2>/dev/null || \
     sudo bash -c "echo $BREW_PREFIX/bin/zsh >> /private/etc/shells"
   

@@ -21,7 +21,7 @@ brew upgrade
 binaries=(
   # BASH + plugins
   bash
-  bash-completion2
+  bash-completion@2
 
   # ZSH + plugins
   zsh
@@ -44,7 +44,7 @@ binaries=(
   git
   tmux
   vim
-  xsv
+  xan
   diff-so-fancy
   docker
   docker-compose
