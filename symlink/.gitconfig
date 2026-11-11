@@ -43,9 +43,6 @@
 [color "status"]
 	untracked = cyan
 
-[include]
-  path = ~/.gitconfig.local
-
 [push]
   default = simple
 
@@ -58,7 +55,8 @@
 [mergetool]
   prompt = false
 
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+# Machine-specific overrides (credential helpers, work email, etc.).
+# Keep this LAST so values in ~/.gitconfig.local win over everything above.
+[include]
+  path = ~/.gitconfig.local
+

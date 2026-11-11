@@ -25,10 +25,4 @@ if [ -f "$LINUX_DIR/shells.sh" ]; then
   source "$LINUX_DIR/shells.sh"
 fi
 
-# 3. Configure Git credential helper for Linux
-if command -v git >/dev/null 2>&1; then
-  echo "--> Setting git credential helper to cache..."
-  git config --global credential.helper "cache --timeout=3600"
-fi
-
 echo "==> Linux environment configured successfully."

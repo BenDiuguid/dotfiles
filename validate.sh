@@ -384,21 +384,6 @@ audit_git_config() {
   print_header "6. Git Global Configuration"
 
   if command -v git >/dev/null 2>&1; then
-    cred_helper="$(git config --global credential.helper 2>/dev/null || true)"
-    if [ "$IS_MACOS" = true ]; then
-      if [[ "$cred_helper" == *"osxkeychain"* ]]; then
-        pass "Git credential helper is set to osxkeychain ($cred_helper)."
-      else
-        warn "Git credential helper is '$cred_helper' (expected 'osxkeychain' on macOS)." "Run 'git config --global credential.helper osxkeychain'."
-      fi
-    else
-      if [[ -n "$cred_helper" ]]; then
-        pass "Git credential helper is set ($cred_helper)."
-      else
-        warn "Git credential helper is not set." "Run 'git config --global credential.helper \"cache --timeout=3600\"'."
-      fi
-    fi
-
     # Global ignore
     core_excludes="$(git config --global core.excludesfile 2>/dev/null || true)"
     if [[ -n "$core_excludes" ]]; then

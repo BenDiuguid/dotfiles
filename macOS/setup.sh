@@ -19,13 +19,7 @@ if [ -f "$MACOS_DIR/shells.sh" ]; then
   source "$MACOS_DIR/shells.sh"
 fi
 
-# 3. Configure Git credential helper for macOS Keychain
-if command -v git >/dev/null 2>&1; then
-  echo "--> Setting git credential helper to osxkeychain..."
-  git config --global credential.helper osxkeychain
-fi
-
-# 4. Optional macOS System Defaults
+# 3. Optional macOS System Defaults
 # [ -f "$MACOS_DIR/defaults.sh" ] && source "$MACOS_DIR/defaults.sh"
 # [ -f "$MACOS_DIR/defaults.dock.sh" ] && source "$MACOS_DIR/defaults.dock.sh"
 
