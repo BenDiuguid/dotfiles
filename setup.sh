@@ -34,7 +34,14 @@ for file in "$DOTFILES_DIR"/symlink/.*; do
     for app_dir in "$file"/*; do
       [ -e "$app_dir" ] || continue
       app_name="$(basename "$app_dir")"
-      ln -sfnv "$app_dir" "$HOME/.config/$app_name"
+      target="$HOME/.config/$app_name"
+      # If the app already created a real directory (e.g. Ghostty on first
+      # launch), `ln -sfn` would nest the link inside it. Replace it instead.
+      if [[ -e "$target" && ! -L "$target" ]]; then
+        echo "Replacing existing $target with symlink..."
+        rm -rf "$target"
+      fi
+      ln -sfnv "$app_dir" "$target"
     done
   else
     ln -sfv "$file" "$HOME/$basename"
