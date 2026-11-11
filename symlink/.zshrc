@@ -228,12 +228,14 @@ fi
 # ------------------------------------------------------------------------------
 # 6. PLUGINS & KEYBINDINGS
 # ------------------------------------------------------------------------------
-# Plugin directory search (Homebrew macOS/Linux, distro /usr/share paths, ~/.zsh)
+# Plugin directory search (Homebrew macOS/Linux, distro /usr/share paths, Arch's
+# /usr/share/zsh/plugins, ~/.zsh)
 PLUGIN_SEARCH_DIRS=(
   "${HOMEBREW_PREFIX}/share"
   "/opt/homebrew/share"
   "/usr/local/share"
   "/usr/share"
+  "/usr/share/zsh/plugins"
   "$HOME/.zsh"
 )
 

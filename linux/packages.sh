@@ -1,108 +1,97 @@
 #!/usr/bin/env bash
 
 # Linux Package Installation
+#
+# The distro package manager installs the BASE system only (compilers, zsh,
+# git, tmux, vim, clipboard helpers, and Linuxbrew's prerequisites). Modern CLI
+# tools, zsh plugins, the Pure prompt, and runtimes come from the shared
+# Brewfile via Linuxbrew (see linux/brew.sh), so nothing is installed twice.
+#
+# Core packages are installed in a single strict transaction: if one fails, the
+# error is shown and setup stops. Optional packages are installed one at a time
+# so a missing one only produces a warning.
+
+install_optional() {
+  local installer="$1"; shift
+  local pkg
+  for pkg in "$@"; do
+    if ! $installer "$pkg"; then
+      echo "Warning: optional package '$pkg' could not be installed; skipping."
+    fi
+  done
+}
+
+apt_install() { sudo apt-get install -y "$@"; }
+dnf_install() { sudo dnf install -y "$@"; }
+pacman_install() { sudo pacman -S --noconfirm --needed "$@"; }
 
 install_debian() {
   echo "Detected Debian/Ubuntu-based system."
   sudo apt-get update
-  sudo apt-get install -y \
+  apt_install \
     build-essential \
+    procps \
     curl \
+    file \
     git \
     zsh \
     tmux \
     vim \
     unzip \
-    procps \
-    ca-certificates \
-    xclip \
-    wl-clipboard \
-    zsh-autosuggestions \
-    zsh-syntax-highlighting \
-    diff-so-fancy 2>/dev/null || true
+    ca-certificates
 
-  # Try installing modern CLI utilities if available in repos
-  sudo apt-get install -y eza 2>/dev/null || true
-  sudo apt-get install -y bat 2>/dev/null || true
-  sudo apt-get install -y zsh-history-substring-search 2>/dev/null || true
+  install_optional apt_install xclip wl-clipboard
 
   # Docker CLI and Compose plugins (official repo or distro fallback)
-  sudo apt-get install -y docker-ce-cli docker-buildx-plugin docker-compose-plugin 2>/dev/null || \
-    sudo apt-get install -y docker.io docker-compose-v2 2>/dev/null || \
-    sudo apt-get install -y docker.io docker-compose 2>/dev/null || true
+  apt_install docker-ce-cli docker-buildx-plugin docker-compose-plugin || \
+    apt_install docker.io docker-compose-v2 || \
+    apt_install docker.io docker-compose || \
+    echo "Warning: Docker packages could not be installed; skipping."
 }
 
 install_fedora() {
   echo "Detected Fedora/RHEL-based system."
-  sudo dnf check-update || true
-  sudo dnf install -y \
+  sudo dnf check-update || true  # exits 100 when updates are available
+  dnf_install \
     @development-tools \
+    procps-ng \
     curl \
+    file \
     git \
     zsh \
     tmux \
     vim \
     unzip \
-    procps-ng \
-    ca-certificates \
-    xclip \
-    wl-clipboard \
-    zsh-autosuggestions \
-    zsh-syntax-highlighting \
-    eza \
-    bat 2>/dev/null || true
+    ca-certificates
+
+  install_optional dnf_install xclip wl-clipboard
 
   # Docker CLI and Compose
-  sudo dnf install -y docker-ce-cli docker-compose-plugin docker-buildx-plugin 2>/dev/null || \
-    sudo dnf install -y moby-engine docker-compose 2>/dev/null || true
+  dnf_install docker-ce-cli docker-compose-plugin docker-buildx-plugin || \
+    dnf_install moby-engine docker-compose || \
+    echo "Warning: Docker packages could not be installed; skipping."
 }
 
 install_arch() {
   echo "Detected Arch Linux-based system."
-  sudo pacman -Sy --noconfirm --needed \
+  sudo pacman -Sy
+  pacman_install \
     base-devel \
+    procps-ng \
     curl \
+    file \
     git \
     zsh \
     tmux \
     vim \
     unzip \
-    procps-ng \
-    ca-certificates \
-    xclip \
-    wl-clipboard \
-    eza \
-    bat \
-    zsh-autosuggestions \
-    zsh-syntax-highlighting \
-    zsh-completions \
-    zsh-history-substring-search \
-    zsh-pure-prompt \
-    docker \
-    docker-compose \
-    docker-buildx \
-    diff-so-fancy 2>/dev/null || true
-}
+    ca-certificates
 
-install_pure() {
-  local pure_dir="$HOME/.zsh/pure"
-  if [ ! -d "$pure_dir" ]; then
-    echo "Installing Pure prompt to $pure_dir..."
-    mkdir -p "$HOME/.zsh"
-    git clone https://github.com/sindresorhus/pure.git "$pure_dir"
-  else
-    echo "Updating Pure prompt in $pure_dir..."
-    git -C "$pure_dir" pull origin main || true
-  fi
-  # Ensure standard symlinks exist for fpath discovery
-  if [ -d "$pure_dir" ]; then
-    [ -f "$pure_dir/pure.zsh" ] && ln -sfn "$pure_dir/pure.zsh" "$pure_dir/prompt_pure_setup"
-    [ -f "$pure_dir/async.zsh" ] && ln -sfn "$pure_dir/async.zsh" "$pure_dir/async"
-  fi
+  install_optional pacman_install xclip wl-clipboard docker docker-compose docker-buildx
 }
 
 
-# 1. Distro native package manager
+# Distro native package manager
 if command -v apt-get >/dev/null 2>&1; then
   install_debian
 elif command -v dnf >/dev/null 2>&1; then
@@ -112,8 +101,3 @@ elif command -v pacman >/dev/null 2>&1; then
 else
   echo "Warning: Unrecognized Linux package manager. Skipping native package installation."
 fi
-
-# 2. Pure prompt installation fallback
-install_pure
-
-

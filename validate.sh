@@ -188,11 +188,7 @@ audit_prompt_and_plugins() {
     if [ "$pure_found" = true ]; then
       warn "Pure prompt files exist, but initialization returned an error:" "$pure_init_test"
     else
-      if [ "$IS_MACOS" = true ]; then
-        fail "Pure prompt is not installed." "Run 'brew install pure' or ./setup.sh."
-      else
-        fail "Pure prompt is not installed." "Run 'git clone https://github.com/sindresorhus/pure.git ~/.zsh/pure' or ./setup.sh."
-      fi
+      fail "Pure prompt is not installed." "Run 'brew install pure' or ./setup.sh."
     fi
   fi
 
@@ -209,6 +205,7 @@ audit_prompt_and_plugins() {
     "/home/linuxbrew/.linuxbrew/share"
     "$HOME/.linuxbrew/share"
     "/usr/share"
+    "/usr/share/zsh/plugins"
     "$HOME/.zsh"
   )
   if command -v brew >/dev/null 2>&1; then
