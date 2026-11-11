@@ -30,7 +30,7 @@ The project is initialized and updated via [`setup.sh`](file:///Users/bendiuguid
 3. **OS Dispatch**:
    - On **macOS**: executes [`macOS/setup.sh`](file:///Users/bendiuguid/.dotfiles/macOS/setup.sh) (installs Homebrew + [`Brewfile`](file:///Users/bendiuguid/.dotfiles/Brewfile) packages, configures macOS shells).
    - On **Linux**: executes [`linux/setup.sh`](file:///Users/bendiuguid/.dotfiles/linux/setup.sh) (installs base distro packages via apt/dnf/pacman, then Linuxbrew + [`Brewfile`](file:///Users/bendiuguid/.dotfiles/Brewfile) packages, configures Linux shells).
-   - Both also install `~/.Brewfile.local` if present (machine-specific packages, e.g. Docker).
+   - Both also install `~/.Brewfile.local` if present (machine-specific packages that only some machines need).
 4. **Shared Runtime Tooling**: Sources platform-agnostic installers in [`install/`](file:///Users/bendiuguid/.dotfiles/install):
    - `node.sh` (FNM & Node LTS)
    - `pnpm.sh` (pnpm package manager)

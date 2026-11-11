@@ -4,8 +4,8 @@
 # Installed by `brew bundle --file=~/.dotfiles/Brewfile` (see macOS/brew.sh and
 # linux/brew.sh). Check drift with `brew bundle check --file=~/.dotfiles/Brewfile`.
 #
-# Machine-specific extras (e.g. Docker on a personal laptop) belong in
-# ~/.Brewfile.local, which setup installs automatically if present.
+# Machine-specific extras belong in ~/.Brewfile.local, which setup installs
+# automatically if present.
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
@@ -45,4 +45,9 @@ if OS.mac?
   brew "vim"
   brew "xan"
   brew "dockutil"
+
+  # Docker CLI + plugins (on Linux, Docker comes from the distro; see packages.sh)
+  brew "docker"
+  brew "docker-compose"
+  brew "docker-buildx"
 end
