@@ -370,7 +370,7 @@ audit_runtimes() {
   fi
 
   # AntiGravity CLI
-  if command -v agy >/dev/null 2>&1 || [[ -x "$HOME/.antigravity/antigravity/bin/agy" ]]; then
+  if command -v agy >/dev/null 2>&1 || [[ -x "$HOME/.local/bin/agy" ]] || [[ -x "$HOME/.antigravity/antigravity/bin/agy" ]]; then
     pass "AntiGravity CLI (agy) is installed."
   else
     warn "AntiGravity CLI (agy) is not installed." "Run ./setup.sh or curl -fsSL https://antigravity.google/cli/install.sh | bash"
