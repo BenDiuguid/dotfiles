@@ -34,17 +34,19 @@ doctor
 
     ├── setup.sh                    - Master cross-platform setup coordinator (symlinks, OS dispatch, shared tools)
     ├── validate.sh                 - Dotfiles health doctor & test suite (run directly or via 'doctor' alias)
+    ├── Brewfile                    - Shared Homebrew/Linuxbrew packages (`brew bundle`); per-machine extras go in ~/.Brewfile.local
     │
     ├── macOS
     │   ├── setup.sh                - macOS setup orchestrator
-    │   ├── brew.sh                 - Installs Homebrew & CLI formulae
+    │   ├── brew.sh                 - Installs Homebrew & runs `brew bundle`
     │   ├── shells.sh               - Registers & configures Homebrew shells in /private/etc/shells
     │   ├── defaults.sh             - macOS system defaults configuration
     │   └── defaults.dock.sh        - Sets the Dock layout up
     │
     ├── linux
     │   ├── setup.sh                - Linux setup orchestrator
-    │   ├── packages.sh             - Installs packages via apt, dnf, pacman, or linuxbrew
+    │   ├── packages.sh             - Installs base system packages via apt, dnf, or pacman
+    │   ├── brew.sh                 - Installs Linuxbrew & runs `brew bundle`
     │   └── shells.sh               - Registers & configures default shell in /etc/shells
     │
     ├── install

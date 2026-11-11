@@ -18,40 +18,14 @@ brew update
 # Upgrade any already-installed formulae
 brew upgrade
 
-binaries=(
-  # BASH + plugins
-  bash
-  bash-completion@2
+# Install everything in the shared Brewfile, plus machine-specific extras
+BREWFILE_DIR="${DOTFILES_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+echo "Installing Homebrew packages from $BREWFILE_DIR/Brewfile..."
+brew bundle --file="$BREWFILE_DIR/Brewfile"
 
-  # ZSH + plugins
-  zsh
-  pure
-  zsh-history-substring-search
-  zsh-syntax-highlighting
-  zsh-completions
-  zsh-autosuggestions
-
-  # Node, Python & JS Runtime Managers
-  fnm
-  pnpm
-  uv
-  bun
-
-  # Other CLI tools
-  bat
-  dockutil
-  eza
-  git
-  tmux
-  vim
-  xan
-  diff-so-fancy
-  docker
-  docker-compose
-  docker-buildx
-)
-
-echo "Installing Homebrew packages..."
-brew install "${binaries[@]}"
+if [ -f "$HOME/.Brewfile.local" ]; then
+  echo "Installing machine-specific packages from ~/.Brewfile.local..."
+  brew bundle --file="$HOME/.Brewfile.local"
+fi
 
 brew cleanup

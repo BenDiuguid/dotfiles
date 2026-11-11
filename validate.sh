@@ -294,7 +294,7 @@ audit_cli_tools() {
       warn "Docker Buildx plugin is not installed." "Install docker-buildx-plugin."
     fi
   else
-    warn "Docker CLI is not installed." "Install via Docker Desktop (macOS) or docker-ce / docker-ce-cli (Linux)."
+    echo -e "  [${CYAN}SKIP${RESET}] Docker CLI not installed (optional; add to ~/.Brewfile.local on machines that need it)."
   fi
 
   # Clipboard integration

@@ -11,6 +11,7 @@ Here is an overview of the directory structure and where specific configuration 
 | Directory/File | Purpose | What goes here? |
 | :--- | :--- | :--- |
 | [`setup.sh`](file:///Users/bendiuguid/.dotfiles/setup.sh) | The primary installation and symlinking coordinator. | Orchestration logic for system setup across macOS and Linux. Symlinks dotfiles, dispatches to OS modules, and runs shared installers. |
+| [`Brewfile`](file:///Users/bendiuguid/.dotfiles/Brewfile) | Shared Homebrew/Linuxbrew package list (`brew bundle`). | Formulae installed on both macOS and Linux; macOS-only formulae go inside the `if OS.mac?` block. |
 | [`validate.sh`](file:///Users/bendiuguid/.dotfiles/validate.sh) | Dotfiles doctor and verification test suite. | Cross-platform health checks for symlinks, Zsh startup & syntax, Pure prompt, plugins, CLI tools, and runtimes. |
 | [`symlink/`](file:///Users/bendiuguid/.dotfiles/symlink) | Directory containing cross-platform dotfiles symlinked to `$HOME`. | Global configuration files (`.gitconfig`, `.zshrc`, `.tmux.conf`, `.gitignore_global`) and XDG configs in `.config/` (e.g., `.config/ghostty/config`). |
 | [`symlink/.zshrc`](file:///Users/bendiuguid/.dotfiles/symlink/.zshrc) | Consolidated cross-platform interactive shell configuration. | Environment, options, PATH, completions, prompt, aliases, functions, plugins, and local overrides for macOS & Linux. |
@@ -27,8 +28,9 @@ The project is initialized and updated via [`setup.sh`](file:///Users/bendiuguid
 1. **Git Pull**: Automatically pulls latest changes from `origin master` if the repository is a git repo.
 2. **Symlinks**: Dynamically links all dotfiles inside [`symlink/`](file:///Users/bendiuguid/.dotfiles/symlink) to the user's home directory (`~/`).
 3. **OS Dispatch**:
-   - On **macOS**: executes [`macOS/setup.sh`](file:///Users/bendiuguid/.dotfiles/macOS/setup.sh) (installs Homebrew packages, configures macOS shells, sets git credential helper to `osxkeychain`).
-   - On **Linux**: executes [`linux/setup.sh`](file:///Users/bendiuguid/.dotfiles/linux/setup.sh) (installs distro packages via apt/dnf/pacman or linuxbrew, configures Linux shells, sets git credential helper to `cache`).
+   - On **macOS**: executes [`macOS/setup.sh`](file:///Users/bendiuguid/.dotfiles/macOS/setup.sh) (installs Homebrew + [`Brewfile`](file:///Users/bendiuguid/.dotfiles/Brewfile) packages, configures macOS shells).
+   - On **Linux**: executes [`linux/setup.sh`](file:///Users/bendiuguid/.dotfiles/linux/setup.sh) (installs base distro packages via apt/dnf/pacman, then Linuxbrew + [`Brewfile`](file:///Users/bendiuguid/.dotfiles/Brewfile) packages, configures Linux shells).
+   - Both also install `~/.Brewfile.local` if present (machine-specific packages, e.g. Docker).
 4. **Shared Runtime Tooling**: Sources platform-agnostic installers in [`install/`](file:///Users/bendiuguid/.dotfiles/install):
    - `node.sh` (FNM & Node LTS)
    - `pnpm.sh` (pnpm package manager)
@@ -63,14 +65,16 @@ When asked to update settings, packages, or aliases in this repository, follow t
 * **Tip**: Use `reSource` in terminal to reload changes.
 
 ### 2. Machine-Specific or Sensitive Settings
-* **Where to place**: In `~/.zshrc.local` (for shell settings) or `~/.gitconfig.local` (for git settings). These files are automatically loaded and not committed to version control.
+* **Where to place**: In `~/.zshrc.local` (for shell settings), `~/.gitconfig.local` (for git settings, e.g. credential helpers), or `~/.Brewfile.local` (for per-machine Homebrew packages). These files are automatically loaded and not committed to version control.
+* **Never** run `git config --global ...` from setup scripts: `~/.gitconfig` is a symlink into this repo, so it would modify the tracked file. Use `git config --file ~/.gitconfig.local ...` instead.
 
-### 3. Adding macOS Applications & Packages
+### 3. Adding Homebrew Packages (macOS & Linux)
 * **Where to place**:
-  - Command-line binaries: Add to the `binaries` array in [`macOS/brew.sh`](file:///Users/bendiuguid/.dotfiles/macOS/brew.sh).
+  - Formulae for both platforms: Add a `brew "name"` line to [`Brewfile`](file:///Users/bendiuguid/.dotfiles/Brewfile).
+  - macOS-only formulae/casks: Add inside the `if OS.mac?` block of the [`Brewfile`](file:///Users/bendiuguid/.dotfiles/Brewfile).
 
 ### 4. Adding Linux Packages
-* **Where to place**: In [`linux/packages.sh`](file:///Users/bendiuguid/.dotfiles/linux/packages.sh) under the appropriate distro installer function or linuxbrew installer.
+* **Where to place**: Base system packages (compilers, zsh, git, tmux, vim, clipboard) go in [`linux/packages.sh`](file:///Users/bendiuguid/.dotfiles/linux/packages.sh) under the appropriate distro function. Modern CLI tools, zsh plugins, and runtimes go in the [`Brewfile`](file:///Users/bendiuguid/.dotfiles/Brewfile) (installed via Linuxbrew). Don't install the same tool from both.
 
 ### 5. Adding Global Language Runtimes & Tooling
 * **Where to place**:

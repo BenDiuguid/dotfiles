@@ -27,26 +27,16 @@ if command -v brew >/dev/null 2>&1; then
   brew update
   brew upgrade
 
-  binaries=(
-    # ZSH + prompt + plugins
-    zsh
-    pure
-    zsh-history-substring-search
-    zsh-syntax-highlighting
-    zsh-completions
-    zsh-autosuggestions
+  # Install everything in the shared Brewfile, plus machine-specific extras.
+  # Base tools (zsh, git, tmux, vim) come from the distro; see packages.sh.
+  BREWFILE_DIR="${DOTFILES_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+  echo "Installing Linuxbrew packages from $BREWFILE_DIR/Brewfile..."
+  brew bundle --file="$BREWFILE_DIR/Brewfile"
 
-    # CLI tools
-    bat
-    eza
-    git
-    tmux
-    vim
-    diff-so-fancy
-  )
-
-  echo "Installing Linuxbrew packages..."
-  brew install "${binaries[@]}"
+  if [ -f "$HOME/.Brewfile.local" ]; then
+    echo "Installing machine-specific packages from ~/.Brewfile.local..."
+    brew bundle --file="$HOME/.Brewfile.local"
+  fi
 
   brew cleanup
 
