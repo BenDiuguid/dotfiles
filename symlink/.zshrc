@@ -215,6 +215,10 @@ if [[ "$IS_MACOS" == true ]]; then
   alias hiddenFilesHide='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
   alias fileExtensionsShow='defaults write NSGlobalDomain AppleShowAllExtensions -bool true && killall Finder'
   alias fileExtensionsHide='defaults write NSGlobalDomain AppleShowAllExtensions -bool false && killall Finder'
+
+  # Dock: append a spacer (gap) to the apps section; drag it into place afterwards
+  alias dockSpacer="defaults write com.apple.dock persistent-apps -array-add '{\"tile-type\"=\"spacer-tile\";}' && killall Dock"
+  alias dockSpacerSmall="defaults write com.apple.dock persistent-apps -array-add '{\"tile-type\"=\"small-spacer-tile\";}' && killall Dock"
 else
   # Linux clipboard & networking
   if command -v wl-copy >/dev/null 2>&1; then

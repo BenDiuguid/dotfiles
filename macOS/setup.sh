@@ -19,8 +19,10 @@ if [ -f "$MACOS_DIR/shells.sh" ]; then
   source "$MACOS_DIR/shells.sh"
 fi
 
-# 3. Optional macOS System Defaults
-# [ -f "$MACOS_DIR/defaults.sh" ] && source "$MACOS_DIR/defaults.sh"
-# [ -f "$MACOS_DIR/defaults.dock.sh" ] && source "$MACOS_DIR/defaults.dock.sh"
+# 3. macOS System Defaults
+if [ -f "$MACOS_DIR/defaults.sh" ]; then
+  echo "--> Applying macOS system defaults..."
+  source "$MACOS_DIR/defaults.sh"
+fi
 
 echo "==> macOS environment configured successfully."

@@ -1,81 +1,68 @@
 #!/usr/bin/env bash
 
-# .macos — https://mths.be/macos
+# macOS system defaults
+# Only settings that differ from a stock macOS install (captured from Ben's Mac).
+# Inspired by https://mths.be/macos
+#
+# Re-inspect a domain at any time with e.g. `defaults read com.apple.dock`.
 
-# Close any open System Preferences panes, to prevent them from overriding
-# settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
-
-# Dark mode
-# osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
-
-# Ask for the administrator password upfront
-sudo -v
-
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+# Close any open System Settings panes, to prevent them from overriding
+# settings we're about to change
+osascript -e 'tell application "System Settings" to quit' 2>/dev/null || true
 
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
 
-# Disable the “Are you sure you want to open this application?” dialog
-defaults write com.apple.LaunchServices LSQuarantine -bool false
-
+# Appearance: Dark mode
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 
 ###############################################################################
-# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
+# Trackpad                                                                    #
 ###############################################################################
 
-# Trackpad: enable tap to click for this user and for the login screen
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+# Written to both the built-in and Bluetooth (Magic Trackpad) domains
+for domain in com.apple.AppleMultitouchTrackpad com.apple.driver.AppleBluetoothMultitouch.trackpad; do
+	# Tap to click
+	defaults write "$domain" Clicking -bool true
+	# Three-finger drag (disables three-finger swipes; four-finger swipes take over)
+	defaults write "$domain" TrackpadThreeFingerDrag -bool true
+	defaults write "$domain" TrackpadThreeFingerHorizSwipeGesture -int 0
+	defaults write "$domain" TrackpadThreeFingerVertSwipeGesture -int 0
+done
+
+# Tap to click for the current host & login screen
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
-# Stop iTunes from responding to the keyboard media keys
-#launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
+# Tracking speed
+defaults write NSGlobalDomain com.apple.trackpad.scaling -float 2.5
 
 ###############################################################################
-# Finder                                                                      #
+# Desktop & Stage Manager (WindowManager)                                     #
 ###############################################################################
 
-# Finder: show path bar
-defaults write com.apple.finder ShowPathbar -bool true
-
-# Avoid creating .DS_Store files on network or USB volumes
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
-
-# Show the ~/Library folder
-chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
-
-# Show the /Volumes folder
-sudo chflags nohidden /Volumes
+# Only show desktop on wallpaper click while in Stage Manager (not in standard mode)
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
 
 ###############################################################################
-# Dock, Dashboard, and hot corners                                            #
+# Dock & Mission Control                                                      #
 ###############################################################################
 
-# Enable highlight hover effect for the grid view of a stack (Dock)
-defaults write com.apple.dock mouse-over-hilite-stack -bool false
+# Don't automatically rearrange Spaces based on most recent use
+defaults write com.apple.dock mru-spaces -bool false
 
-# Don’t automatically rearrange Spaces based on most recent use
-defaults write com.apple.dock mru-spaces -bool true
-
-# Don’t show recent applications in Dock
+# Don't show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
 
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
-for app in "Activity Monitor" \
-	"cfprefsd" \
+for app in "cfprefsd" \
 	"Dock" \
-	"Finder" \
-	"Google Chrome" \
 	"SystemUIServer"; do
-	killall "${app}" &> /dev/null
+	killall "${app}" &> /dev/null || true
 done
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
